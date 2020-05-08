@@ -159,99 +159,11 @@ GitBooks consist of an Rstudio project, with several Rmarkdown files containing 
 
 If you are convinced that this tool might benefit your teaching, your first point of action is to prepare your system for creating GitBooks (Chapter \ref{prerequisites}). After that, you can get a copy of this GitBook as a template (Chapter \ref{getgitbook}). Then, you can start tweaking it for your own course!
 
-Introduction to R
+\#Introduction to R
 
-\hypertarget{prerequisites}{%
-\chapter{Prerequisites}\label{prerequisites}}
+packages
 
-This GitBook is created in Rstudio, using the \texttt{bookdown} package. To get your system set up correctly, you have to install several software packages, and register on GitHub. You only have to perform these steps once, and the entire process should take approximately 1 hour if you start from scratch. In case some software is already installed on your system, you can skip related steps. Follow these steps in order:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Install R from \href{https://cloud.r-project.org/}{cloud.r-project.org}
-\item
-  Install Rstudio Desktop (Free) from \href{https://rstudio.com/products/rstudio/download/\#download}{rstudio.com}
-\item
-  Install Git from \href{https://git-scm.com/downloads}{git-scm.com}. Use the default, recommended settings. It is especially important to leave these settings selected:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Git from the command line and also from third party software\\
-  \item
-    Use the OpenSSL library\\
-  \item
-    Checkout Windows-style, commit Unix-style line endings\\
-  \item
-    Enable Git Credential Manager\\
-  \item
-    If you run into any trouble, a more comprehensive tutorial on installing Git is available at \href{https://happygitwithr.com/install-git.html}{happygitwithr.com}.
-  \end{itemize}
-\item
-  Register on GitHub
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Go to \url{https://github.com/} and click ``Sign up''. Choose an ``Individual'', ``Free'' plan.
-  \item
-    Request a \href{https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount}{free academic upgrade}. This allows you to create \emph{private repositories}, which are only visible to you and selected collaborators, and can be made public when your work is published.
-  \end{itemize}
-\item
-  Connect Rstudio to Git and Github (for more support, see \href{https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN}{this Rstudio article}, and \href{https://www.r-bloggers.com/rstudio-and-github/}{this blog post})
-
-  \begin{enumerate}
-  \def\labelenumii{\alph{enumii}.}
-  \tightlist
-  \item
-    Open Rstudio, open the Tools menu, click \emph{Global Options}, and click \emph{Git/SVN}
-  \item
-    Verify that \emph{Enable version control interface for RStudio projects} is selected
-  \item
-    Verify that \emph{Git executable:} shows the location of git.exe. If it is missing, manually fix the location of the file.
-  \item
-    Click \emph{Create RSA Key}. Do not enter a passphrase. Press \emph{Create}. A window with some information will open, which you can close.
-  \item
-    Click \emph{View public key}, and copy the entire text to the clipboard.
-  \item
-    Close Rstudio (it might offer to restart by itself; this is fine)
-  \item
-    Go to \url{https://github.com}
-  \item
-    Click your user icon, click \emph{Settings}, and then select the \emph{SSH and GPG keys} tab.
-  \item
-    Click \emph{New SSH key}. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled ``\emph{Key}''.
-  \item
-    Open Rstudio again (unless it restarted by itself)
-  \end{enumerate}
-\item
-  Install all required packages by running the following code in the Rstudio console. Be prepared for three contingencies:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    If you receive any error saying \emph{There is no package called XYZ}, then run the code \texttt{install.packages("XYZ")}\\
-  \item
-    If you are prompted to update packages, just press \texttt{3:\ None}. Updating packages this way in an interactive session sometimes leads to errors, if the packages are loaded.\\
-  \item
-    If you see a pop-up dialog asking \emph{Do you want to install from sources the package which needs compilation?}, click \emph{No}. If this leads to errors, then please follow \emph{Step 3} from \href{https://cjvanlissa.github.io/worcs/articles/setup.html}{this online guide}, and run \texttt{install.packages("devtools")}. This will take a long time, but will allow you to install packages from source.
-  \end{itemize}
-\end{enumerate}
-
-Run the following code to install the required packages:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tinytex"}\NormalTok{)}
-\NormalTok{tinytex}\OperatorTok{::}\KeywordTok{install_tinytex}\NormalTok{()}
-\NormalTok{git2r}\OperatorTok{::}\KeywordTok{config}\NormalTok{(}\DataTypeTok{global =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{user.name =} \StringTok{"your.name"}\NormalTok{, }\DataTypeTok{user.email =} \StringTok{"your.email"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-That's it! Everything should be installed and connected now.
+library(tidyverse)
 
 \hypertarget{getgitbook}{%
 \chapter{Get your GitBook}\label{getgitbook}}
@@ -335,7 +247,6 @@ Second, to include it in the list of chapters, open the file \texttt{\_bookdown.
 
 rmd\_files: {[}``index.Rmd'',
 ``Introduction\_to\_R.Rmd'',
-``prerequisites.Rmd'',
 ``get\_your\_gitbook.Rmd'',
 ``editing\_the\_book.Rmd'',
 ``figures\_tables.Rmd'',
