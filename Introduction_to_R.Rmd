@@ -1,1 +1,10 @@
 Introduction to R
+
+
+packages 
+
+library(tidyverse)     
+
+
+
+
