@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Prerequisites | A GitBook Example for Teaching</title>
   <meta name="description" content="This GitBook is an example of a GitBook for teaching. It can be adapted for specific courses. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Prerequisites | A GitBook Example for Teaching" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="dr. Caspar J. van Lissa" />
 
 
-<meta name="date" content="2020-04-21" />
+<meta name="date" content="2020-05-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -215,18 +215,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol></li>
 <li>Install all required packages by running the following code in the Rstudio console. Be prepared for three contingencies:
 <ul>
-<li>If you receive any error saying <em>There is no package called XYZ</em>, then run the code <code>install.packages("XYZ")</code><br />
+<li>If you receive any error saying <em>There is no package called XYZ</em>, then run the code <code>install.packages(&quot;XYZ&quot;)</code><br />
 </li>
 <li>If you are prompted to update packages, just press <code>3: None</code>. Updating packages this way in an interactive session sometimes leads to errors, if the packages are loaded.<br />
 </li>
-<li>If you see a pop-up dialog asking <em>Do you want to install from sources the package which needs compilation?</em>, click <em>No</em>. If this leads to errors, then please follow <em>Step 3</em> from <a href="https://cjvanlissa.github.io/worcs/articles/setup.html">this online guide</a>, and run <code>install.packages("devtools")</code>. This will take a long time, but will allow you to install packages from source.</li>
+<li>If you see a pop-up dialog asking <em>Do you want to install from sources the package which needs compilation?</em>, click <em>No</em>. If this leads to errors, then please follow <em>Step 3</em> from <a href="https://cjvanlissa.github.io/worcs/articles/setup.html">this online guide</a>, and run <code>install.packages(&quot;devtools&quot;)</code>. This will take a long time, but will allow you to install packages from source.</li>
 </ul></li>
 </ol>
 <p>Run the following code to install the required packages:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3">tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()</a>
-<a class="sourceLine" id="cb1-4" title="4">git2r<span class="op">::</span><span class="kw">config</span>(<span class="dt">global =</span> <span class="ot">TRUE</span>, <span class="dt">user.name =</span> <span class="st">&quot;your.name&quot;</span>, <span class="dt">user.email =</span> <span class="st">&quot;your.email&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">git2r<span class="op">::</span><span class="kw">config</span>(<span class="dt">global =</span> <span class="ot">TRUE</span>, <span class="dt">user.name =</span> <span class="st">&quot;your.name&quot;</span>, <span class="dt">user.email =</span> <span class="st">&quot;your.email&quot;</span>)</a></code></pre></div>
 <p>That’s it! Everything should be installed and connected now.</p>
 
 </div>
