@@ -1,0 +1,6 @@
+# Set up project on Rstudio Cloud 
+
+First expand the R studio cloud options by clicking on the 3 lines in the top left corner. 
+
+![](img/Picture1.png)
+

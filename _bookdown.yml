@@ -1,5 +1,6 @@
-book_filename: "gitbook-demo"
+book_filename: "Tools for Analyzing Data"
 rmd_files: ["index.Rmd",
+            "setuprstudiocloud.Rmd",
             "Introduction_to_R.Rmd",
             "get_your_gitbook.Rmd",
             "editing_the_book.Rmd",

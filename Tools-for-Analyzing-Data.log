@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.18)  18 MAY 2020 16:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.18)  18 MAY 2020 16:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**gitbook-demo.tex
-(./gitbook-demo.tex
+**Tools-for-Analyzing-Data.tex
+(./Tools-for-Analyzing-Data.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-05-15> (/Users/nicolesorhagen/Library/TinyTeX/texmf-
 dist/tex/latex/base/book.cls
@@ -427,8 +427,8 @@ LaTeX Info: Redefining \cite on input line 694.
 File: l3backend-pdfmode.def 2020-05-05 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count277
 \l__pdf_internal_box=\box52
-) (./gitbook-demo.aux)
-\openout1 = `gitbook-demo.aux'.
+) (./Tools-for-Analyzing-Data.aux)
+\openout1 = `Tools-for-Analyzing-Data.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 123.
 LaTeX Font Info:    ... okay on input line 123.
@@ -468,9 +468,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 123.
 LaTeX Info: Redefining \pageref on input line 123.
 LaTeX Info: Redefining \nameref on input line 123.
-(./gitbook-demo.out) (./gitbook-demo.out)
+(./Tools-for-Analyzing-Data.out) (./Tools-for-Analyzing-Data.out)
 \@outlinefile=\write4
-\openout4 = `gitbook-demo.out'.
+\openout4 = `Tools-for-Analyzing-Data.out'.
 
 
 (/Users/nicolesorhagen/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstop
@@ -525,22 +525,20 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/Users/nicolesorhagen/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex
 .map}] [2
 
-] (./gitbook-demo.toc
+] (./Tools-for-Analyzing-Data.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 2.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 2.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 2.
-)
+[3])
 \tf@toc=\write5
-\openout5 = `gitbook-demo.toc'.
+\openout5 = `Tools-for-Analyzing-Data.toc'.
 
-[3] [4
-
-]
+[4]
 Chapter 1.
-<./img/using_gitbook.jpeg, id=125, 505.89pt x 337.26pt>
+<./img/using_gitbook.jpeg, id=129, 505.89pt x 337.26pt>
 File: ./img/using_gitbook.jpeg Graphic file (type jpg)
 <use ./img/using_gitbook.jpeg>
 Package pdftex.def Info: ./img/using_gitbook.jpeg  used on input line 133.
@@ -554,7 +552,9 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Warning: Reference `prerequisites' on page 5 undefined on input line 137.
 
 
-[5 <./img/using_gitbook.jpeg>] [6]
+[5
+
+ <./img/using_gitbook.jpeg>] [6]
 
 LaTeX Warning: Reference `prerequisites' on page 7 undefined on input line 160.
 
@@ -563,7 +563,7 @@ LaTeX Warning: Reference `prerequisites' on page 7 undefined on input line 160.
 
 ]
 Chapter 2.
-<img/Picture1.png, id=157, 311.1625pt x 135.50626pt>
+<img/Picture1.png, id=162, 311.1625pt x 135.50626pt>
 File: img/Picture1.png Graphic file (type png)
 <use img/Picture1.png>
 Package pdftex.def Info: img/Picture1.png  used on input line 167.
@@ -572,149 +572,155 @@ Package pdftex.def Info: img/Picture1.png  used on input line 167.
 
 ]
 Chapter 3.
-<./img/settings.png, id=171, 740.0147pt x 120.45pt>
+[11] [12
+
+]
+Chapter 4.
+<./img/settings.png, id=184, 740.0147pt x 120.45pt>
 File: ./img/settings.png Graphic file (type png)
 <use ./img/settings.png>
-Package pdftex.def Info: ./img/settings.png  used on input line 190.
+Package pdftex.def Info: ./img/settings.png  used on input line 191.
 (pdftex.def)             Requested size: 319.9955pt x 52.0847pt.
-<./img/new_repo.png, id=172, 193.47281pt x 232.61906pt>
+<./img/new_repo.png, id=185, 193.47281pt x 232.61906pt>
 File: ./img/new_repo.png Graphic file (type png)
 <use ./img/new_repo.png>
-Package pdftex.def Info: ./img/new_repo.png  used on input line 195.
+Package pdftex.def Info: ./img/new_repo.png  used on input line 196.
 (pdftex.def)             Requested size: 193.47528pt x 232.62202pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[11 <./img/settings.png>]
-<./img/from_template.png, id=181, 532.23843pt x 448.67625pt>
+[13 <./img/settings.png>]
+<./img/from_template.png, id=195, 532.23843pt x 448.67625pt>
 File: ./img/from_template.png Graphic file (type png)
 <use ./img/from_template.png>
-Package pdftex.def Info: ./img/from_template.png  used on input line 198.
+Package pdftex.def Info: ./img/from_template.png  used on input line 199.
 (pdftex.def)             Requested size: 320.00334pt x 269.76237pt.
-<./img/new_project.png, id=182, 444.91219pt x 315.42844pt>
+<./img/new_project.png, id=196, 444.91219pt x 315.42844pt>
 File: ./img/new_project.png Graphic file (type png)
 <use ./img/new_project.png>
-Package pdftex.def Info: ./img/new_project.png  used on input line 201.
+Package pdftex.def Info: ./img/new_project.png  used on input line 202.
 (pdftex.def)             Requested size: 319.99707pt x 226.86765pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[12 <./img/new_repo.png> <./img/from_template.png>]
-<./img/new_git_project.png, id=188, 444.91219pt x 314.67563pt>
+[14 <./img/new_repo.png> <./img/from_template.png>]
+<./img/new_git_project.png, id=202, 444.91219pt x 314.67563pt>
 File: ./img/new_git_project.png Graphic file (type png)
 <use ./img/new_git_project.png>
-Package pdftex.def Info: ./img/new_git_project.png  used on input line 204.
+Package pdftex.def Info: ./img/new_git_project.png  used on input line 205.
 (pdftex.def)             Requested size: 319.99707pt x 226.32619pt.
-<./img/files_editor.png, id=189, 663.22781pt x 188.95593pt>
+<./img/files_editor.png, id=203, 663.22781pt x 188.95593pt>
 File: ./img/files_editor.png Graphic file (type png)
 <use ./img/files_editor.png>
-Package pdftex.def Info: ./img/files_editor.png  used on input line 207.
+Package pdftex.def Info: ./img/files_editor.png  used on input line 208.
 (pdftex.def)             Requested size: 319.9953pt x 91.16777pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[13 <./img/new_project.png> <./img/new_git_project.png>]
-<./img/commit_push.png, id=198, 754.31813pt x 459.96844pt>
+[15 <./img/new_project.png> <./img/new_git_project.png>]
+<./img/commit_push.png, id=211, 754.31813pt x 459.96844pt>
 File: ./img/commit_push.png Graphic file (type png)
 <use ./img/commit_push.png>
-Package pdftex.def Info: ./img/commit_push.png  used on input line 210.
+Package pdftex.def Info: ./img/commit_push.png  used on input line 211.
 (pdftex.def)             Requested size: 319.99971pt x 195.12956pt.
-<./img/build_book.png, id=199, 661.72218pt x 274.02374pt>
+<./img/build_book.png, id=212, 661.72218pt x 274.02374pt>
 File: ./img/build_book.png Graphic file (type png)
 <use ./img/build_book.png>
-Package pdftex.def Info: ./img/build_book.png  used on input line 213.
+Package pdftex.def Info: ./img/build_book.png  used on input line 214.
 (pdftex.def)             Requested size: 319.99585pt x 132.5125pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[14 <./img/files_editor.png> <./img/commit_push.png>]
+[16 <./img/files_editor.png> <./img/commit_push.png>]
 File: ./img/settings.png Graphic file (type png)
 <use ./img/settings.png>
-Package pdftex.def Info: ./img/settings.png  used on input line 218.
+Package pdftex.def Info: ./img/settings.png  used on input line 219.
 (pdftex.def)             Requested size: 319.9955pt x 52.0847pt.
-<./img/pages_published.png, id=206, 552.56438pt x 183.68625pt>
+<./img/pages_published.png, id=219, 552.56438pt x 183.68625pt>
 File: ./img/pages_published.png Graphic file (type png)
 <use ./img/pages_published.png>
-Package pdftex.def Info: ./img/pages_published.png  used on input line 221.
+Package pdftex.def Info: ./img/pages_published.png  used on input line 222.
 (pdftex.def)             Requested size: 319.99854pt x 106.37552pt.
-[15 <./img/build_book.png> <./img/pages_published.png>] [16
+[17 <./img/build_book.png> <./img/pages_published.png>] [18
 
 ]
-Chapter 4.
+Chapter 5.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 250.
-[17]
-Overfull \hbox (7.34578pt too wide) in paragraph at lines 255--266
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 251.
+[19]
+Overfull \hbox (7.34578pt too wide) in paragraph at lines 256--267
 []\T1/lmr/m/n/10 rmd_files: [``in-dex.Rmd'', ``se-tuprstu-dio-cloud.Rmd'', ``In
 -tro-duc-tion_to_R.Rmd'',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--266
+Underfull \hbox (badness 10000) in paragraph at lines 256--267
 \T1/lmr/m/n/10 ``ex-am-ples.Rmd'', ``open_educational.Rmd'', ``use_in_course.Rm
 d'', ``li-
  []
 
-[18]
-Chapter 5.
+[20]
+Chapter 6.
 LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-287.
+288.
 (/Users/nicolesorhagen/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<gitbook-demo_files/figure-latex/nice-fig-1.pdf, id=238, 464.73625pt x 351.3125
-pt>
-File: gitbook-demo_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
-<use gitbook-demo_files/figure-latex/nice-fig-1.pdf>
-Package pdftex.def Info: gitbook-demo_files/figure-latex/nice-fig-1.pdf  used o
-n input line 293.
+<Tools-for-Analyzing-Data_files/figure-latex/nice-fig-1.pdf, id=252, 464.73625p
+t x 351.3125pt>
+File: Tools-for-Analyzing-Data_files/figure-latex/nice-fig-1.pdf Graphic file (
+type pdf)
+<use Tools-for-Analyzing-Data_files/figure-latex/nice-fig-1.pdf>
+Package pdftex.def Info: Tools-for-Analyzing-Data_files/figure-latex/nice-fig-1
+.pdf  used on input line 294.
 (pdftex.def)             Requested size: 276.00737pt x 208.64488pt.
-[19
-
- <./gitbook-demo_files/figure-latex/nice-fig-1.pdf>] [20]
-Chapter 6.
 [21
 
-] [22]
+ <./Tools-for-Analyzing-Data_files/figure-latex/nice-fig-1.pdf>] [22]
 Chapter 7.
+[23
+
+] [24]
+Chapter 8.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 3
-93.
+94.
 (/Users/nicolesorhagen/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [23
+) [25
 
-] [24
-
-]
-Chapter 8.
-[25] [26
+] [26
 
 ]
 Chapter 9.
-(./gitbook-demo.bbl [27] [28
+[27] [28
+
+]
+Chapter 10.
+(./Tools-for-Analyzing-Data.bbl [29] [30
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 442.
-[29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 442.
-(./gitbook-demo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 442.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 442.
-Package rerunfilecheck Info: File `gitbook-demo.out' has not changed.
-(rerunfilecheck)             Checksum: 28CDAC1FB30BCA60270269B92AFA7F79;3645.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 443.
+[31]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 443.
+(./Tools-for-Analyzing-Data.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 443.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 443.
+Package rerunfilecheck Info: File `Tools-for-Analyzing-Data.out' has not change
+d.
+(rerunfilecheck)             Checksum: CF307A0F7ADF0F227B36B2C991641733;3781.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 442.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 443.
  ) 
 Here is how much of TeX's memory you used:
- 10877 strings out of 482399
- 158273 string characters out of 5945451
- 392547 words of memory out of 5000000
- 26353 multiletter control sequences out of 15000+600000
+ 10883 strings out of 482399
+ 158681 string characters out of 5945451
+ 392505 words of memory out of 5000000
+ 26355 multiletter control sequences out of 15000+600000
  595246 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 34i,8n,33p,860b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,8n,33p,872b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/nicolesorhagen/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.e
 nc}{/Users/nicolesorhagen/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
 nc}{/Users/nicolesorhagen/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.e
@@ -731,10 +737,10 @@ onts/type1/public/lm/lmr7.pfb></Users/nicolesorhagen/Library/TinyTeX/texmf-dist
 dist/fonts/type1/public/lm/lmro10.pfb></Users/nicolesorhagen/Library/TinyTeX/te
 xmf-dist/fonts/type1/public/lm/lmtk10.pfb></Users/nicolesorhagen/Library/TinyTe
 X/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on gitbook-demo.pdf (29 pages, 593536 bytes).
+Output written on Tools-for-Analyzing-Data.pdf (31 pages, 593869 bytes).
 PDF statistics:
- 410 PDF objects out of 1000 (max. 8388607)
- 349 compressed objects within 4 object streams
- 87 named destinations out of 1000 (max. 500000)
- 213 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 425 PDF objects out of 1000 (max. 8388607)
+ 362 compressed objects within 4 object streams
+ 91 named destinations out of 1000 (max. 500000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
 
