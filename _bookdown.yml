@@ -1,7 +1,7 @@
 book_filename: "Tools for Analyzing Data"
 rmd_files: ["index.Rmd",
+            "Introduction.Rmd",
             "setuprstudiocloud.Rmd",
-            "Introduction_to_R.Rmd",
             "get_your_gitbook.Rmd",
             "editing_the_book.Rmd",
             "figures_tables.Rmd",

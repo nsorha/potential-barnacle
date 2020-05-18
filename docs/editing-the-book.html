@@ -131,8 +131,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Tools for Analyzing data</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="set-up-project-on-rstudio-cloud.html"><a href="set-up-project-on-rstudio-cloud.html"><i class="fa fa-check"></i><b>1</b> Set up project on Rstudio Cloud</a></li>
-<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="set-up-project-on-rstudio-cloud.html"><a href="set-up-project-on-rstudio-cloud.html"><i class="fa fa-check"></i><b>2</b> Set up project on Rstudio Cloud</a></li>
 <li class="chapter" data-level="3" data-path="getgitbook.html"><a href="getgitbook.html"><i class="fa fa-check"></i><b>3</b> Get your GitBook</a></li>
 <li class="chapter" data-level="4" data-path="editing-the-book.html"><a href="editing-the-book.html"><i class="fa fa-check"></i><b>4</b> Editing the book</a><ul>
 <li class="chapter" data-level="4.1" data-path="editing-the-book.html"><a href="editing-the-book.html#creating-new-chapters"><i class="fa fa-check"></i><b>4.1</b> Creating new chapters</a></li>
@@ -191,8 +191,8 @@ print("This is an R-command!")
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;_bookdown.yml&quot;</span>)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">cat</span>(tmp[<span class="kw">grep</span>(<span class="st">&quot;^rmd_files&quot;</span>, tmp)<span class="op">:</span><span class="kw">grep</span>(<span class="st">&quot;references</span><span class="ch">\\</span><span class="st">.Rmd&quot;</span>, tmp)], <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <p>rmd_files: [“index.Rmd”,
+“Introduction.Rmd”,
 “setuprstudiocloud.Rmd”,
-“Introduction_to_R.Rmd”,
 “get_your_gitbook.Rmd”,
 “editing_the_book.Rmd”,
 “figures_tables.Rmd”,
