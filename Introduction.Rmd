@@ -1,10 +1,5 @@
 # Introduction
 
 
-packages 
-
-library(tidyverse)     
-
-
 
 
