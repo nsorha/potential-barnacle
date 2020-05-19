@@ -2,7 +2,7 @@
 title: "Tools for Analyzing Data"
 author: "Nicole Sorhagen, Ph.D."
 date: "`r Sys.Date()`"
-description: This GitBook describes tools students can use to analyzing data.
+description: This GitBook describes tools students can use to analyze data.
 documentclass: book
 link-citations: yes
 bibliography:
@@ -11,4 +11,8 @@ bibliography:
 site: bookdown::bookdown_site
 biblio-style: apalike
 ---
+
+# About this book
+
+
 
