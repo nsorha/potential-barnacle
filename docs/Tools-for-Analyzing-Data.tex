@@ -1,7 +1,7 @@
 \PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[]{article}
+\documentclass[]{book}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -29,10 +29,11 @@
 }
 \usepackage{hyperref}
 \hypersetup{
+            pdftitle={Tools for Analyzing Data},
+            pdfauthor={Nicole Sorhagen, Ph.D.},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\usepackage[margin=1in]{geometry}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
 \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
@@ -73,22 +74,24 @@
 }
 \makeatother
 \usepackage[]{natbib}
-\bibliographystyle{plainnat}
+\bibliographystyle{apalike}
 
-\author{}
-\date{\vspace{-2.5em}}
+\title{Tools for Analyzing Data}
+\author{Nicole Sorhagen, Ph.D.}
+\date{2020-05-19}
 
 \begin{document}
+\maketitle
 
 {
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
 \tableofcontents
 }
 \hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\chapter{Introduction}\label{introduction}}
 
 \hypertarget{set-up-project-on-rstudio-cloud}{%
-\section{Set up project on Rstudio Cloud}\label{set-up-project-on-rstudio-cloud}}
+\chapter{Set up project on Rstudio Cloud}\label{set-up-project-on-rstudio-cloud}}
 
 First expand the R studio cloud options by clicking on the 3 lines in the top left corner.
 
@@ -103,8 +106,10 @@ Once you are in the shared PSYC 211 workspace, open a new project and title it w
 I will be able to see everyone's project. But you will only be able to see your project and my project.
 
 \hypertarget{final-words}{%
-\section{Final Words}\label{final-words}}
+\chapter{Final Words}\label{final-words}}
 
 We have finished a nice book.
+
+\bibliography{book.bib,packages.bib}
 
 \end{document}
