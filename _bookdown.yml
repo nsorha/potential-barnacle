@@ -2,6 +2,7 @@ book_filename: "Tools for Analyzing Data"
 rmd_files: [
             "Introduction.Rmd",
             "setuprstudiocloud.Rmd",
+            "summary.Rmd",
             "references.Rmd"]
 output_dir: "docs"
 language:
