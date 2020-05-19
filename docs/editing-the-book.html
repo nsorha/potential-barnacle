@@ -4,27 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Editing the book | Analyzing Data</title>
-  <meta name="description" content="This GitBook describes tools students can use to analyzing data." />
+  <title>Chapter 4 Editing the book | Tools-for-Analyzing-Data.utf8</title>
+  <meta name="description" content="" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Editing the book | Analyzing Data" />
+  <meta property="og:title" content="Chapter 4 Editing the book | Tools-for-Analyzing-Data.utf8" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This GitBook describes tools students can use to analyzing data." />
-  <meta name="github-repo" content="nsorha/potential-barnacle" />
+  
+  
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Editing the book | Analyzing Data" />
+  <meta name="twitter:title" content="Chapter 4 Editing the book | Tools-for-Analyzing-Data.utf8" />
   
-  <meta name="twitter:description" content="This GitBook describes tools students can use to analyzing data." />
+  
   
 
-<meta name="author" content="Nicole Sorhagen, Ph.D." />
 
 
-<meta name="date" content="2020-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +163,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analyzing Data</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
           </h1>
         </div>
 
@@ -190,7 +188,7 @@ print("This is an R-command!")
 <p>Second, to include it in the list of chapters, open the file <code>_bookdown.yml</code> (click it in the Files explorer in the bottom right of Rstudio). This file has a list of <code>.Rmd</code> files to be included in the book. In this example, the list looks like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;_bookdown.yml&quot;</span>)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">cat</span>(tmp[<span class="kw">grep</span>(<span class="st">&quot;^rmd_files&quot;</span>, tmp)<span class="op">:</span><span class="kw">grep</span>(<span class="st">&quot;references</span><span class="ch">\\</span><span class="st">.Rmd&quot;</span>, tmp)], <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
-<p>rmd_files: [“index.Rmd”,
+<p>rmd_files: [
 “Introduction.Rmd”,
 “setuprstudiocloud.Rmd”,
 “get_your_gitbook.Rmd”,

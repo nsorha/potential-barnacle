@@ -4,7 +4,6 @@ author: "Nicole Sorhagen, Ph.D."
 date: "`r Sys.Date()`"
 description: This GitBook describes tools students can use to analyzing data.
 documentclass: book
-github-repo: nsorha/potential-barnacle
 link-citations: yes
 bibliography:
 - book.bib
