@@ -1,5 +1,5 @@
 book_filename: "Tools for Analyzing Data"
-rmd_files: ["index.Rmd",
+rmd_files: [
             "Introduction.Rmd",
             "setuprstudiocloud.Rmd",
             "get_your_gitbook.Rmd",
