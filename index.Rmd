@@ -1,8 +1,8 @@
 --- 
-title: "Tools for Analyzing Data"
+title: "Tools for Working with Data"
 author: "Nicole Sorhagen, Ph.D."
 date: "`r Sys.Date()`"
-description: This GitBook describes tools students can use to analyze data.
+description: This GitBook describes tools students can use to work with data.
 documentclass: book
 link-citations: yes
 bibliography:
@@ -13,6 +13,23 @@ biblio-style: apalike
 ---
 
 # About this book
+
+This book describes how to use R statistics as a tools for working with data.  
+
+R statistics is becoming increasingly popular for data management and analysis due to its accessibility and versatility. For example, R can produce records of data analyses, which is consistent with the growing move towards reproducible and open science within the field of psychology. R statistics is also known for making elegant graphs, which can help develop students’ data visualization skills. Because it is open-sourced it is extremely flexible - people create and share packages that make certain aspects of data analysis easy.  
+
+R is a programming language. Although learning a programming language can seem a bit intimidating, there are many benefits to trying to figure it out. Mastering the basics of R could be useful for your future coursework, as well as for data management and analysis needs outside the classroom (independent research, future employment, etc.). Learning the basics of a programming language is a highly transferable skill.  
+
+R  is free so you can have it on your own computers - eliminating the need to visit computer labs or to buy student versions of expensive software. R is a programming language that can be used within the R software as well as other programs. R can be downloaded from the CRAN (Comprehensive R Archive Network) (https://www.r-project.org/). Rstudio is a free IDE (integrated development environment) for the R programming language (https://rstudio.com/). Rstudio cannot run without R (R can be used without Rstudio).  
+
+While you are welcome to download R and Rstudio on your personal computer, you do not have to for this course. We will be using Rstudio in the cloud for class work.  
+
+Finally, please note that I will be updating this book over the course of the semester.  
+
+
+
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>.
 
 
 

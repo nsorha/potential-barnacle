@@ -1,0 +1,16 @@
+# Bivariate correlational research
+
+
+## Association claim with two quantitative variables 
+
+#### Open data
+
+#### Get to know data
+
+#### Test assumptions
+
+#### Compute CI, effect size, and NHST
+
+#### Write up results
+
+

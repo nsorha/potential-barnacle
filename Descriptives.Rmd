@@ -1,0 +1,10 @@
+# Descriptive Statistics
+
+A **function** in R is any kind of operation. For example, the `mean()` function will compute an average ($sumX/N$). 
+
+An *argument* is what a function acts on. The `mean()` function takes one argument, a numeric vector. 
+
+For example, `mean(classIQ)` will return the average of the IQ scores in the classIQ vector. This code applies the function mean to the variable classIQ. 
+
+This section focuses on functions that find descriptive statistics. Descriptive statistics refer to measures of central tendency (mean, median, and mode) and measures of variability (standard deviation, variance, range, etc.). There are several functions that find descriptive statistics within R. My preferred method uses the Tidyverse and Psych packages, which I describe first. Next I will show you how to find descriptive statistics using base R.
+

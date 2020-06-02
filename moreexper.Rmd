@@ -1,0 +1,13 @@
+# Experiments with more than one IV
+
+## Independent-group factorial design 
+
+
+
+
+## Within-group factorial design
+
+
+
+## Mixed factorial design
+
