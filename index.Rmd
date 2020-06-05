@@ -14,7 +14,7 @@ biblio-style: apalike
 
 # About this book
 
-This book describes how to use R statistics as a tool for working with data.  
+This book describes how to use R as a tool to work with data.  
 
 R statistics is becoming increasingly popular for data management and analysis due to its accessibility and versatility. For example, R can produce records of data analyses, which is consistent with the growing move towards reproducible and open science within the field of psychology. R statistics is also known for making elegant graphs, which can help develop data visualization skills. Because it is open-sourced it is extremely flexible - people create and share packages that make certain aspects of data analysis easy.  
 
