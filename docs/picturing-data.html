@@ -24,7 +24,7 @@
 <meta name="author" content="Nicole Sorhagen, Ph.D." />
 
 
-<meta name="date" content="2020-06-11" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>4</b> Packages</a><ul>
 <li class="chapter" data-level="4.1" data-path="packages.html"><a href="packages.html#installing-packages"><i class="fa fa-check"></i><b>4.1</b> Installing packages</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="packages.html"><a href="packages.html#instailling-packages-using-point-and-click-gui"><i class="fa fa-check"></i><b>4.1.1</b> Instailling packages using point and click (GUI)</a></li>
+<li class="chapter" data-level="4.1.1" data-path="packages.html"><a href="packages.html#installing-packages-using-point-and-click-gui"><i class="fa fa-check"></i><b>4.1.1</b> Installing packages using point and click (GUI)</a></li>
 <li class="chapter" data-level="4.1.2" data-path="packages.html"><a href="packages.html#installing-packages-using-code"><i class="fa fa-check"></i><b>4.1.2</b> Installing packages using code</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="packages.html"><a href="packages.html#loading-packages"><i class="fa fa-check"></i><b>4.2</b> Loading Packages</a></li>
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.2" data-path="picturing-data.html"><a href="picturing-data.html#histograms-with-tidyverse"><i class="fa fa-check"></i><b>5.1.2</b> Histograms with tidyverse</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="picturing-data.html"><a href="picturing-data.html#scatterplots"><i class="fa fa-check"></i><b>5.2</b> Scatterplots</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="picturing-data.html"><a href="picturing-data.html#two-continuous-varaibles"><i class="fa fa-check"></i><b>5.2.1</b> Two continuous varaibles</a></li>
+<li class="chapter" data-level="5.2.1" data-path="picturing-data.html"><a href="picturing-data.html#two-continuous-variables"><i class="fa fa-check"></i><b>5.2.1</b> Two continuous variables</a></li>
 <li class="chapter" data-level="5.2.2" data-path="picturing-data.html"><a href="picturing-data.html#one-continuous-and-one-categorical-variable"><i class="fa fa-check"></i><b>5.2.2</b> One continuous and one categorical variable</a></li>
 </ul></li>
 </ul></li>
@@ -212,29 +212,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="picturing-data" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Picturing Data</h1>
-<p>TALK ABOUT THE IMPORTANCE OF LOOKING AT DATA (data visualization)</p>
+<p>“The simple graph has brought more information to the data analyst’s mind than any other device.” — John Tukey</p>
+<p>This chapter focuses on how to make graphs and figures in R. Data visualization is useful for descriptive statistics, data analysis, and communicating results.</p>
 <div id="histograms" class="section level2">
 <h2><span class="header-section-number">5.1</span> Histograms</h2>
 <p>Here you will learn how to make a histogram. Histograms plot the frequency of each score in a set of data. Thus, they are essentially a graphic of a frequency distribution. They are useful for checking the shape of a distribution (many statistical tests assume data is approximately normally distributed), checking for coding errors, and checking for outliers.</p>
 <div id="histograms-with-base-r" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> Histograms with base R</h3>
-<p>Let’s first make a histogram of the exam 2 scores. This could be done with base R by using the hist() function.</p>
-<p>A <strong>function</strong> in R is any kind of operation. For example, the <code>hist()</code> function will create a histogram.</p>
-<p>An <em>argument</em> is what a function acts on.</p>
+<p>Let’s first make histogram with base R by using the hist() function.</p>
+<p>A <strong>function</strong> in R is any kind of operation. For example, the <code>hist()</code> function will create a histogram. An <strong>argument</strong> is what a function acts on.</p>
 <p>For example, <code>hist(classIQ)</code> will return the histogram of the IQ scores in the classIQ vector. This code applies the function hist to the variable classIQ.</p>
 <p>After you run this command, your screen should look similar to this:</p>
 <p><img src="img/basehist.png" />
-I circled and boxed what should match here. (Please excuse a few difference between this screenshot and your screen, like the name of the script, the code in the script before the histogram, and the results in the console. I had presented the material in a different order the last time I taught it.)</p>
+I circled and boxed what should match here. (Please excuse a few differences between this screenshot and your screen, like the name of the script, the code in the script before the histogram, and the results in the console. I had presented the material in a different order the last time I taught it.)</p>
 <p>In order to use a base R function with a variable within a data frame you have to tell R to first look in the data frame in order to find the variable. You do this with the dollar sign (<code>$</code>). Place the <code>$</code> between the name of the data frame and the name of the variable.</p>
 <p>For example, to use the <code>hist()</code> function to create a histogram of the exam 2 points variable in the exam 2 dataset, use this code:</p>
-<p><code>hist(exam2$exam2pts)</code>
+<p><code>hist(exam2$exam2pts)</code><br />
 - exam2$exam2pts is telling R to first go to the exam2 dataset and then use the exam2pts variable</p>
 <p>Here is a picture:<br />
 <img src="img/basehist2.png" /></p>
+<p>The data looks some what normally distributed, with a slight positive shew.</p>
 </div>
 <div id="histograms-with-tidyverse" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> Histograms with tidyverse</h3>
-<p>The base R option is quick and easy. But it is not customizable. Because of this – many people prefer to use <strong>ggplot</strong> (of the Tidyverse package - so tidyverse needs to me loaded).</p>
+<p>The base R option is quick and easy. But it is not customizable. Because of this – many people prefer to use <strong>ggplot</strong> (of the Tidyverse package - so tidyverse needs to be loaded).</p>
 <p>Ggplot is typically taught with the analogy of a globe that is built one layer at a time. You start with a world of only ocean (no land). Then you progressively add “layers” of land, colors, terrain, legends, etc. This system is based on the grammar of graphics: statistical graphics map <strong>data</strong> onto perceivable <strong>aesthetic attributes</strong> (e.g., position, color, shape, size, line type) of <strong>geometric objects</strong> (e.g., points, bars, lines). Code can also be added to ggplots to make graphs in APA style.</p>
 <p>With ggplot, you build plots step-by-step, layer-by-layer using the following steps:<br />
 1. Start with <code>ggplot()</code><br />
@@ -248,8 +249,11 @@ I circled and boxed what should match here. (Please excuse a few difference betw
 <code>ggplot(exam2, aes(x=exam2pts)) +</code><br />
 <code>geom_histogram(binwidth=1)</code></p>
 <ul>
-<li>The first line starts with ggplot and then supplies a dataset and aesthetic mapping, <code>aes()</code><br />
+<li>The first line starts with ggplot and then supplies a dataset and aesthetic mapping, <code>aes()</code>
+<ul>
+<li>Because you supply the dataset this way - you do not need to use <code>$</code> to tell R where the variable is<br />
 </li>
+</ul></li>
 <li>The second line adds the layer of a histogram</li>
 </ul>
 <p>After you run this code your screen should look like this:</p>
@@ -258,24 +262,25 @@ I circled and boxed what should match here. (Please excuse a few difference betw
 <p>In ggplot, it is easy to change the amount of points per bin by changing the number after the binwidth. For example, here I change the number to 3:</p>
 <p><img src="img/tidyhist2.png" />
 Some say that 10 bins in a histogram is a good rule of thumb (There are more precise equations for determining the “right” number of bins as well).</p>
-<p>Let’s look at a histogram of the number of hours studied next.</p>
+<p>Let’s look at a histogram of the number of hours studied for exam 2 next.</p>
 <p>Here is the code:</p>
-<p><code>ggplot(exam2, aes(x=exam2pts)) +</code><br />
+<p><code>ggplot(exam2, aes(x=hrsstudye2)) +</code><br />
 <code>geom_histogram(binwidth=1)</code></p>
 <p>After you run this code, your screen should look like this:<br />
 <img src="img/tidyhist3.png" /></p>
+<p>The histogram show that data approximates the normal distribution and is roughly mound shape.</p>
 <p>You do not need to run this – but I just want to show you that if I run only the first line of the histogram code, the figure would look like this:</p>
 <p><img src="img/ggoc.png" /></p>
-<p>..so this is the world as only ocean – without land. The second line of the ggplot code (i.e. <code>geom_histogram(binwidth=1</code>)) adds the “land”.</p>
-<p><em>Please note that I am going to start providing less screen shots from this point forward. When I include R code know that I mean that this code should be typed into a script.</em></p>
+<p>…so this is the world as only ocean – without land. The second line of the ggplot code (i.e. <code>geom_histogram(binwidth=1</code>)) adds the “land”.</p>
+<p><em>Please note that I am going to start providing less screen shots of the whole Rstudio window from this point forward. When I include R code know that I mean that the code should be typed into a script.</em></p>
 </div>
 </div>
 <div id="scatterplots" class="section level2">
 <h2><span class="header-section-number">5.2</span> Scatterplots</h2>
-<p><strong>Scatterplots</strong> are a graph where one variable is plotted on the y-axis and the other is plotted on the x-axis. Each dot represents one participant, measured on two variables.</p>
+<p>A <strong>Scatterplot</strong> is a graph where one variable is plotted on the y-axis and the other is plotted on the x-axis. Each dot represents one participant, measured on two variables.</p>
 <p>We are going to focus on using ggplots to create scatterplots because it is the more powerful data visualization tool in R.</p>
-<div id="two-continuous-varaibles" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Two continuous varaibles</h3>
+<div id="two-continuous-variables" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Two continuous variables</h3>
 <p>Using the exam 2 dataset, let’s say we hypothesized that there is a positive association between exam 2 scores and the number of hours studied for the exam. One of the first steps of exploring this association is to create a scatterplot.</p>
 <p>Here is the code and resulting graph:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="picturing-data.html#cb1-1"></a><span class="kw">ggplot</span>(exam2, <span class="kw">aes</span>(<span class="dt">x=</span>exam2pts, <span class="dt">y=</span>hrsstudye2)) <span class="op">+</span></span>
@@ -285,13 +290,14 @@ Some say that 10 bins in a histogram is a good rule of thumb (There are more pre
 </div>
 <div id="one-continuous-and-one-categorical-variable" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> One continuous and one categorical variable</h3>
-<p>Traditionally psychology likes to visualize the relation between a continuous and categorical variable using a bar graph. However, bar graphs can be misleading about the true nature of the data. I prefer to continue to use a scatterplot to look at the association between a continuous and categorical variable - with some alterations to show the mean and variability (which is important to show with group data).</p>
+<p>Let’s say you were interested in the relation between cheese eating and exam 2 scores. You hypothesized that exam scores will be lowers for students who ate cheese the night before the exam because cheese gives nightmares.</p>
+<p>Traditionally psychology likes to visualize the relation between a continuous and categorical variable using a bar graph. However, bar graphs can be misleading about the true nature of the data. Because of this, I prefer to continue to use a scatterplot to look at the association between a continuous and categorical variable - with some alterations to show the mean and variability (which is important to show with group data).</p>
 <p>In ggplots you can alter the scatterplot to include the mean and variability, in addition to the actual data points, by including the <code>stat_summary()</code> function in the ggplot code. The <code>stat_summary()</code> function adds statistics to a ggplot.</p>
-<p>To use the <code>stat_summary()</code> function you need to install the Hmisc package. It does not need to be loaded.</p>
+<p>To use the <code>stat_summary()</code> function you need to install the Hmisc package. It does not need to be loaded. <em>This is a rare exception on how packages in R normally work - The package does not need to be loaded in order for R to use it.</em></p>
 <p>Here is the code to install Hmisc:</p>
 <p><code>install.packages("Hmisc")</code><br />
 - remember to be patient and wait until the package is completely installed.</p>
-<p>Then create the scatterplot with the follow ggplot code:</p>
+<p>Then create the scatterplot with the following ggplot code:</p>
 <p><code>ggplot(exam2, aes(x = cheese, y = exam2pts)) +</code><br />
 <code>geom_point() +</code><br />
 <code>stat_summary(fun.data = mean_cl_normal)</code></p>
@@ -300,24 +306,25 @@ Some say that 10 bins in a histogram is a good rule of thumb (There are more pre
 </li>
 <li>y is the continuous variable<br />
 </li>
-<li><code>geom_point()</code> includes the actual data points<br />
+<li><code>geom_point()</code> includes the data points<br />
 </li>
 <li>The <code>fun.data = mean_cl_normal</code> within the <code>stat_summary()</code> function adds the mean and the confidence interval around the mean.</li>
 </ul>
 <p>The graph should look like this:</p>
 <p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>The means are represented by the large dots. The lines represent the 95% confidence intervals, which shows the certainty around the mean and is based on the sample mean, standard deviation, and n. The small dots are the data points representing the participants cheese eating and exam grades.</p>
-<p>Here you can see that the mean exam 2 scores are pretty similar for students who did and did not eat cheese the night before the exam. The spread of the scores is also similar.</p>
-<p>I like to make a few more alterations to the previous code for aesthetics…</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="picturing-data.html#cb2-1"></a><span class="kw">ggplot</span>(exam2, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(cheese), <span class="dt">y =</span> exam2pts)) <span class="op">+</span></span>
-<span id="cb2-2"><a href="picturing-data.html#cb2-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span></span>
-<span id="cb2-3"><a href="picturing-data.html#cb2-3"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_normal)</span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The means are represented by the large dots. The lines represent the 95% confidence intervals, which shows the certainty around the mean and is based on the sample mean, standard deviation, and n. </p>
+<p>The small dots are the data points representing the participants cheese eating and exam grades.</p>
+<p>Here you can see that the mean exam 2 scores are pretty similar for students who did and did not eat cheese the night before the exam. The spread of the scores is also similar. (Remember from the introduction chapter 1 = no and 2 = yes).</p>
+<p>I like to make a few alterations to the previous code for aesthetics…</p>
+<p><code>ggplot(exam2, aes(x = as.factor(cheese), y = exam2pts)) +</code><br />
+<code>geom_point(color = "purple") +</code><br />
+<code>stat_summary(fun.data = mean_cl_normal)</code></p>
 <ul>
 <li>The <code>color = "purple"</code> in the <code>geom_point()</code> function changes the color of the data points making the graph easier to read<br />
 </li>
 <li>The <code>as.factor(cheese)</code> tells R to treat the cheese variable as a factor, which makes the x-axis more visually appealing</li>
 </ul>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 
 </div>
 </div>

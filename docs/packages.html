@@ -24,7 +24,7 @@
 <meta name="author" content="Nicole Sorhagen, Ph.D." />
 
 
-<meta name="date" content="2020-06-11" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>4</b> Packages</a><ul>
 <li class="chapter" data-level="4.1" data-path="packages.html"><a href="packages.html#installing-packages"><i class="fa fa-check"></i><b>4.1</b> Installing packages</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="packages.html"><a href="packages.html#instailling-packages-using-point-and-click-gui"><i class="fa fa-check"></i><b>4.1.1</b> Instailling packages using point and click (GUI)</a></li>
+<li class="chapter" data-level="4.1.1" data-path="packages.html"><a href="packages.html#installing-packages-using-point-and-click-gui"><i class="fa fa-check"></i><b>4.1.1</b> Installing packages using point and click (GUI)</a></li>
 <li class="chapter" data-level="4.1.2" data-path="packages.html"><a href="packages.html#installing-packages-using-code"><i class="fa fa-check"></i><b>4.1.2</b> Installing packages using code</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="packages.html"><a href="packages.html#loading-packages"><i class="fa fa-check"></i><b>4.2</b> Loading Packages</a></li>
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.2" data-path="picturing-data.html"><a href="picturing-data.html#histograms-with-tidyverse"><i class="fa fa-check"></i><b>5.1.2</b> Histograms with tidyverse</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="picturing-data.html"><a href="picturing-data.html#scatterplots"><i class="fa fa-check"></i><b>5.2</b> Scatterplots</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="picturing-data.html"><a href="picturing-data.html#two-continuous-varaibles"><i class="fa fa-check"></i><b>5.2.1</b> Two continuous varaibles</a></li>
+<li class="chapter" data-level="5.2.1" data-path="picturing-data.html"><a href="picturing-data.html#two-continuous-variables"><i class="fa fa-check"></i><b>5.2.1</b> Two continuous variables</a></li>
 <li class="chapter" data-level="5.2.2" data-path="picturing-data.html"><a href="picturing-data.html#one-continuous-and-one-categorical-variable"><i class="fa fa-check"></i><b>5.2.2</b> One continuous and one categorical variable</a></li>
 </ul></li>
 </ul></li>
@@ -212,24 +212,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="packages" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Packages</h1>
-<p><strong>NOTE:</strong> Please open a new script and call it lab 2 (or week 2) for this and the plots chapter.</p>
+<p><strong>NOTE:</strong> Please open a new script and call it lab 2 (or week 2) for the replication of this chapter and the picturing data chapter assignment.</p>
 <p><strong>Base R</strong> refers to the functions that automatically come with R. But many people build on top of Base R to make R better. The way they do this is through <strong>packages</strong>, which contain new R functions. There are thousands of packages available that can do fancy things like quickly compute descriptive statistics and create APA style tables (and much much more).</p>
-<p>The first time you use a package, you need to install it (remember we did this once already while importing data). Once a package is installed, you will need to tell R that you want to use it by loading it. You will need to load any packages you want to use each time you open the R program (I am not exactly sure how this works in the RStudio cloud because it does not seem to shut down when you close out of the RStudio cloud website).</p>
-<p>You only have to install a package once. You will have to load a package every time you want to use it.</p>
+<p>The first time you use a package, you need to install it. Once a package is installed, you will need to tell R that you want to use it by loading it. You will need to load any packages you want to use each time you open the R program. (I am not exactly sure how this works in the RStudio cloud because it does not seem to shut down when you close out of the RStudio cloud website. See the Restarting R section below for a work around.)</p>
+<p>That is, you only have to install a package once. You will have to load a package every time you want to use it.</p>
 <div id="installing-packages" class="section level2">
 <h2><span class="header-section-number">4.1</span> Installing packages</h2>
-<p>The first time you use a package, you need to install it. (We actually did this once already while importing data!)</p>
+<p>The first time you use a package, you need to install it. We actually did this once already while importing data! This time let’s learn more about the process.</p>
 <p>In RStudio, packages can be installed through point and click (GUI) or with code.</p>
-<div id="instailling-packages-using-point-and-click-gui" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Instailling packages using point and click (GUI)</h3>
+<div id="installing-packages-using-point-and-click-gui" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Installing packages using point and click (GUI)</h3>
 <p>Let’s first install a package called <strong>Tidyverse</strong>. Tidyverse was created by Hadley Wickham and his team with the aim of making various aspects of data analysis in R easier. It is actually collection of packages that include a lot of functions (e.g., subsetting, transforming, visualizing) that many people think of as essential for data analysis. (See the tidyverse website for additional information: <a href="https://www.tidyverse.org" class="uri">https://www.tidyverse.org</a>).</p>
-<p>To install tidyverse with GUI go to the top bar menu:</p>
+<p>To install a package with GUI go to the top bar menu:</p>
 <p>TOOLS -&gt; INSTALL PACKAGES</p>
 <p><img src="img/instpacktools.png" /></p>
-<p>In the install packages window, type <code>tidyverse</code> in the packages box.</p>
+<p>In the install packages window, type the name of the package you would like to install. For example, type <code>tidyverse</code> in the packages box.</p>
 <p>Then click INSTALL.</p>
 <p><img src="img/instpackguitidy.png" /></p>
-<p>Again, installing a package can be a little slow on the RStudio cloud. PLease be patient (maybe this is a good time to stretch your legs, refill your beverage, let the dog out, etc.)</p>
+<p>Again, installing a package can be a little slow on the RStudio cloud. Please be patient (maybe this is a good time to stretch your legs, refill your beverage, let the dog out, etc.)</p>
 <p>Your screen should look like this when it is starting to install:</p>
 <p><img src="img/instload1.png" /></p>
 <p>It should look like this when it is in the process of installing:</p>
@@ -242,27 +242,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.1.2</span> Installing packages using code</h3>
 <p>You can also install a package using this code:<br />
 <code>install.packages()</code></p>
-<p>To install Tidyverse, for example, you would use this code:<br />
+<p>To install tidyverse, for example, you would use this code:<br />
 <code>install.packages("tidyverse")</code><br />
 - Note that the word tidyverse is in quotes</p>
 <p>But do not run this code – as you have already installed it with GUI.</p>
-<p>Instead, let’s install a package called Psych using the <code>install.packages</code> command. The <strong>psych package</strong> is a package for personality, psychometric, and psychological research. It has been developed at Northwestern University (maintained by William Revelle) to include useful functions for personality and psychological research.</p>
-<p>To install this package type the following command in your script:<br />
+<p>Instead, let’s install a package called psych using the <code>install.packages</code> command. The <strong>psych package</strong> is a package for personality, psychometric, and psychological research. It has been developed at Northwestern University (maintained by William Revelle) to include useful functions for personality and psychological research.</p>
+<p>To install this package, use following command:<br />
 <code>install.packages("psych")</code></p>
 <p>Your screen should look like this when the package is completely installed:<br />
 <img src="img/instpsyc.png" /></p>
 <p>Remember that installing packages is the first step to using them and they only have to be installed once.</p>
-<p>Next let’s learn how to load packages.</p>
+<p>Next let’s learn how to load packages, so that you can use thier functions.</p>
 </div>
 </div>
 <div id="loading-packages" class="section level2">
 <h2><span class="header-section-number">4.2</span> Loading Packages</h2>
 <p>Installing a package is only the first step.</p>
 <p><strong>In order to use a package, it must be loaded first.</strong></p>
-<p>Packages can only be loaded with code. Packages need to be loaded every time you open the RStudio program.</p>
-<p>When you have the Rstudio program installed on your computer this is straight forward (either the program is open or closed). This is less clear with Rstudio cloud because it does not seem to always shut down when you close the web browser site. (Please see the section on restarting starting session in Rstudio in the misc section below for a work around.)</p>
-<p>Most people’s R scripts begin with code that load packages.</p>
-<p>The command to load packages is:<br />
+<p>Packages can only be loaded with code. Packages need to be loaded every time you open the RStudio program. Most people’s R scripts begin with the code that load packages.</p>
+<p>When you have the Rstudio program installed on your computer this is straight forward (either the program is open or closed). This is less clear with Rstudio cloud because it does not seem to always shut down when you close the web browser site. (Please see the section on restarting Rstudio in the misc section below for a work around.)</p>
+<p>The command to load a package is:<br />
 <code>library()</code></p>
 <p>For example, load the tidyverse package with this:<br />
 <code>library(tidyverse)</code></p>
@@ -276,8 +275,8 @@ Again, don’t worry about the warning about masked functions for now.</p>
 </div>
 <div id="misc" class="section level2">
 <h2><span class="header-section-number">4.3</span> Misc</h2>
-<p>You can get additional information using the <code>help()</code> function and <code>?</code> help operator in R. which provide access to documentation pages for all functions and packages.</p>
-<p>For example, use the following code to get more information about Tidyverse:
+<p>You can get additional information using the <code>help()</code> function and <code>?</code> help operator in R. They both provide access to documentation pages for all functions and packages.</p>
+<p>For example, use the following code to get more information about Tidyverse:<br />
 <code>?tidyverse</code></p>
 <p>Or this command to get more information about Psych:</p>
 <p><code>help(psych)</code></p>
@@ -289,7 +288,7 @@ Again, don’t worry about the warning about masked functions for now.</p>
 <p><img src="img/restart.png" /></p>
 <p>When you restart the R session, everything in the script, environment, console, and files will remain.</p>
 <p>All packages that were loaded will be cleared, so you will have to reload them if you want to use them.</p>
-<p>If something is not working like it is suppose to (and you have checked for type-os), try restarting the R session. It could be that the functions of one packages conflict or mask the functions of another package.</p>
+<p>If something is not working like it is suppose to (and you have checked for type-os), try restarting the R session. It could be that the functions of one package conflict or mask the functions of another package.</p>
 
 </div>
 </div>
