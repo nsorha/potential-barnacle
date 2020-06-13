@@ -41,6 +41,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -80,7 +120,7 @@
 
 \title{Tools for Working with Data}
 \author{Nicole Sorhagen, Ph.D.}
-\date{2020-06-05}
+\date{2020-06-11}
 
 \begin{document}
 \maketitle
@@ -140,7 +180,7 @@ Call this project your last name by clicking on the box that says `Untitled Proj
 
 This chapter introduces the Rstudio cloud environment and describes how to import data into the RStudio cloud.
 
-R cannot handle typos and is case sensitive (`Gender' is not the same as `gender'). If your code will not run check for typos and caps.
+R cannot handle typos and is case sensitive (`Gender' is not the same as `gender'). If your code will not run check for typos and caps. Related to this point, do not be afraid to copy and paste with using R. I often copy and paste code and replace variable or dataset names as needed. (This is one of the few times in education where copy and paste is OK!)
 
 \hypertarget{layout-of-rstudio-cloud}{%
 \section{Layout of Rstudio cloud}\label{layout-of-rstudio-cloud}}
@@ -400,25 +440,326 @@ Each column is a different variable. Each row is a different participant (in thi
 \hypertarget{packages}{%
 \chapter{Packages}\label{packages}}
 
+\textbf{NOTE:} Please open a new script and call it lab 2 (or week 2) for this and the plots chapter.
+
+\textbf{Base R} refers to the functions that automatically come with R. But many people build on top of Base R to make R better. The way they do this is through \textbf{packages}, which contain new R functions. There are thousands of packages available that can do fancy things like quickly compute descriptive statistics and create APA style tables (and much much more).
+
+The first time you use a package, you need to install it (remember we did this once already while importing data). Once a package is installed, you will need to tell R that you want to use it by loading it. You will need to load any packages you want to use each time you open the R program (I am not exactly sure how this works in the RStudio cloud because it does not seem to shut down when you close out of the RStudio cloud website).
+
+You only have to install a package once. You will have to load a package every time you want to use it.
+
 \hypertarget{installing-packages}{%
 \section{Installing packages}\label{installing-packages}}
+
+The first time you use a package, you need to install it. (We actually did this once already while importing data!)
+
+In RStudio, packages can be installed through point and click (GUI) or with code.
+
+\hypertarget{instailling-packages-using-point-and-click-gui}{%
+\subsection{Instailling packages using point and click (GUI)}\label{instailling-packages-using-point-and-click-gui}}
+
+Let's first install a package called \textbf{Tidyverse}. Tidyverse was created by Hadley Wickham and his team with the aim of making various aspects of data analysis in R easier. It is actually collection of packages that include a lot of functions (e.g., subsetting, transforming, visualizing) that many people think of as essential for data analysis. (See the tidyverse website for additional information: \url{https://www.tidyverse.org}).
+
+To install tidyverse with GUI go to the top bar menu:
+
+TOOLS -\textgreater{} INSTALL PACKAGES
+
+\includegraphics{img/instpacktools.png}
+
+In the install packages window, type \texttt{tidyverse} in the packages box.
+
+Then click INSTALL.
+
+\includegraphics{img/instpackguitidy.png}
+
+Again, installing a package can be a little slow on the RStudio cloud. PLease be patient (maybe this is a good time to stretch your legs, refill your beverage, let the dog out, etc.)
+
+Your screen should look like this when it is starting to install:
+
+\includegraphics{img/instload1.png}
+
+It should look like this when it is in the process of installing:
+
+\includegraphics{img/instload2.png}
+
+And then this when the installation is complete:
+
+\includegraphics{img/instload3.png}
+
+Do not proceed until the console says the package has been installed.
+
+\hypertarget{installing-packages-using-code}{%
+\subsection{Installing packages using code}\label{installing-packages-using-code}}
+
+You can also install a package using this code:\\
+\texttt{install.packages()}
+
+To install Tidyverse, for example, you would use this code:\\
+\texttt{install.packages("tidyverse")}~\\
+- Note that the word tidyverse is in quotes
+
+But do not run this code -- as you have already installed it with GUI.
+
+Instead, let's install a package called Psych using the \texttt{install.packages} command. The \textbf{psych package} is a package for personality, psychometric, and psychological research. It has been developed at Northwestern University (maintained by William Revelle) to include useful functions for personality and psychological research.
+
+To install this package type the following command in your script:\\
+\texttt{install.packages("psych")}
+
+Your screen should look like this when the package is completely installed:\\
+\includegraphics{img/instpsyc.png}
+
+Remember that installing packages is the first step to using them and they only have to be installed once.
+
+Next let's learn how to load packages.
 
 \hypertarget{loading-packages}{%
 \section{Loading Packages}\label{loading-packages}}
 
+Installing a package is only the first step.
+
+\textbf{In order to use a package, it must be loaded first.}
+
+Packages can only be loaded with code. Packages need to be loaded every time you open the RStudio program.
+
+When you have the Rstudio program installed on your computer this is straight forward (either the program is open or closed). This is less clear with Rstudio cloud because it does not seem to always shut down when you close the web browser site. (Please see the section on restarting starting session in Rstudio in the misc section below for a work around.)
+
+Most people's R scripts begin with code that load packages.
+
+The command to load packages is:\\
+\texttt{library()}
+
+For example, load the tidyverse package with this:\\
+\texttt{library(tidyverse)}
+
+After you run this code, your screen should look like this:
+
+\includegraphics{img/loadtidy.png}
+
+The console shows that the Tidyverse package has been loaded (don't worry about the conflicts for now).
+
+Next let's load the psych package using this command:\\
+\texttt{library(psych)}
+
+\includegraphics{img/loadpsyc.png}
+Again, don't worry about the warning about masked functions for now.
+
+\hypertarget{misc}{%
+\section{Misc}\label{misc}}
+
+You can get additional information using the \texttt{help()} function and \texttt{?} help operator in R. which provide access to documentation pages for all functions and packages.
+
+For example, use the following code to get more information about Tidyverse:
+\texttt{?tidyverse}
+
+Or this command to get more information about Psych:
+
+\texttt{help(psych)}
+
+\hypertarget{restarting-r}{%
+\subsection{Restarting R}\label{restarting-r}}
+
+Because it is unclear whether Rstudio completely turns off when you close the website, you could restart the R session to simulate the act of closing and reopening the Rstudio program (like you could if it were installed on your computer).
+
+To do this, in the drop down menu go to:
+
+SESSION -\textgreater{} RESTART R
+
+\includegraphics{img/restart.png}
+
+When you restart the R session, everything in the script, environment, console, and files will remain.
+
+All packages that were loaded will be cleared, so you will have to reload them if you want to use them.
+
+If something is not working like it is suppose to (and you have checked for type-os), try restarting the R session. It could be that the functions of one packages conflict or mask the functions of another package.
+
 \hypertarget{picturing-data}{%
 \chapter{Picturing Data}\label{picturing-data}}
+
+TALK ABOUT THE IMPORTANCE OF LOOKING AT DATA (data visualization)
+
+\hypertarget{histograms}{%
+\section{Histograms}\label{histograms}}
+
+Here you will learn how to make a histogram. Histograms plot the frequency of each score in a set of data. Thus, they are essentially a graphic of a frequency distribution. They are useful for checking the shape of a distribution (many statistical tests assume data is approximately normally distributed), checking for coding errors, and checking for outliers.
+
+\hypertarget{histograms-with-base-r}{%
+\subsection{Histograms with base R}\label{histograms-with-base-r}}
+
+Let's first make a histogram of the exam 2 scores. This could be done with base R by using the hist() function.
+
+A \textbf{function} in R is any kind of operation. For example, the \texttt{hist()} function will create a histogram.
+
+An \emph{argument} is what a function acts on.
+
+For example, \texttt{hist(classIQ)} will return the histogram of the IQ scores in the classIQ vector. This code applies the function hist to the variable classIQ.
+
+After you run this command, your screen should look similar to this:
+
+\includegraphics{img/basehist.png}
+I circled and boxed what should match here. (Please excuse a few difference between this screenshot and your screen, like the name of the script, the code in the script before the histogram, and the results in the console. I had presented the material in a different order the last time I taught it.)
+
+In order to use a base R function with a variable within a data frame you have to tell R to first look in the data frame in order to find the variable. You do this with the dollar sign (\texttt{\$}). Place the \texttt{\$} between the name of the data frame and the name of the variable.
+
+For example, to use the \texttt{hist()} function to create a histogram of the exam 2 points variable in the exam 2 dataset, use this code:
+
+\texttt{hist(exam2\$exam2pts)}
+- exam2\$exam2pts is telling R to first go to the exam2 dataset and then use the exam2pts variable
+
+Here is a picture:\\
+\includegraphics{img/basehist2.png}
+
+\hypertarget{histograms-with-tidyverse}{%
+\subsection{Histograms with tidyverse}\label{histograms-with-tidyverse}}
+
+The base R option is quick and easy. But it is not customizable. Because of this -- many people prefer to use \textbf{ggplot} (of the Tidyverse package - so tidyverse needs to me loaded).
+
+Ggplot is typically taught with the analogy of a globe that is built one layer at a time. You start with a world of only ocean (no land). Then you progressively add ``layers'' of land, colors, terrain, legends, etc. This system is based on the grammar of graphics: statistical graphics map \textbf{data} onto perceivable \textbf{aesthetic attributes} (e.g., position, color, shape, size, line type) of \textbf{geometric objects} (e.g., points, bars, lines). Code can also be added to ggplots to make graphs in APA style.
+
+With ggplot, you build plots step-by-step, layer-by-layer using the following steps:\\
+1. Start with \texttt{ggplot()}\\
+2. Supply a dataset and aesthetic mapping, \texttt{aes()}\\
+3. Add on \ldots{}\\
++ \textbf{Layers}, like \texttt{geom\_point()} or \texttt{geom\_histogram()}\\
++ \textbf{Scales}, like \texttt{scale\_colour\_brewer()}\\
++ \textbf{Faceting Specifications}, like \texttt{facet\_wrap()}\\
++ \textbf{Coordinate Systems}, like \texttt{coord\_flip()}
+
+The code for a histogram of the exam 2 points is:\\
+\texttt{ggplot(exam2,\ aes(x=exam2pts))\ +}~\\
+\texttt{geom\_histogram(binwidth=1)}
+
+\begin{itemize}
+\tightlist
+\item
+  The first line starts with ggplot and then supplies a dataset and aesthetic mapping, \texttt{aes()}\\
+\item
+  The second line adds the layer of a histogram
+\end{itemize}
+
+After you run this code your screen should look like this:
+
+\includegraphics{img/tidyhist.png}
+
+Note that the histogram here is more detailed than the one you produced with base R. This is because base R used 5-points bins, while ggplot used 1-point bins (because you told R to). Here it is easier to see that the data is slightly skewed right.
+
+In ggplot, it is easy to change the amount of points per bin by changing the number after the binwidth. For example, here I change the number to 3:
+
+\includegraphics{img/tidyhist2.png}
+Some say that 10 bins in a histogram is a good rule of thumb (There are more precise equations for determining the ``right'' number of bins as well).
+
+Let's look at a histogram of the number of hours studied next.
+
+Here is the code:
+
+\texttt{ggplot(exam2,\ aes(x=exam2pts))\ +}\\
+\texttt{geom\_histogram(binwidth=1)}
+
+After you run this code, your screen should look like this:\\
+\includegraphics{img/tidyhist3.png}
+
+You do not need to run this -- but I just want to show you that if I run only the first line of the histogram code, the figure would look like this:
+
+\includegraphics{img/ggoc.png}
+
+..so this is the world as only ocean -- without land. The second line of the ggplot code (i.e.~\texttt{geom\_histogram(binwidth=1})) adds the ``land''.
+
+\emph{Please note that I am going to start providing less screen shots from this point forward. When I include R code know that I mean that this code should be typed into a script.}
+
+\hypertarget{scatterplots}{%
+\section{Scatterplots}\label{scatterplots}}
+
+\textbf{Scatterplots} are a graph where one variable is plotted on the y-axis and the other is plotted on the x-axis. Each dot represents one participant, measured on two variables.
+
+We are going to focus on using ggplots to create scatterplots because it is the more powerful data visualization tool in R.
+
+\hypertarget{two-continuous-varaibles}{%
+\subsection{Two continuous varaibles}\label{two-continuous-varaibles}}
+
+Using the exam 2 dataset, let's say we hypothesized that there is a positive association between exam 2 scores and the number of hours studied for the exam. One of the first steps of exploring this association is to create a scatterplot.
+
+Here is the code and resulting graph:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(exam2, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{exam2pts, }\DataTypeTok{y=}\NormalTok{hrsstudye2)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+The data points are trending upward, suggesting a positive relation between exam 2 scores and the number of hours. The students who studied longer for the exam received higher grades; While those students who studied for less time received lower grades.
+
+\hypertarget{one-continuous-and-one-categorical-variable}{%
+\subsection{One continuous and one categorical variable}\label{one-continuous-and-one-categorical-variable}}
+
+Traditionally psychology likes to visualize the relation between a continuous and categorical variable using a bar graph. However, bar graphs can be misleading about the true nature of the data. I prefer to continue to use a scatterplot to look at the association between a continuous and categorical variable - with some alterations to show the mean and variability (which is important to show with group data).
+
+In ggplots you can alter the scatterplot to include the mean and variability, in addition to the actual data points, by including the \texttt{stat\_summary()} function in the ggplot code. The \texttt{stat\_summary()} function adds statistics to a ggplot.
+
+To use the \texttt{stat\_summary()} function you need to install the Hmisc package. It does not need to be loaded.
+
+Here is the code to install Hmisc:
+
+\texttt{install.packages("Hmisc")}\\
+- remember to be patient and wait until the package is completely installed.
+
+Then create the scatterplot with the follow ggplot code:
+
+\texttt{ggplot(exam2,\ aes(x\ =\ cheese,\ y\ =\ exam2pts))\ +}\\
+\texttt{geom\_point()\ +}~\\
+\texttt{stat\_summary(fun.data\ =\ mean\_cl\_normal)}
+
+\begin{itemize}
+\tightlist
+\item
+  x is the categorical variable\\
+\item
+  y is the continuous variable\\
+\item
+  \texttt{geom\_point()} includes the actual data points\\
+\item
+  The \texttt{fun.data\ =\ mean\_cl\_normal} within the \texttt{stat\_summary()} function adds the mean and the confidence interval around the mean.
+\end{itemize}
+
+The graph should look like this:
+
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+The means are represented by the large dots. The lines represent the 95\% confidence intervals, which shows the certainty around the mean and is based on the sample mean, standard deviation, and n.~The small dots are the data points representing the participants cheese eating and exam grades.
+
+Here you can see that the mean exam 2 scores are pretty similar for students who did and did not eat cheese the night before the exam. The spread of the scores is also similar.
+
+I like to make a few more alterations to the previous code for aesthetics\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(exam2, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{as.factor}\NormalTok{(cheese), }\DataTypeTok{y =}\NormalTok{ exam2pts)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_summary}\NormalTok{(}\DataTypeTok{fun.data =}\NormalTok{ mean_cl_normal)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  The \texttt{color\ =\ "purple"} in the \texttt{geom\_point()} function changes the color of the data points making the graph easier to read\\
+\item
+  The \texttt{as.factor(cheese)} tells R to treat the cheese variable as a factor, which makes the x-axis more visually appealing
+\end{itemize}
 
 \hypertarget{descriptive-statistics}{%
 \chapter{Descriptive Statistics}\label{descriptive-statistics}}
 
-A \textbf{function} in R is any kind of operation. For example, the \texttt{mean()} function will compute an average (\(sumX/N\)).
+Remember that a \textbf{function} in R is any kind of operation. For example, the \texttt{mean()} function will compute an average (\(sumX/N\)).
 
 An \emph{argument} is what a function acts on. The \texttt{mean()} function takes one argument, a numeric vector.
 
 For example, \texttt{mean(classIQ)} will return the average of the IQ scores in the classIQ vector. This code applies the function mean to the variable classIQ.
 
-This section focuses on functions that find descriptive statistics. Descriptive statistics refer to measures of central tendency (mean, median, and mode) and measures of variability (standard deviation, variance, range, etc.). There are several functions that find descriptive statistics within R. My preferred method uses the Tidyverse and Psych packages, which I describe first. Next I will show you how to find descriptive statistics using base R.
+This section focuses on functions that find descriptive statistics. \textbf{Descriptive statistics} refer to measures of central tendency (mean, median, and mode) and measures of variability (standard deviation, variance, range, etc.). There are several functions that find descriptive statistics within R. My preferred method uses the Tidyverse and Psych packages, which I describe first. Next I will show you how to find descriptive statistics using base R.
 
 \hypertarget{measurement}{%
 \chapter{Measurement}\label{measurement}}

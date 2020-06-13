@@ -2,7 +2,7 @@
 
 This chapter introduces the Rstudio cloud environment and describes how to import data into the RStudio cloud. 
 
-R cannot handle typos and is case sensitive (‘Gender’ is not the same as ‘gender’). If your code will not run check for typos and caps. 
+R cannot handle typos and is case sensitive (‘Gender’ is not the same as ‘gender’). If your code will not run check for typos and caps. Related to this point, do not be afraid to copy and paste with using R. I often copy and paste code and replace variable or dataset names as needed. (This is one of the few times in education where copy and paste is OK!)
 
 ## Layout of Rstudio cloud
 
