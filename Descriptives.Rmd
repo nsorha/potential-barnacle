@@ -1,16 +1,147 @@
 # Descriptive Statistics
 
-Remember that a **function** in R is any kind of operation. For example, the `mean()` function will compute an average ($sumX/N$). 
+**NOTE:** Please open a new script and save it as lab 3 (or week 3) for the replication of this chapter and the measurement chapter assignment.  
 
-An *argument* is what a function acts on. The `mean()` function takes one argument, a numeric vector. 
+```{r, include = FALSE}
 
-For example, `mean(classIQ)` will return the average of the IQ scores in the classIQ vector. This code applies the function mean to the variable classIQ. 
+library(readr)
 
-This section focuses on functions that find descriptive statistics. **Descriptive statistics** refer to measures of central tendency (mean, median, and mode) and measures of variability (standard deviation, variance, range, etc.). There are several functions that find descriptive statistics within R. My preferred method uses the Tidyverse and Psych packages, which I describe first. Next I will show you how to find descriptive statistics using base R.
-
-
+exam2 <- read_csv("exam2.csv")
 
 
+```
+
+This section focuses on functions that find descriptive statistics. **Descriptive statistics** refer to measures of central tendency (mean, median, and mode) and measures of variability (standard deviation, variance, range, etc.).  
+
+There are several functions that find descriptive statistics within R. My preferred method uses the Tidyverse and Psych packages, which I describe first. Next I will show you how to find descriptive statistics using base R.  
+
+## Descriptive statistics using Tidyverse and Psych packages.
+First load the tidyverse and psych packages (if they are not already loaded)
+
+```{r message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(psych)
+
+```
+
+The `describe()` function of the Psych package was made to produce the most frequently requested stats in psychology research in an easy to read data frame. I pair this with tidyverse styled code (because of the piping - which I explain next). 
+
+Here is the code to get descriptive statistics for the exam2 dataset we made:   
+
+`exam2 %>%`   
+  `describe()`   
+
+-	The `describe()` function applies to all of the variables in the dataset (here exam2)
+- The `%>%` in this code is called a **pipe**
+-	Pipes are part of the Tidyverse package
+-	The shortcut to write a pipe (`%>%`) is `shift + command + M (shift + alt + M on a pc)`
+-	Pipes are a way to write strings of functions more easily
+-	You can think of it as a "THEN"
+-	So this code would be read as “use the exam2 dataset” THEN “compute descriptive statistics with the describe function”
+
+The twitter handle WeAreRladies uses this example to show the sequential nature of a pipe ( %>% ):   
+I woke up %>%  showered %>% dressed %>% glammed up %>% took breakfast %>% showed up to work    
+
+Let's look at the results
+
+```{r, echo = FALSE}
+exam2 %>%
+  describe()
+```
+
+The results show that the average exam points was 15.01 (out of 20), with a standard deviation of 2.31 points. Students studied for the exam for an average of 3.02 hours (SD = 2.20).  
+
+As the cheese and wine variables are nominal, the mean and standard deviation are not particularly meaningful. Also, any statistics on the ID numbers are meaningless.  
+
+This is a good place to mention that it is vital that you as a researcher understand what the numbers you are looking at are and the assumptions that they carry. R (or any computer program) will not tell you if what you asked for does not make sense or is not appropriate.  
+
+Rather than getting meaningless results that you have to ignore, you could add the `select()` function to the command above to select certain variables within a dataset. Note that you must include more than one variable for the `select()` function. Use the `pull()` function if you want to select only one variable.  
+
+For example, to select the exam2pts and hrsstudye2 variables use the following code:  
+
+```{r}
+exam2 %>%
+  select(exam2pts, hrsstudye2) %>% 
+  describe()
+```
+
+You should create frequency tables for nominal data. Do this with the `count()` function.  
+
+For example, create a frequency table for the cheese variable with this code:  
+
+```{r}
+exam2 %>% 
+  count(cheese)
+```
+- this code is saying to "use the exam 2 dataset and then count the cheese varible.  
+
+The results show that 10 students did not eat cheese the night before Exam 2 (see Introduction for codebook – or what the 1 and 2 mean) and 11 students did eat cheese the night before the exam.   
+   
+Finally, often we want to know descriptive statistics by group. For example, say you were interested in relation between cheese eating and exam 2 scores. You would want to know the descriptive statistics of the exam 2 scores for the students who did and did not eat cheese.   
+
+To do this I use the `describeBy()` function of the psych package, which reports basic summary statistics by a grouping variable. You have to tell R where to find the grouping variable by first including the dataset, followed by a `$` and the variable name. In this example: `exam2$cheese` (I can't figure out how to avoid the `$` here - I will give extra credit if you can.)    
+
+Use the `pull()` function to select the exam2pts variable.   
+
+
+```{r}
+exam2 %>%
+  pull(exam2pts) %>% 
+  describeBy(exam2$cheese)
+```
+
+The results show that the average exam 2 score for students who ate cheese was 15.05 (SD = 2.34) and the average exam 2 score for students who did not ate cheese was 14.98 (SD = 2.4). Other statistics that you might find useful are the group's n, median, minimum and maximum scores, range, and standard error (se).   
+
+
+## Descriptive statistics using base R
+
+Descriptive statistics can also be computed using base R.  
+
+When a variable is stored directly in an object, you can apply the mean and standard deviation functions to the object. 
+
+For example: 
+```{r, include = FALSE}
+classIQ <- c(112, 115, 89, 95, 101)
+```
+
+```{r}
+mean(classIQ)
+sd(classIQ)
+```
+
+
+The summary function provides the range and median as well: 
+
+```{r}
+summary(classIQ)
+```
+
+Remember that if a variable is in a data frame, you have to tell R to first look in the data frame in order to find the variable. You do this with the dollar sign (`$`). Place the `$` between the name of the data frame and the name of the variable. 
+
+For example, to find the average points earned on Exam 2 use the following code:
+
+```{r}
+
+mean(exam2$exam2pts)
+
+```
+
+Note that when typing this code RStudio will provide a list of the variables in the exam2 after you type the `$`. It is very convenient.   
+
+The `table()` function of base R performs categorical tabulations of data, frequency tables, and cross tabulations.  
+
+For the present example, the code is:  
+
+```{r}
+
+table(exam2$cheese)
+
+```
+
+Note that the table is laid out differently than the Tidyverse one above. But you can still easily see that 10 students did not eat cheese the night before Exam 2 and 11 students did eat cheese the night before the exam.    
+  
+*Some people think that the Tidyverse and Psych packages make computing descriptive statistics a bit easier/more direct/better/easier to understand than base R. You should decide which you prefer. (I tend to prefer Tidyverse and Psych). Another packages that compute descriptive statistics is skimr *
 
 
 

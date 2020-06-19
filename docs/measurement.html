@@ -24,7 +24,7 @@
 <meta name="author" content="Nicole Sorhagen, Ph.D." />
 
 
-<meta name="date" content="2020-06-13" />
+<meta name="date" content="2020-06-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -163,10 +163,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="picturing-data.html"><a href="picturing-data.html#one-continuous-and-one-categorical-variable"><i class="fa fa-check"></i><b>5.2.2</b> One continuous and one categorical variable</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-using-tidyverse-and-psych-packages."><i class="fa fa-check"></i><b>6.1</b> Descriptive statistics using Tidyverse and Psych packages.</a></li>
+<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-using-base-r"><i class="fa fa-check"></i><b>6.2</b> Descriptive statistics using base R</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>7</b> Measurement</a><ul>
-<li class="chapter" data-level="7.0.1" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i><b>7.0.1</b> Reliability</a></li>
-<li class="chapter" data-level="7.0.2" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i><b>7.0.2</b> Validity</a></li>
+<li class="chapter" data-level="7.0.1" data-path="measurement.html"><a href="measurement.html#a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material"><i class="fa fa-check"></i><b>7.0.1</b> A brief introduction to spreadsheets (and some brief review of previous material)</a></li>
+<li class="chapter" data-level="7.0.2" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i><b>7.0.2</b> Reliability</a></li>
+<li class="chapter" data-level="7.0.3" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i><b>7.0.3</b> Validity</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="basic-data-transformations.html"><a href="basic-data-transformations.html"><i class="fa fa-check"></i><b>8</b> Basic Data Transformations</a></li>
 <li class="chapter" data-level="9" data-path="bivariate-correlational-research.html"><a href="bivariate-correlational-research.html"><i class="fa fa-check"></i><b>9</b> Bivariate correlational research</a><ul>
@@ -212,12 +216,244 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="measurement" class="section level1">
 <h1><span class="header-section-number">Chapter 7</span> Measurement</h1>
+<p>Math anxiety is the feeling of tension or worry in situations that involve math and is a major predictor of math achievement and career choices (Foley et al., 2017; Hembree, 1990).<br />
+<a href="https://drive.google.com/file/d/1VvSqWL7W4mvA5MtDAF94GclVIemC_a9P/view?usp=sharing">Ramirez and colleagues (2013)</a> developed the Child Math Anxiety Questionnaire (CMAQ) to measure math anxiety of young children. The measure (which can be seen below) consists of 8 questions which children responded to on a sliding scale that ranged from 1 to 16 points (the points were invisible to the children). Ramirez and colleagues (2013) calculated each child’s CMAQ score by computing an average score of the eight items. Low scores on the CMAQ indicates high levels of math anxiety.</p>
+<p><img src="img/cmaq.png" /></p>
+<p>Let’s pretend that you completed a pilot study testing the construct validity (if it is a good measure of math anxiety) of the CMAQ before Ramirez and her colleagues studied its relation to working memory and math achievement.</p>
+<p>You gave the CMAQ to a convenience sample of 40 second graders. In addition to measuring the students’ math anxiety with the CMAQ, you also measured the students’ math ability, general anxiety, and you gave them a different measure of math anxiety.</p>
+<p><a href="https://docs.google.com/spreadsheets/d/1UyfrP8h9nsyBCA-KpJAGUFFAzcHO5-RjBfJdeUULPOg/edit?usp=sharing">Here is the data.</a></p>
+<p>The first column is arbitrary ID numbers to identify the participants. The next 8 columns represent your participants responses on the CMAQ items. You will see that column J, titled cmaq, is blank. We will complete this column next in the brief introduction to spreadsheets section.</p>
+<p>The next column (genanx) are a measure of general anxiety which was operationalized as the participants scores on the short form of the State - Trait Anxiety Inventory (STAI) which includes 6 statements - rated on a 1 to 4 point scale. The range is 6 to 24 points, with 6 points signifying no anxiety and 24 points signifying the highest level of anxiety.</p>
+<p>The sema column is participants scores on the Scale for Early Mathematics Anxiety (SEMA), which is another measure of children’s math anxiety (Wu et al., 2012). This measure consists of 20 items rated on a 4 point scale (0 - not nervous at all to 3 - very nervous). Responses are summed. Higher scores on the SEMA indicates high levels of math anxiety.</p>
+<p>The wjap column is the participants w-scores on the applied problem subscale of the Woodcock-Johnson III, which consists of math related word problems. The W-scores are Rasch transformed and centered on 500.</p>
+<p>t2cmaq is the participants’ CMAQ scores administered 2 weeks later.</p>
+<div id="a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material" class="section level3">
+<h3><span class="header-section-number">7.0.1</span> A brief introduction to spreadsheets (and some brief review of previous material)</h3>
+<p>Researchers often initially enter data into spreadsheets (excel, google sheet, numbers, etc.). So, I would like to briefly review how to use basic functions in a spread sheet. <em>We will learn how to create a new variable using R in the data transformation chapter.</em></p>
+<p>Either save a copy of the measurementma data to your own google account, or download the data and open it in excel or numbers (or whatever spreadsheet you prefer).</p>
+<p>You may have noticed that there is no data in the cmaq column. To complete this column, we need to calculate the average responses of the CMAQ items for each participant. One way to do this is to use the function options within the spreadsheet. (You also could enter the mean formula using the <code>=</code> sign, which I am not going to show here. Let me know if you would like me to post a short video showing how to do this.)</p>
+<p>My screenshots show how to use the spreadsheet function options in google sheets. However, the process is very similar across all spreadsheet programs - you just might have to look in a different place on your screen.</p>
+<p>First click in the first cell in the cmaq column (cell J2).</p>
+<p>Then click on the sum symbol in the far right of the icon menu, and select the average option.</p>
+<p><img src="img/averagefun.png" /></p>
+<p>Then you should have the average function in cell J2 with nothing in the parenthesis.</p>
+<p><img src="img/averagefun2.png" /></p>
+<p>Next you need to tell the spreadsheet which cells you want it to average by listing them in the parenthesis. You can either select the cells you want the spreadsheet to average or you can type the names of the first and last cell separated by a <code>:</code> sign (in this example B2 : I2). Then hit enter on your keyboard and the average of the 8 items will appear (2).</p>
+<p><img src="img/averagefun3.png" /></p>
+<p>You do not need to enter the equation separately into each cell of this column because spreadsheets will autofill equations for you. To do this, select the cell containing the formula, then select the small square in the bottom right corner of the cell and drag it down to the last row in the dataset. (In some programs you can double-click on the small square and it will autofill to the bottom of the column).</p>
+<p><img src="img/smallbox.png" /></p>
+<p><img src="img/pull.png" /></p>
+<p>When the cmaq column is complete (i.e. you have calculated the average score for each participant), save the data as a .csv file.</p>
+<p>To do this in google sheets, select in the top bar menu:</p>
+<p>FILE -&gt; DOWNLOAD -&gt; COMMA-SEPERATED VALUES (.CSV)</p>
+<p><img src="img/savecsv.png" />
+Again, the process is very similar in other spreadsheet programs.</p>
+<p>Next import the data into your RStudio project and assign the dataset to an object called cmaqpilot. To assign the data to an object, you can use the point and click (GUI) method or you could use the following code:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="measurement.html#cb20-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb20-2"><a href="measurement.html#cb20-2"></a>cmaqpilot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;measurementma.csv&quot;</span>)</span></code></pre></div>
+<p>Load the tidyverse and psych packages (if they are not loaded already):</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="measurement.html#cb21-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb21-2"><a href="measurement.html#cb21-2"></a><span class="kw">library</span>(psych)</span></code></pre></div>
+<p>And then let’s first create of histogram of the CMAQ scores:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="measurement.html#cb22-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb22-2"><a href="measurement.html#cb22-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>The figure shows that all scores are within the range of possible scores, suggesting no errors occurred during data entry or when you calculated the average scores. The shape is slightly bi-modal, suggesting students are more likely to feel high or low levels of math anxiety, than to feel moderate amounts of math anxiety.</p>
+</div>
 <div id="reliability" class="section level3">
-<h3><span class="header-section-number">7.0.1</span> Reliability</h3>
+<h3><span class="header-section-number">7.0.2</span> Reliability</h3>
+<p>The first step in establishing construct validity is to test the reliability of the measure. <strong>Reliability</strong> refers to consistency.</p>
+<div id="internal-reliability" class="section level4">
+<h4><span class="header-section-number">7.0.2.1</span> Internal reliability</h4>
+<p>For self-report measures, like the CMAQ, you need to measure internal reliability, which measures the extent to which people give consistent responses on every item of a survey. Researchers typically use Cronbach’s alpha to test whether a measurement scale has internal reliability. Cronbach’s alpha is essentially the average correlation of the correlations between each item of the scale (for a 3 item scale: the average of the correlations between item 1 and 2, item 1 and item 3, and item 2 and 3). This average is weighted by the average variance and the number of items, so it is not quite that simple - but it is the gist.</p>
+<p>Like all correlations, Cronbach’s alphas can technically range from -1 to 1. Higher Cronbach’s alphas indicate better internal reliability (the correlations between the scale items are higher). Cronbach’s alphas of over .70 are considered acceptable in psychology.</p>
+<p>I said technically above because negative Cronbach’s alphas are almost unheard of. In the math anxiety example, that would mean that children reported feeling anxious for one item while not feeling anxious for another item. If all of the items are measuring the same thing (math anxiety), people should respond to them in a consistent matter.</p>
+<p>In order to calculate the Cronbach’s alpha in R you have to create a new object with only the items of the measurement scale.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="measurement.html#cb23-1"></a>cmaq &lt;-<span class="st"> </span>cmaqpilot <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb23-2"><a href="measurement.html#cb23-2"></a><span class="st">  </span><span class="kw">select</span>(t1q1, t1q2, t1q3, t1q4, t1q5, t1q6, t1q7, t1q8)</span></code></pre></div>
+<ul>
+<li>This code tells R to select the variables listed in the select function from the cmaqpilot and save it as cmaq.</li>
+</ul>
+<p>Then use the <code>alpha()</code> function, which is part of the psych package, to compute Cronbachs alpha of all if the variables in the cmaq object.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="measurement.html#cb24-1"></a><span class="kw">alpha</span>(cmaq)</span></code></pre></div>
+<pre><code>## 
+## Reliability analysis   
+## Call: alpha(x = cmaq)
+## 
+##   raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
+##       0.98      0.98    0.99      0.89  65 0.0036  8.3 4.1     0.89
+## 
+##  lower alpha upper     95% confidence boundaries
+## 0.98 0.98 0.99 
+## 
+##  Reliability if an item is dropped:
+##      raw_alpha std.alpha G6(smc) average_r S/N alpha se   var.r med.r
+## t1q1      0.98      0.98    0.98      0.88  53   0.0045 0.00122  0.88
+## t1q2      0.98      0.98    0.98      0.88  52   0.0046 0.00098  0.88
+## t1q3      0.98      0.98    0.98      0.89  59   0.0040 0.00099  0.89
+## t1q4      0.98      0.98    0.99      0.89  56   0.0042 0.00158  0.88
+## t1q5      0.98      0.98    0.99      0.89  57   0.0041 0.00126  0.89
+## t1q6      0.98      0.98    0.98      0.89  55   0.0043 0.00156  0.88
+## t1q7      0.98      0.98    0.99      0.90  62   0.0038 0.00117  0.90
+## t1q8      0.98      0.98    0.99      0.90  63   0.0038 0.00123  0.90
+## 
+##  Item statistics 
+##       n raw.r std.r r.cor r.drop mean  sd
+## t1q1 40  0.97  0.97  0.97   0.96  7.7 4.8
+## t1q2 40  0.98  0.98  0.98   0.97  8.5 4.6
+## t1q3 40  0.94  0.94  0.94   0.92  8.4 4.2
+## t1q4 40  0.95  0.95  0.95   0.94  8.7 4.3
+## t1q5 40  0.95  0.95  0.94   0.94  8.2 4.7
+## t1q6 40  0.96  0.96  0.96   0.95  8.0 4.3
+## t1q7 40  0.93  0.93  0.92   0.91  8.4 3.9
+## t1q8 40  0.92  0.93  0.91   0.90  8.3 4.0</code></pre>
+<p>In the output - focus on the raw alpha. In this example the Cronbach’s alpha is .98, which is very high - indicating very good internal reliability (Cronbach’s alpha with young kids are rarely this high - outing me for making up this data).</p>
+<p>When Cronbach’s alphas are less than .70, researchers have to revise and reconsider items. The purpose of the rest of the output is to get a sense of what Cronbach’s alpha would be without an item.</p>
+</div>
+<div id="test-retest-reliability" class="section level4">
+<h4><span class="header-section-number">7.0.2.2</span> Test-retest reliability</h4>
+<p>Test-retest reliability refers to consistency of a measure over time. To test this we will use scatterplots and correlation coefficients.</p>
+<p>Let’s first create a scatterplot of the relation between the cmaq and the t2cmaq variable.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="measurement.html#cb26-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>t2cmaq)) <span class="op">+</span></span>
+<span id="cb26-2"><a href="measurement.html#cb26-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>This scatterplot looks highly positive.</p>
+<p>Let’s next calculate a correlation coefficient between the cmaq and the t2cmaq variable. We will use the <code>corr()</code> function to calculate the confidence interval, effect size, and NHST (Null Hypothesis Significance Testing). The <code>corr.test()</code> function is part of the Psych package and the organization of the code below uses Tidyverse, so you should have both packages loaded.</p>
+<p>Here is the code to compute the correlation coefficient between the cmaq and the t2cmaq variable:</p>
+<p><code>cmaqpilot %&gt;%</code><br />
+<code>select(cmaq, t2cmaq) %&gt;%</code><br />
+<code>corr.test() %&gt;%</code><br />
+<code>print(short=FALSE)</code></p>
+<ul>
+<li>Add <code>method="spearman"</code> within the <code>corr.test()</code> parentheses for ranked data (For example: <code>corr.test(method = "spearman")</code>)</li>
+<li>The <code>short = FALSE</code> in the <code>print()</code> parentheses prints the confidence intervals</li>
+<li>Use <code>?corr.test</code> for more options</li>
+</ul>
+<pre><code>## Call:corr.test(x = .)
+## Correlation matrix 
+##        cmaq t2cmaq
+## cmaq   1.00   0.98
+## t2cmaq 0.98   1.00
+## Sample Size 
+## [1] 40
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##        cmaq t2cmaq
+## cmaq      0      0
+## t2cmaq    0      0
+## 
+##  Confidence intervals based upon normal theory.  To get bootstrapped values, try cor.ci
+##            raw.lower raw.r raw.upper raw.p lower.adj upper.adj
+## cmaq-t2cmq      0.96  0.98      0.99     0      0.96      0.99</code></pre>
+<p>The first correlation matrix shows that the correlation between the cmaq and t2cmaq is .98.</p>
+<p>The second matrix shows the NHST estimates the likelihood of getting results as extreme or more extreme given the null is true (i.e., given there is really no association between the variables). If this likelihood is sufficiently small (less than 5%), than we reject the null hypothesis and conclude that the association is more extreme than zero. When the probability value is listed as 0, you should report it as p &lt; .001.</p>
+<p>The last part of the output gives the confidence intervals around the correlation coefficient. The confidence interval provides an interval estimate of a parameter. Here the parameter is the true correlation between the two variables. In the present example, the correlation coefficient (r = 0.98) is a point estimate of the true association between the CMAQ at time 1 and 2. The confidence interval gives us an interval estimate of this association (it is between .96 to .99). Larger confidence intervals indicate more uncertainty about the true size of the association.</p>
+<p>The scatterplot and correlation coefficient suggest that the CMAQ has test-retest reliability - they both show that the children responded to the CMAQ items consistently over time.</p>
+</div>
+<div id="interrater-reliability" class="section level4">
+<h4><span class="header-section-number">7.0.2.3</span> Interrater reliability</h4>
+<p>Forthcoming in week 4.</p>
+</div>
 </div>
 <div id="validity" class="section level3">
-<h3><span class="header-section-number">7.0.2</span> Validity</h3>
+<h3><span class="header-section-number">7.0.3</span> Validity</h3>
+<p>The next step in establishing the construct validity of the CMAQ is to establish that is has validity. <strong>Validity</strong> refers to accuracy. We will focus on the 3 empirical ways to assess validity here.</p>
+<div id="criterion-validity" class="section level4">
+<h4><span class="header-section-number">7.0.3.1</span> Criterion validity</h4>
+<p>Criterion validity refers to whether a measure is related to relevant behavioral outcomes.</p>
+<p>In the current example, we will test whether the CMAQ is related to scores on the applied problems subscale of the Woodcock-Johnson III (WJ-III).</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="measurement.html#cb28-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>wjap)) <span class="op">+</span></span>
+<span id="cb28-2"><a href="measurement.html#cb28-2"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>This plot suggests that the CMAQ is strongly (and positively) correlated to scores on the applied problems subscale of the WJ-III, which is evidence for criterion validity of the CMAQ.</p>
+<p>You could add the regression line to the scatterplot by adding <code>geom_smooth(method='lm')</code> to your code.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="measurement.html#cb29-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>wjap)) <span class="op">+</span></span>
+<span id="cb29-2"><a href="measurement.html#cb29-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb29-3"><a href="measurement.html#cb29-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Some think that it is easier to see that the data points are close to the regression line. It also allows you to see the slope of the line - steeper lines indicate stronger relations.</p>
+<p>Next calculate the correlation coefficient:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="measurement.html#cb30-1"></a>cmaqpilot <span class="op">%&gt;%</span></span>
+<span id="cb30-2"><a href="measurement.html#cb30-2"></a><span class="st">  </span><span class="kw">select</span>(cmaq, wjap) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb30-3"><a href="measurement.html#cb30-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb30-4"><a href="measurement.html#cb30-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## Call:corr.test(x = .)
+## Correlation matrix 
+##      cmaq wjap
+## cmaq 1.00 0.84
+## wjap 0.84 1.00
+## Sample Size 
+## [1] 40
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##      cmaq wjap
+## cmaq    0    0
+## wjap    0    0
+## 
+##  Confidence intervals based upon normal theory.  To get bootstrapped values, try cor.ci
+##           raw.lower raw.r raw.upper raw.p lower.adj upper.adj
+## cmaq-wjap      0.72  0.84      0.91     0      0.72      0.91</code></pre>
+<p>CMAQ scores were positively related to students’ applied problems WJ-III scores (r = .84, p &lt; .001, CI.95 = .72 to .91).</p>
+<p>The scatterplot and correlation show that the CMAQ is highly related to a behavioral measure of math ability, the applied problems WJ-III scores. [I guess math ability is not the same as math anxiety - despite evidence that they are strongly related. Perhaps a neuro-based variable would have been better here?]</p>
+</div>
+<div id="convergent-and-discriminant-validity" class="section level4">
+<h4><span class="header-section-number">7.0.3.2</span> Convergent and Discriminant validity</h4>
+<p>Convergent and discriminant validity are often considered together. Convergent validity is whether a measure is related to similar measures. Discriminant validity is whether a measure is not related to dissimilar measures.</p>
+<p>In the current example, we will test whether the CMAQ is related to the SEMA, which is another measure of math anxiety. Remember that higher scores on the SEMA indicates high levels of math anxiety. While low scores on the CMAQ indicate high levels of math anxiety. So a negative relation here would indicate convergent validity.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="measurement.html#cb32-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>sema)) <span class="op">+</span></span>
+<span id="cb32-2"><a href="measurement.html#cb32-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb32-3"><a href="measurement.html#cb32-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>The figure shows that the CMAQ is negatively correlated to the SEMA.</p>
+<p>Next calculate the correlation coefficient:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="measurement.html#cb33-1"></a>cmaqpilot <span class="op">%&gt;%</span></span>
+<span id="cb33-2"><a href="measurement.html#cb33-2"></a><span class="st">  </span><span class="kw">select</span>(cmaq, sema) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb33-3"><a href="measurement.html#cb33-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb33-4"><a href="measurement.html#cb33-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## Call:corr.test(x = .)
+## Correlation matrix 
+##      cmaq sema
+## cmaq  1.0 -0.8
+## sema -0.8  1.0
+## Sample Size 
+## [1] 40
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##      cmaq sema
+## cmaq    0    0
+## sema    0    0
+## 
+##  Confidence intervals based upon normal theory.  To get bootstrapped values, try cor.ci
+##           raw.lower raw.r raw.upper raw.p lower.adj upper.adj
+## cmaq-sema     -0.89  -0.8     -0.65     0     -0.89     -0.65</code></pre>
+<p>CMAQ scores were negatively related to students’ SEMA scores (r = -.80, p &lt; .001, CI.95 = -.89 to -.65). That is, children reported equal levels of math anxiety on the CMAQ and SEMA.</p>
+<p>In the current example, we will test discriminant validity by testing whether the CMAQ is related to general anxiety. Here a zero relation would indicate convergent validity.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="measurement.html#cb35-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>genanx)) <span class="op">+</span></span>
+<span id="cb35-2"><a href="measurement.html#cb35-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb35-3"><a href="measurement.html#cb35-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>The figure shows a zero correlation between CMAQ and SEMA.</p>
+<p>Next calculate the correlation coefficient:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="measurement.html#cb36-1"></a>cmaqpilot <span class="op">%&gt;%</span></span>
+<span id="cb36-2"><a href="measurement.html#cb36-2"></a><span class="st">  </span><span class="kw">select</span>(cmaq, genanx) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-3"><a href="measurement.html#cb36-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-4"><a href="measurement.html#cb36-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## Call:corr.test(x = .)
+## Correlation matrix 
+##         cmaq genanx
+## cmaq    1.00  -0.12
+## genanx -0.12   1.00
+## Sample Size 
+## [1] 40
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##        cmaq genanx
+## cmaq   0.00   0.47
+## genanx 0.47   0.00
+## 
+##  Confidence intervals based upon normal theory.  To get bootstrapped values, try cor.ci
+##            raw.lower raw.r raw.upper raw.p lower.adj upper.adj
+## cmaq-gennx     -0.41 -0.12       0.2  0.47     -0.41       0.2</code></pre>
+<p>CMAQ scores were not related to students’ general anxiety scores (r = -.12, p = . 47, CI.95 = -.41 to .20). Note that the confidence interval here includes zero, which is consistent with NHST because both are saying that zero is a likely correlation between the variables.</p>
+<p>Taken together, the CMAQ seems to have convergent and discriminant validity because it is highly related to another measure of math anxiety and it is not related to general anxiety.</p>
 
+</div>
 </div>
 </div>
             </section>
@@ -276,20 +512,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
