@@ -124,7 +124,7 @@ alpha(cmaq)
 
 In the output - focus on the raw alpha. In this example the Cronbach's alpha is .98, which is very high - indicating very good internal reliability (Cronbach's alpha with young kids are rarely this high - outing me for making up this data).  
 
-When Cronbach's alphas are less than .70, researchers have to revise and reconsider items. The purpose of the rest of the output is to get a sense of what Cronbach's alpha would be without an item.  
+When Cronbach's alphas are less than .70, researchers have to revise and reconsider items. The purpose of the rest of the output is to get a sense of what Cronbach's alpha would be without an item. (Here is a good reference for more information about the rest of the alpha() function output if you are interested: https://rpubs.com/hauselin/reliabilityanalysis)
 
 
 #### Test-retest reliability 
@@ -174,7 +174,59 @@ The last part of the output gives the confidence intervals around the correlatio
 The scatterplot and correlation coefficient suggest that the CMAQ has test-retest reliability - they both show that the children responded to the CMAQ items consistently over time.  
 
 #### Interrater reliability 
-Forthcoming in week 4.  
+
+Interrater reliability refers to the consistency of coding ratings between different raters. We will have to use a different example to learn how to test interrater reliability because there is no observational measures in the math anxiety example.   
+
+The NICHD Early Child Care Research Network (1999) studied babies interactions with their mothers and child care providers over the first 3 years of life. They measured maternal sensitivity by observing mothers and their children during a semi-structured mother-child dyadic play procedure. The researchers measured maternal sensitivity by rating the amount of stimulation mothers provided, responsiveness to non-distressed,  intrusiveness, and positive regard during the play session.   
+
+Say you were responsible for validating the observational measure of maternal sensitivity before the NICHD Early Child Care Research began collecting their data.   
+
+You recruited 59 mother-child pairs to come to your lab. After you explained the purpose of the study and got consent, you recorded them during the semi-structured play procedure.   
+
+Then you and another researcher each watched the recordings (separately) and rated the mothers on the amount of stimulation mothers provided, their responsiveness when their child was not distressed, their intrusiveness, and their positive regard. You and the other researcher had a common codebook of behaviors to look for and were trained to recognize them.   
+
+The data is in matsen.csv   
+
+Open the data in RStudio.  
+
+```{r message=FALSE, warning=FALSE}
+
+library(readr)
+matsen <- read_csv("matsen.csv")
+
+```
+
+The first column is an arbitrary ID number. If you scroll down, you will see there are 59 mothers in total.  
+
+Next is your observational rating of each mother's sensitivity to her child during the semi-structured play session. The third column is the other researchers' observations.  
+
+Let’s test the reliability of the observational measure of maternal sensitivity.  
+
+Let's first create a scatterplot:  
+
+```{r}
+
+library(tidyverse)
+ggplot(matsen, aes(x=SEN24, y=SEN24R2)) +
+  geom_point()
+
+```  
+
+The scatterplot shows a strong positive relation between the two independent ratings of maternal sensitivity.  
+
+Next quantify the relation by computing a correlation coefficient.  
+
+```{r, message=FALSE, warning=FALSE}
+
+matsen %>%
+  select(SEN24, SEN24R2) %>% 
+  corr.test() %>% 
+  print(short=FALSE)
+
+```
+
+The results show that the correlation between the two raters is .94 with a 95% confidence interval of .90 to .96. This suggest strong agreement between raters.  
+
 
 
 ### Validity
@@ -219,7 +271,7 @@ CMAQ scores were positively related to students' applied problems WJ-III scores 
 
 The scatterplot and correlation show that the CMAQ is highly related to a behavioral measure of math ability, the applied problems WJ-III scores. [I guess math ability is not the same as math anxiety - despite evidence that they are strongly related. Perhaps a neuro-based variable would have been better here?]
 
-#### Convergent and Discriminant validity
+#### Convergent and Discriminant Validity
 
 Convergent and discriminant validity are often considered together. Convergent validity is whether a measure is related to similar measures. Discriminant validity is whether a measure is not related to dissimilar measures.   
 

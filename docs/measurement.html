@@ -24,7 +24,7 @@
 <meta name="author" content="Nicole Sorhagen, Ph.D." />
 
 
-<meta name="date" content="2020-06-19" />
+<meta name="date" content="2020-06-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -308,7 +308,7 @@ Again, the process is very similar in other spreadsheet programs.</p>
 ## t1q7 40  0.93  0.93  0.92   0.91  8.4 3.9
 ## t1q8 40  0.92  0.93  0.91   0.90  8.3 4.0</code></pre>
 <p>In the output - focus on the raw alpha. In this example the Cronbach’s alpha is .98, which is very high - indicating very good internal reliability (Cronbach’s alpha with young kids are rarely this high - outing me for making up this data).</p>
-<p>When Cronbach’s alphas are less than .70, researchers have to revise and reconsider items. The purpose of the rest of the output is to get a sense of what Cronbach’s alpha would be without an item.</p>
+<p>When Cronbach’s alphas are less than .70, researchers have to revise and reconsider items. The purpose of the rest of the output is to get a sense of what Cronbach’s alpha would be without an item. (Here is a good reference for more information about the rest of the alpha() function output if you are interested: <a href="https://rpubs.com/hauselin/reliabilityanalysis" class="uri">https://rpubs.com/hauselin/reliabilityanalysis</a>)</p>
 </div>
 <div id="test-retest-reliability" class="section level4">
 <h4><span class="header-section-number">7.0.2.2</span> Test-retest reliability</h4>
@@ -351,7 +351,45 @@ Again, the process is very similar in other spreadsheet programs.</p>
 </div>
 <div id="interrater-reliability" class="section level4">
 <h4><span class="header-section-number">7.0.2.3</span> Interrater reliability</h4>
-<p>Forthcoming in week 4.</p>
+<p>Interrater reliability refers to the consistency of coding ratings between different raters. We will have to use a different example to learn how to test interrater reliability because there is no observational measures in the math anxiety example.</p>
+<p>The NICHD Early Child Care Research Network (1999) studied babies interactions with their mothers and child care providers over the first 3 years of life. They measured maternal sensitivity by observing mothers and their children during a semi-structured mother-child dyadic play procedure. The researchers measured maternal sensitivity by rating the amount of stimulation mothers provided, responsiveness to non-distressed, intrusiveness, and positive regard during the play session.</p>
+<p>Say you were responsible for validating the observational measure of maternal sensitivity before the NICHD Early Child Care Research began collecting their data.</p>
+<p>You recruited 59 mother-child pairs to come to your lab. After you explained the purpose of the study and got consent, you recorded them during the semi-structured play procedure.</p>
+<p>Then you and another researcher each watched the recordings (separately) and rated the mothers on the amount of stimulation mothers provided, their responsiveness when their child was not distressed, their intrusiveness, and their positive regard. You and the other researcher had a common codebook of behaviors to look for and were trained to recognize them.</p>
+<p>The data is in matsen.csv</p>
+<p>Open the data in RStudio.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="measurement.html#cb28-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb28-2"><a href="measurement.html#cb28-2"></a>matsen &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;matsen.csv&quot;</span>)</span></code></pre></div>
+<p>The first column is an arbitrary ID number. If you scroll down, you will see there are 59 mothers in total.</p>
+<p>Next is your observational rating of each mother’s sensitivity to her child during the semi-structured play session. The third column is the other researchers’ observations.</p>
+<p>Let’s test the reliability of the observational measure of maternal sensitivity.</p>
+<p>Let’s first create a scatterplot:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="measurement.html#cb29-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb29-2"><a href="measurement.html#cb29-2"></a><span class="kw">ggplot</span>(matsen, <span class="kw">aes</span>(<span class="dt">x=</span>SEN24, <span class="dt">y=</span>SEN24R2)) <span class="op">+</span></span>
+<span id="cb29-3"><a href="measurement.html#cb29-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>The scatterplot shows a strong positive relation between the two independent ratings of maternal sensitivity.</p>
+<p>Next quantify the relation by computing a correlation coefficient.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="measurement.html#cb30-1"></a>matsen <span class="op">%&gt;%</span></span>
+<span id="cb30-2"><a href="measurement.html#cb30-2"></a><span class="st">  </span><span class="kw">select</span>(SEN24, SEN24R2) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb30-3"><a href="measurement.html#cb30-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb30-4"><a href="measurement.html#cb30-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## Call:corr.test(x = .)
+## Correlation matrix 
+##         SEN24 SEN24R2
+## SEN24    1.00    0.94
+## SEN24R2  0.94    1.00
+## Sample Size 
+## [1] 59
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##         SEN24 SEN24R2
+## SEN24       0       0
+## SEN24R2     0       0
+## 
+##  Confidence intervals based upon normal theory.  To get bootstrapped values, try cor.ci
+##              raw.lower raw.r raw.upper raw.p lower.adj upper.adj
+## SEN24-SEN24R       0.9  0.94      0.96     0       0.9      0.96</code></pre>
+<p>The results show that the correlation between the two raters is .94 with a 95% confidence interval of .90 to .96. This suggest strong agreement between raters.</p>
 </div>
 </div>
 <div id="validity" class="section level3">
@@ -361,21 +399,21 @@ Again, the process is very similar in other spreadsheet programs.</p>
 <h4><span class="header-section-number">7.0.3.1</span> Criterion validity</h4>
 <p>Criterion validity refers to whether a measure is related to relevant behavioral outcomes.</p>
 <p>In the current example, we will test whether the CMAQ is related to scores on the applied problems subscale of the Woodcock-Johnson III (WJ-III).</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="measurement.html#cb28-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>wjap)) <span class="op">+</span></span>
-<span id="cb28-2"><a href="measurement.html#cb28-2"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="measurement.html#cb32-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>wjap)) <span class="op">+</span></span>
+<span id="cb32-2"><a href="measurement.html#cb32-2"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>This plot suggests that the CMAQ is strongly (and positively) correlated to scores on the applied problems subscale of the WJ-III, which is evidence for criterion validity of the CMAQ.</p>
 <p>You could add the regression line to the scatterplot by adding <code>geom_smooth(method='lm')</code> to your code.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="measurement.html#cb29-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>wjap)) <span class="op">+</span></span>
-<span id="cb29-2"><a href="measurement.html#cb29-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb29-3"><a href="measurement.html#cb29-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="measurement.html#cb33-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>wjap)) <span class="op">+</span></span>
+<span id="cb33-2"><a href="measurement.html#cb33-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb33-3"><a href="measurement.html#cb33-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>Some think that it is easier to see that the data points are close to the regression line. It also allows you to see the slope of the line - steeper lines indicate stronger relations.</p>
 <p>Next calculate the correlation coefficient:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="measurement.html#cb30-1"></a>cmaqpilot <span class="op">%&gt;%</span></span>
-<span id="cb30-2"><a href="measurement.html#cb30-2"></a><span class="st">  </span><span class="kw">select</span>(cmaq, wjap) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb30-3"><a href="measurement.html#cb30-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb30-4"><a href="measurement.html#cb30-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="measurement.html#cb34-1"></a>cmaqpilot <span class="op">%&gt;%</span></span>
+<span id="cb34-2"><a href="measurement.html#cb34-2"></a><span class="st">  </span><span class="kw">select</span>(cmaq, wjap) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb34-3"><a href="measurement.html#cb34-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb34-4"><a href="measurement.html#cb34-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## Call:corr.test(x = .)
 ## Correlation matrix 
 ##      cmaq wjap
@@ -395,19 +433,19 @@ Again, the process is very similar in other spreadsheet programs.</p>
 <p>The scatterplot and correlation show that the CMAQ is highly related to a behavioral measure of math ability, the applied problems WJ-III scores. [I guess math ability is not the same as math anxiety - despite evidence that they are strongly related. Perhaps a neuro-based variable would have been better here?]</p>
 </div>
 <div id="convergent-and-discriminant-validity" class="section level4">
-<h4><span class="header-section-number">7.0.3.2</span> Convergent and Discriminant validity</h4>
+<h4><span class="header-section-number">7.0.3.2</span> Convergent and Discriminant Validity</h4>
 <p>Convergent and discriminant validity are often considered together. Convergent validity is whether a measure is related to similar measures. Discriminant validity is whether a measure is not related to dissimilar measures.</p>
 <p>In the current example, we will test whether the CMAQ is related to the SEMA, which is another measure of math anxiety. Remember that higher scores on the SEMA indicates high levels of math anxiety. While low scores on the CMAQ indicate high levels of math anxiety. So a negative relation here would indicate convergent validity.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="measurement.html#cb32-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>sema)) <span class="op">+</span></span>
-<span id="cb32-2"><a href="measurement.html#cb32-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb32-3"><a href="measurement.html#cb32-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="measurement.html#cb36-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>sema)) <span class="op">+</span></span>
+<span id="cb36-2"><a href="measurement.html#cb36-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb36-3"><a href="measurement.html#cb36-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>The figure shows that the CMAQ is negatively correlated to the SEMA.</p>
 <p>Next calculate the correlation coefficient:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="measurement.html#cb33-1"></a>cmaqpilot <span class="op">%&gt;%</span></span>
-<span id="cb33-2"><a href="measurement.html#cb33-2"></a><span class="st">  </span><span class="kw">select</span>(cmaq, sema) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb33-3"><a href="measurement.html#cb33-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb33-4"><a href="measurement.html#cb33-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="measurement.html#cb37-1"></a>cmaqpilot <span class="op">%&gt;%</span></span>
+<span id="cb37-2"><a href="measurement.html#cb37-2"></a><span class="st">  </span><span class="kw">select</span>(cmaq, sema) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-3"><a href="measurement.html#cb37-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-4"><a href="measurement.html#cb37-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## Call:corr.test(x = .)
 ## Correlation matrix 
 ##      cmaq sema
@@ -425,16 +463,16 @@ Again, the process is very similar in other spreadsheet programs.</p>
 ## cmaq-sema     -0.89  -0.8     -0.65     0     -0.89     -0.65</code></pre>
 <p>CMAQ scores were negatively related to students’ SEMA scores (r = -.80, p &lt; .001, CI.95 = -.89 to -.65). That is, children reported equal levels of math anxiety on the CMAQ and SEMA.</p>
 <p>In the current example, we will test discriminant validity by testing whether the CMAQ is related to general anxiety. Here a zero relation would indicate convergent validity.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="measurement.html#cb35-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>genanx)) <span class="op">+</span></span>
-<span id="cb35-2"><a href="measurement.html#cb35-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb35-3"><a href="measurement.html#cb35-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="measurement.html#cb39-1"></a><span class="kw">ggplot</span>(cmaqpilot, <span class="kw">aes</span>(<span class="dt">x=</span>cmaq, <span class="dt">y=</span>genanx)) <span class="op">+</span></span>
+<span id="cb39-2"><a href="measurement.html#cb39-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb39-3"><a href="measurement.html#cb39-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>The figure shows a zero correlation between CMAQ and SEMA.</p>
 <p>Next calculate the correlation coefficient:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="measurement.html#cb36-1"></a>cmaqpilot <span class="op">%&gt;%</span></span>
-<span id="cb36-2"><a href="measurement.html#cb36-2"></a><span class="st">  </span><span class="kw">select</span>(cmaq, genanx) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb36-3"><a href="measurement.html#cb36-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb36-4"><a href="measurement.html#cb36-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="measurement.html#cb40-1"></a>cmaqpilot <span class="op">%&gt;%</span></span>
+<span id="cb40-2"><a href="measurement.html#cb40-2"></a><span class="st">  </span><span class="kw">select</span>(cmaq, genanx) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb40-3"><a href="measurement.html#cb40-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb40-4"><a href="measurement.html#cb40-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## Call:corr.test(x = .)
 ## Correlation matrix 
 ##         cmaq genanx

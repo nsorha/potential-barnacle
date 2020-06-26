@@ -120,7 +120,7 @@
 
 \title{Tools for Working with Data}
 \author{Nicole Sorhagen, Ph.D.}
-\date{2020-06-19}
+\date{2020-06-26}
 
 \begin{document}
 \maketitle
@@ -1152,7 +1152,7 @@ Then use the \texttt{alpha()} function, which is part of the psych package, to c
 
 In the output - focus on the raw alpha. In this example the Cronbach's alpha is .98, which is very high - indicating very good internal reliability (Cronbach's alpha with young kids are rarely this high - outing me for making up this data).
 
-When Cronbach's alphas are less than .70, researchers have to revise and reconsider items. The purpose of the rest of the output is to get a sense of what Cronbach's alpha would be without an item.
+When Cronbach's alphas are less than .70, researchers have to revise and reconsider items. The purpose of the rest of the output is to get a sense of what Cronbach's alpha would be without an item. (Here is a good reference for more information about the rest of the alpha() function output if you are interested: \url{https://rpubs.com/hauselin/reliabilityanalysis})
 
 \hypertarget{test-retest-reliability}{%
 \subsubsection{Test-retest reliability}\label{test-retest-reliability}}
@@ -1220,7 +1220,77 @@ The scatterplot and correlation coefficient suggest that the CMAQ has test-retes
 \hypertarget{interrater-reliability}{%
 \subsubsection{Interrater reliability}\label{interrater-reliability}}
 
-Forthcoming in week 4.
+Interrater reliability refers to the consistency of coding ratings between different raters. We will have to use a different example to learn how to test interrater reliability because there is no observational measures in the math anxiety example.
+
+The NICHD Early Child Care Research Network (1999) studied babies interactions with their mothers and child care providers over the first 3 years of life. They measured maternal sensitivity by observing mothers and their children during a semi-structured mother-child dyadic play procedure. The researchers measured maternal sensitivity by rating the amount of stimulation mothers provided, responsiveness to non-distressed, intrusiveness, and positive regard during the play session.
+
+Say you were responsible for validating the observational measure of maternal sensitivity before the NICHD Early Child Care Research began collecting their data.
+
+You recruited 59 mother-child pairs to come to your lab. After you explained the purpose of the study and got consent, you recorded them during the semi-structured play procedure.
+
+Then you and another researcher each watched the recordings (separately) and rated the mothers on the amount of stimulation mothers provided, their responsiveness when their child was not distressed, their intrusiveness, and their positive regard. You and the other researcher had a common codebook of behaviors to look for and were trained to recognize them.
+
+The data is in matsen.csv
+
+Open the data in RStudio.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\NormalTok{matsen <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"matsen.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The first column is an arbitrary ID number. If you scroll down, you will see there are 59 mothers in total.
+
+Next is your observational rating of each mother's sensitivity to her child during the semi-structured play session. The third column is the other researchers' observations.
+
+Let's test the reliability of the observational measure of maternal sensitivity.
+
+Let's first create a scatterplot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{ggplot}\NormalTok{(matsen, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{SEN24, }\DataTypeTok{y=}\NormalTok{SEN24R2)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+The scatterplot shows a strong positive relation between the two independent ratings of maternal sensitivity.
+
+Next quantify the relation by computing a correlation coefficient.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matsen }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(SEN24, SEN24R2) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{corr.test}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{print}\NormalTok{(}\DataTypeTok{short=}\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:corr.test(x = .)
+## Correlation matrix 
+##         SEN24 SEN24R2
+## SEN24    1.00    0.94
+## SEN24R2  0.94    1.00
+## Sample Size 
+## [1] 59
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##         SEN24 SEN24R2
+## SEN24       0       0
+## SEN24R2     0       0
+## 
+##  Confidence intervals based upon normal theory.  To get bootstrapped values, try cor.ci
+##              raw.lower raw.r raw.upper raw.p lower.adj upper.adj
+## SEN24-SEN24R       0.9  0.94      0.96     0       0.9      0.96
+\end{verbatim}
+
+The results show that the correlation between the two raters is .94 with a 95\% confidence interval of .90 to .96. This suggest strong agreement between raters.
 
 \hypertarget{validity}{%
 \subsection{Validity}\label{validity}}
@@ -1241,7 +1311,7 @@ In the current example, we will test whether the CMAQ is related to scores on th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-23-1.pdf}
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-26-1.pdf}
 
 This plot suggests that the CMAQ is strongly (and positively) correlated to scores on the applied problems subscale of the WJ-III, which is evidence for criterion validity of the CMAQ.
 
@@ -1255,7 +1325,7 @@ You could add the regression line to the scatterplot by adding \texttt{geom\_smo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-27-1.pdf}
 
 Some think that it is easier to see that the data points are close to the regression line. It also allows you to see the slope of the line - steeper lines indicate stronger relations.
 
@@ -1293,7 +1363,7 @@ CMAQ scores were positively related to students' applied problems WJ-III scores 
 The scatterplot and correlation show that the CMAQ is highly related to a behavioral measure of math ability, the applied problems WJ-III scores. {[}I guess math ability is not the same as math anxiety - despite evidence that they are strongly related. Perhaps a neuro-based variable would have been better here?{]}
 
 \hypertarget{convergent-and-discriminant-validity}{%
-\subsubsection{Convergent and Discriminant validity}\label{convergent-and-discriminant-validity}}
+\subsubsection{Convergent and Discriminant Validity}\label{convergent-and-discriminant-validity}}
 
 Convergent and discriminant validity are often considered together. Convergent validity is whether a measure is related to similar measures. Discriminant validity is whether a measure is not related to dissimilar measures.
 
@@ -1307,7 +1377,7 @@ In the current example, we will test whether the CMAQ is related to the SEMA, wh
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-26-1.pdf}
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 The figure shows that the CMAQ is negatively correlated to the SEMA.
 
@@ -1352,7 +1422,7 @@ In the current example, we will test discriminant validity by testing whether th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-28-1.pdf}
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-31-1.pdf}
 
 The figure shows a zero correlation between CMAQ and SEMA.
 
@@ -1391,6 +1461,133 @@ Taken together, the CMAQ seems to have convergent and discriminant validity beca
 
 \hypertarget{basic-data-transformations}{%
 \chapter{Basic Data Transformations}\label{basic-data-transformations}}
+
+\textbf{NOTE: please create a new script for this chapter and the interrater relatiablity seciton called week 4}
+
+For this section we will use a dataset from SPSS for Research Methods by Wilson-Doenges, which comes with our Morling text. \href{https://docs.google.com/document/d/1V1vHljcqtVYXE-2iHcdcR0FNzjdCmJXc6Je5TuWMPuk/edit?usp=sharing}{Here} is the survey that Wilson-Doenges distributed to 45 students.
+
+You can find the data on D2L called \texttt{‘wilson.csv’}.
+
+Please download it and take a few minutes to look over the survey (open the link above in the word `here') and study how Wilson-Doenges entered in her data.
+
+The first column is an arbitrary ID number assigned to each student to ensure anonymity. The next 4 columns correspond with the first four questions of the survey.
+
+The second part of the survey measures students' positive opinions about a research methods class. Wilson calls it the positive opinions about research methods scale (PORMS). In the data file, these are item1, item2, item3, item4, and item5.
+
+The last two questions of the survey ask students to report their motivation to achieve and their GPA (the last two columns).
+
+First load the readr and tidyverse packages (if they are not loaded already):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+Then assign the data to an object using the following code (or you can use the GUI method):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilson <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"wilson.csv"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+While you were looking at the survey, you may have noticed that items 2 and 4 of the PORMS are negatively worded; While items 1, 3, and 5 are positively worded. This means that strongly agree (i.e.~the number 5) indicates that students have a negative opinion of research methods classes for items 1 and 4 and that they have a positive opinion of the class for items 1, 3, and 5.
+
+We need all of the items to go in the same direction. So, we need to \textbf{reverse code} items 2 and 4 so that higher scores reflect more positive opinions. To reverse code, we will use the \textbf{mutate()} and \textbf{recode()} functions of the dplyr package (that is part of tidyverse), which adds new variables or changes existing ones.
+* mutate() is used to add variables (or columns) to a dataset.
+* recode() is best used inside a mutate (). Recode takes the form of old\_value = new\_value.
+
+The command to reverse code item 2 is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilson <-}\StringTok{ }\NormalTok{wilson }\OperatorTok{%>%}
+\StringTok{   }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{item2r =}\KeywordTok{recode}\NormalTok{(item2, }\StringTok{`}\DataTypeTok{1}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{5}\NormalTok{, }\StringTok{`}\DataTypeTok{2}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{4}\NormalTok{, }\StringTok{`}\DataTypeTok{3}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{3}\NormalTok{, }\StringTok{`}\DataTypeTok{4}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{2}\NormalTok{, }\StringTok{`}\DataTypeTok{5}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{item2r} will be the name of the new variable.
+\item
+  \texttt{item2} is the item that is being recoded.
+\item
+  Next is the list of the old and new variables
+
+  \begin{itemize}
+  \tightlist
+  \item
+    On the left is the old variable and it must be in back ticks (`) when it is a number
+  \item
+    Note that the back tick is not the same as a comma ( \texttt{\textquotesingle{}} ). The back tick is on the same key as \texttt{\textasciitilde{}} (while the comma is on the same key as \texttt{"})
+  \item
+    String (AKA text) variables should be in quotes (\texttt{"}) instead of back ticks
+  \item
+    On the right is the new value
+  \end{itemize}
+\item
+  The \texttt{wilson\ \textless{}-} part of the command saves the variable you created with the rest of the code
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Here we are saving over the original dataset.
+  \item
+    Some people prefer to create a new dataset. For example \texttt{wilsonr\ \textless{}-} would create a new object called wilsonr and the wilson data would not change.
+  \item
+    Without this part of the code, your new variable will not be saved.
+  \end{itemize}
+\end{itemize}
+
+After you run the code, there should be 13 variables in the wilson dataset (there was 12 orginally).
+
+\includegraphics{img/mutatewilson.png}\\
+Click on the word `wilson' in the environment panel to view the data.
+
+\includegraphics{img/wilsonview.png}
+
+The reverse coded item 2 variable (item2r) that we just created will be in the last column.
+
+\includegraphics{img/wilsonview2.png}
+
+(You can expand the data view by dragging the center median between the dataview and the environment to the right.)
+
+You can see that the first student rated the second item as a 1 and it is now a 5 in the reversed coded variable.
+
+Next create a new item for item 4. Here is the code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilson <-}\StringTok{ }\NormalTok{wilson }\OperatorTok{%>%}\StringTok{ }
+\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{item4r =}\KeywordTok{recode}\NormalTok{(item4, }\StringTok{`}\DataTypeTok{1}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{5}\NormalTok{, }\StringTok{`}\DataTypeTok{2}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{4}\NormalTok{, }\StringTok{`}\DataTypeTok{3}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{3}\NormalTok{, }\StringTok{`}\DataTypeTok{4}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{2}\NormalTok{, }\StringTok{`}\DataTypeTok{5}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+You should now have 14 variables in the wilson dataset.
+
+Next let's create a summary score for the PORMS measure. We will use the mutate() function to do this using this code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilson <-}\StringTok{ }\NormalTok{wilson }\OperatorTok{%>%}\StringTok{ }
+\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{porms =}\NormalTok{ item1 }\OperatorTok{+}\StringTok{ }\NormalTok{item2r }\OperatorTok{+}\StringTok{ }\NormalTok{item3 }\OperatorTok{+}\StringTok{ }\NormalTok{item4r }\OperatorTok{+}\StringTok{ }\NormalTok{item5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  porms is the name of the new column\\
+\item
+  On the right of the equal sign is how the new variable is defined.
+\end{itemize}
+
+Your wilson dataset should now have 15 variables.
+
+(I created a sum score here because that is what Wilson-Doenges did. I think an average score would work here as well.)
 
 \hypertarget{bivariate-correlational-research}{%
 \chapter{Bivariate correlational research}\label{bivariate-correlational-research}}
