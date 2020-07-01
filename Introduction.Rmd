@@ -161,7 +161,13 @@ Right now the IQ scores and the z-scores are in separate objects. Variables ofte
 
 To do this use the following code:
 
-`iq <- data.frame(classIQ, zscores)`
+`iq <- data.frame(classIQ, zscores)`  
+
+* This command takes the form of DatasetName <- data.frame(Variable1, Variable2, etc)  
+* The dataset name can be anything you want that you have not already used  
+  + the name must be one word (there cannot be spaces in the name)  
+  
+
 
 This object will be listed under data instead of values in the environment panel.
 
@@ -187,6 +193,8 @@ Another way to assign data to an object is by first entering the data into a spr
 
 First download the exam2.csv file from d2l.
 
+### Upload the data into Rstudio Cloud
+
 Then select the UPLOAD button in the files window. 
 
 ![](img/upload.png)
@@ -199,10 +207,11 @@ The data file should now be listed in the files section of RStudio.
 
 ![](img/filelist.png)
 
+### Import data 
 
 Then you need to import the data into the environment (i.e. assign the data to an object). This can be done through using point and click options or with code. 
 
-For point and click:
+#### Point and click
 First click on the **IMPORT DATASET** button in the environment panel. 
 
 
@@ -249,7 +258,21 @@ But first note the **Code Preview** box. This is the code you could use to impor
 
 ![](img/importcomplete.png)
 
-Double click on the word exam2 in the environment panel to look at the dataset.
+#### Code
+
+Alternatively you could have typed the code that you copy and pasted (and not gone through all of the point and click windows).   
+
+`Library(readr)`   
+`exam2 <- read_cvs("exam2.csv")`    
+
+* This command takes the form of DatasetName <- read_cvs("FILENAME.csv")   
+* The dataset name can be anything that you have not already used   
+    + the name must be one word (there cannot be spaces in the name)  
+* If you have not installed the readr package, you will have to so first (see the packages chapter for more information)
+
+#### View data
+
+Double click on the word exam2 in the environment panel to look at the dataset.  
 
 ![](img/view.png)
 

@@ -120,7 +120,7 @@
 
 \title{Tools for Working with Data}
 \author{Nicole Sorhagen, Ph.D.}
-\date{2020-06-26}
+\date{2020-07-01}
 
 \begin{document}
 \maketitle
@@ -346,6 +346,20 @@ To do this use the following code:
 
 \texttt{iq\ \textless{}-\ data.frame(classIQ,\ zscores)}
 
+\begin{itemize}
+\tightlist
+\item
+  This command takes the form of DatasetName \textless- data.frame(Variable1, Variable2, etc)\\
+\item
+  The dataset name can be anything you want that you have not already used
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the name must be one word (there cannot be spaces in the name)
+  \end{itemize}
+\end{itemize}
+
 This object will be listed under data instead of values in the environment panel.
 
 \includegraphics{img/dataframe.png}
@@ -371,6 +385,9 @@ Another way to assign data to an object is by first entering the data into a spr
 
 First download the exam2.csv file from d2l.
 
+\hypertarget{upload-the-data-into-rstudio-cloud}{%
+\subsection{Upload the data into Rstudio Cloud}\label{upload-the-data-into-rstudio-cloud}}
+
 Then select the UPLOAD button in the files window.
 
 \includegraphics{img/upload.png}
@@ -383,9 +400,14 @@ The data file should now be listed in the files section of RStudio.
 
 \includegraphics{img/filelist.png}
 
+\hypertarget{import-data}{%
+\subsection{Import data}\label{import-data}}
+
 Then you need to import the data into the environment (i.e.~assign the data to an object). This can be done through using point and click options or with code.
 
-For point and click:
+\hypertarget{point-and-click}{%
+\subsubsection{Point and click}\label{point-and-click}}
+
 First click on the \textbf{IMPORT DATASET} button in the environment panel.
 
 \includegraphics{img/import.png}
@@ -425,6 +447,33 @@ From here you should click the IMPORT button.
 But first note the \textbf{Code Preview} box. This is the code you could use to import data (instead of clicking through all these windows). Copy this code before I click the import button and then paste it into your script for your records and in case you need to assign the file to an object again (because it is faster with code).
 
 \includegraphics{img/importcomplete.png}
+
+\hypertarget{code}{%
+\subsubsection{Code}\label{code}}
+
+Alternatively you could have typed the code that you copy and pasted (and not gone through all of the point and click windows).
+
+\texttt{Library(readr)}\\
+\texttt{exam2\ \textless{}-\ read\_cvs("exam2.csv")}
+
+\begin{itemize}
+\tightlist
+\item
+  This command takes the form of DatasetName \textless- read\_cvs(``FILENAME.csv'')\\
+\item
+  The dataset name can be anything that you have not already used
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the name must be one word (there cannot be spaces in the name)\\
+  \end{itemize}
+\item
+  If you have not installed the readr package, you will have to so first (see the packages chapter for more information)
+\end{itemize}
+
+\hypertarget{view-data}{%
+\subsubsection{View data}\label{view-data}}
 
 Double click on the word exam2 in the environment panel to look at the dataset.
 
@@ -1588,27 +1637,6 @@ Next let's create a summary score for the PORMS measure. We will use the mutate(
 Your wilson dataset should now have 15 variables.
 
 (I created a sum score here because that is what Wilson-Doenges did. I think an average score would work here as well.)
-
-\hypertarget{bivariate-correlational-research}{%
-\chapter{Bivariate correlational research}\label{bivariate-correlational-research}}
-
-\hypertarget{association-claim-with-two-quantitative-variables}{%
-\section{Association claim with two quantitative variables}\label{association-claim-with-two-quantitative-variables}}
-
-\hypertarget{open-data}{%
-\subsubsection{Open data}\label{open-data}}
-
-\hypertarget{get-to-know-data}{%
-\subsubsection{Get to know data}\label{get-to-know-data}}
-
-\hypertarget{test-assumptions}{%
-\subsubsection{Test assumptions}\label{test-assumptions}}
-
-\hypertarget{compute-ci-effect-size-and-nhst}{%
-\subsubsection{Compute CI, effect size, and NHST}\label{compute-ci-effect-size-and-nhst}}
-
-\hypertarget{write-up-results}{%
-\subsubsection{Write up results}\label{write-up-results}}
 
 \hypertarget{multivariate-correlational-research}{%
 \chapter{Multivariate correlational research}\label{multivariate-correlational-research}}
