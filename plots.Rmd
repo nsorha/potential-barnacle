@@ -189,7 +189,10 @@ ggplot(exam2, aes(x = as.factor(cheese), y = exam2pts)) +
 ```
   
 
+## Additional resources 
 
+
+https://rstudio.cloud/learn/primers/1.1 
 
 
 

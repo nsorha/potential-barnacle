@@ -24,7 +24,7 @@
 <meta name="author" content="Nicole Sorhagen, Ph.D." />
 
 
-<meta name="date" content="2020-06-29" />
+<meta name="date" content="2020-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -141,7 +141,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.2" data-path="introduction.html"><a href="introduction.html#script"><i class="fa fa-check"></i><b>3.1.2</b> Script</a></li>
 <li class="chapter" data-level="3.1.3" data-path="introduction.html"><a href="introduction.html#environment-and-history"><i class="fa fa-check"></i><b>3.1.3</b> Environment and history</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="introduction.html"><a href="introduction.html#importing-data-into-rstudio-cloud"><i class="fa fa-check"></i><b>3.2</b> Importing data into Rstudio cloud</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction.html"><a href="introduction.html#importing-data-into-rstudio-cloud"><i class="fa fa-check"></i><b>3.2</b> Importing data into Rstudio cloud</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction.html"><a href="introduction.html#upload-the-data-into-rstudio-cloud"><i class="fa fa-check"></i><b>3.2.1</b> Upload the data into Rstudio Cloud</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction.html"><a href="introduction.html#import-data"><i class="fa fa-check"></i><b>3.2.2</b> Import data</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>4</b> Packages</a><ul>
 <li class="chapter" data-level="4.1" data-path="packages.html"><a href="packages.html#installing-packages"><i class="fa fa-check"></i><b>4.1</b> Installing packages</a><ul>
@@ -162,6 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.1" data-path="picturing-data.html"><a href="picturing-data.html#two-continuous-variables"><i class="fa fa-check"></i><b>5.2.1</b> Two continuous variables</a></li>
 <li class="chapter" data-level="5.2.2" data-path="picturing-data.html"><a href="picturing-data.html#one-continuous-and-one-categorical-variable"><i class="fa fa-check"></i><b>5.2.2</b> One continuous and one categorical variable</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="picturing-data.html"><a href="picturing-data.html#additional-resources"><i class="fa fa-check"></i><b>5.3</b> Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a><ul>
 <li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-using-tidyverse-and-psych-packages."><i class="fa fa-check"></i><b>6.1</b> Descriptive statistics using Tidyverse and Psych packages.</a></li>
@@ -175,6 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="basic-data-transformations.html"><a href="basic-data-transformations.html"><i class="fa fa-check"></i><b>8</b> Basic Data Transformations</a></li>
 <li class="chapter" data-level="9" data-path="bivariate-correlational-research.html"><a href="bivariate-correlational-research.html"><i class="fa fa-check"></i><b>9</b> Bivariate correlational research</a><ul>
 <li class="chapter" data-level="9.1" data-path="bivariate-correlational-research.html"><a href="bivariate-correlational-research.html#association-claim-with-two-quantitative-variables"><i class="fa fa-check"></i><b>9.1</b> Association claim with two quantitative variables</a></li>
+<li class="chapter" data-level="9.2" data-path="bivariate-correlational-research.html"><a href="bivariate-correlational-research.html#association-claim-with-one-quantitative-variable-and-one-categorical-variable"><i class="fa fa-check"></i><b>9.2</b> Association claim with one quantitative variable and one categorical variable</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html"><i class="fa fa-check"></i><b>10</b> Multivariate correlational research</a></li>
 <li class="chapter" data-level="11" data-path="simple-experiment.html"><a href="simple-experiment.html"><i class="fa fa-check"></i><b>11</b> Simple experiment</a><ul>
@@ -218,20 +223,179 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 9</span> Bivariate correlational research</h1>
 <div id="association-claim-with-two-quantitative-variables" class="section level2">
 <h2><span class="header-section-number">9.1</span> Association claim with two quantitative variables</h2>
+<p>Are lifestyle choices related to the development of Alzheimer’s disease? (Siddarth et al., 2018)[<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0195549" class="uri">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0195549</a>] asked a sample of 35 adults over the age of 45 how many hours they typically spend sitting on the week days. They found that the amount of time their participants reported sitting was negatively related to the the total thickness of their participants’ medial temporal lobe (MTL). This is important because the MTL is smaller in people who have Alzheimer’s disease.</p>
+<p>Siddarth and colleagues (2018) included data in their article, so let’s reproduce their findings!</p>
 <div id="open-data" class="section level4">
 <h4><span class="header-section-number">9.1.0.1</span> Open data</h4>
+<p>Download the data from D2L and open it:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="bivariate-correlational-research.html#cb47-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb47-2"><a href="bivariate-correlational-research.html#cb47-2"></a>sitMTL &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;siddarth.csv&quot;</span>)</span></code></pre></div>
+<p>This dataset has many variables. We will be using the Sitting variable which is the hours a day the participants spent sitting. We will also use the TOTAL variable which is the total size of the participants MTL.</p>
 </div>
-<div id="get-to-know-data" class="section level4">
-<h4><span class="header-section-number">9.1.0.2</span> Get to know data</h4>
-</div>
-<div id="test-assumptions" class="section level4">
-<h4><span class="header-section-number">9.1.0.3</span> Test assumptions</h4>
+<div id="get-to-know-data-and-test-assumptions" class="section level4">
+<h4><span class="header-section-number">9.1.0.2</span> Get to know data and test assumptions</h4>
+<p>First load the tidyverse and psych packages (if they are not loaded already):</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="bivariate-correlational-research.html#cb48-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb48-2"><a href="bivariate-correlational-research.html#cb48-2"></a><span class="kw">library</span>(psych)</span></code></pre></div>
+<p>We will be testing the relation between time spent sitting and MTL size using a correlation. More specifically, we will use a Pearson’s correlation (which is the same type of correlation that we used in the measurement section. Some treat it as the default correlation).</p>
+<p>All statistical tests have assumptions about the data.</p>
+<p>The assumptions of a Pearson’s correlation are:<br />
+1 - The variables are interval or ratio (hours and size are both interval data)<br />
+2 - Linearity<br />
+3 - Absence of outliers<br />
+4 - Approximately normally distributed</p>
+<p>Let’s first consider outliers and the shape of the distributed by creating histograms of the variables:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="bivariate-correlational-research.html#cb49-1"></a><span class="kw">ggplot</span>(sitMTL, <span class="kw">aes</span>(<span class="dt">x=</span>Sitting)) <span class="op">+</span></span>
+<span id="cb49-2"><a href="bivariate-correlational-research.html#cb49-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+The distibution looks roughly mound shaped and there does not seem to be any outliers.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="bivariate-correlational-research.html#cb50-1"></a><span class="kw">ggplot</span>(sitMTL, <span class="kw">aes</span>(<span class="dt">x=</span>TOTAL)) <span class="op">+</span></span>
+<span id="cb50-2"><a href="bivariate-correlational-research.html#cb50-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">07</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+Again, the distibution looks roughly mound shaped and there does not seem to be any outliers.</p>
+<p>Next let’s consider linearity by creating a scatterplot.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="bivariate-correlational-research.html#cb51-1"></a><span class="kw">ggplot</span>(sitMTL, <span class="kw">aes</span>(<span class="dt">x=</span>Sitting, <span class="dt">y=</span>TOTAL)) <span class="op">+</span></span>
+<span id="cb51-2"><a href="bivariate-correlational-research.html#cb51-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>The scatterplot shows a linear (and negative) relation. No evidence for curilinearity (or multivariate outliers).</p>
 </div>
 <div id="compute-ci-effect-size-and-nhst" class="section level4">
-<h4><span class="header-section-number">9.1.0.4</span> Compute CI, effect size, and NHST</h4>
+<h4><span class="header-section-number">9.1.0.3</span> Compute CI, effect size, and NHST</h4>
+<p>Next calculate the Pearson correlation. Again, we did this in the measurement section.</p>
+<p>The code first tells R which data file to use (sitMTL), then which variables to use (Sitting and TOTAL) and then to compute a correlation. The print(short=FALSE) tells R to include the confidence intervals.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="bivariate-correlational-research.html#cb52-1"></a>sitMTL <span class="op">%&gt;%</span></span>
+<span id="cb52-2"><a href="bivariate-correlational-research.html#cb52-2"></a><span class="st">  </span><span class="kw">select</span>(Sitting, TOTAL) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb52-3"><a href="bivariate-correlational-research.html#cb52-3"></a><span class="st">  </span><span class="kw">corr.test</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb52-4"><a href="bivariate-correlational-research.html#cb52-4"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">short=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<p><img src="img/corr.png" />
+The correlation coefficient is circled in red. The results show that the correlation coefficient is -.40.</p>
+<p>The probability associated with that correlation coefficient is circled in blue. NHST estimates the likelihood of getting results as extreme or more extreme given the null is true (i.e., given there is really no association between the variables). If this likelihood is sufficiently small (less than 5%), than we reject the null hypothesis and conclude that the association is more extreme than zero. The show show that the p value associated with that correlation coefficient is .02, which is under the .05 threshold - so the relation is statistical significant in terms of NHST.</p>
+<p>The confidence intervals are circled in green. The confidence interval provides an interval estimate of a parameter. Here the parameter is the true correlation between the two variables. In the present example, the correlation coefficient (r = -.40) is a point estimate of the true association between sitting and MTL size. The confidence interval gives us an interval estimate of this association (-.07 to -.64). This confidence interval is quite large, indicating uncertainty about the true size of the association between sitting and MTL size.</p>
+<p>Note that the confidence interval here does not include zero, which is consistent with NHST because both are saying that zero is not a likely correlation between the variables.</p>
 </div>
 <div id="write-up-results" class="section level4">
-<h4><span class="header-section-number">9.1.0.5</span> Write up results</h4>
+<h4><span class="header-section-number">9.1.0.4</span> Write up results</h4>
+<p>Hours spent sitting were negatively related to the size of the participants’ MTL (r = -.40, p &lt; .05, CI.95 = -.07 to -.64).</p>
+<p>You may have noticed that this association is -.37. This is because Siddarth and colleagues used a partial correlation. We will discuss this in the next chapter.</p>
+</div>
+</div>
+<div id="association-claim-with-one-quantitative-variable-and-one-categorical-variable" class="section level2">
+<h2><span class="header-section-number">9.2</span> Association claim with one quantitative variable and one categorical variable</h2>
+<p>Are parents happier than people with no children? Nelson and colleagues (2013) found that people with children reported higher levels of happiness than people who do not have kids.</p>
+<p>Let’s say you replicated Nelson et al. (2013). You recruited a convenience sample of 40 adults. You asked them if they were parents and to report their happiness on a 7 point scale.</p>
+<div id="open-data-1" class="section level4">
+<h4><span class="header-section-number">9.2.0.1</span> Open data</h4>
+<p>Download the data from D2L and open it:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="bivariate-correlational-research.html#cb53-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb53-2"><a href="bivariate-correlational-research.html#cb53-2"></a>nelsonrep &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;nelsonrep.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="get-to-know-data-and-test-assumptions-1" class="section level4">
+<h4><span class="header-section-number">9.2.0.2</span> Get to know data and test assumptions</h4>
+<p>We will use a t-test to calculate the confidence interval, effect size, and NHST of the association between one continuous and one categorical variable.</p>
+<p>There are several types of t-statistics that differ in their assumptions about the normality of the data and the similarity of the group variances. For a two independent group design all t-statistics assume that the groups are independent from each other. In this example, the assumption of independence is met because the participants in each group (parents and non-parents) are not related to each other.</p>
+<p>Then test normality with a Shapiro-Wilk test:</p>
+<ul>
+<li>first tell R to use the nelsonrep dataset<br />
+</li>
+<li>put the categorical variable in the group_by parentheses<br />
+</li>
+<li>put the continious varaible in the shapiro.test parentheses</li>
+</ul>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="bivariate-correlational-research.html#cb54-1"></a>nelsonrep <span class="op">%&gt;%</span></span>
+<span id="cb54-2"><a href="bivariate-correlational-research.html#cb54-2"></a><span class="st">  </span><span class="kw">group_by</span>(parentstatus) <span class="op">%&gt;%</span></span>
+<span id="cb54-3"><a href="bivariate-correlational-research.html#cb54-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">statistic =</span> <span class="kw">shapiro.test</span>(happy)<span class="op">$</span>statistic,</span>
+<span id="cb54-4"><a href="bivariate-correlational-research.html#cb54-4"></a>            <span class="dt">p.value =</span> <span class="kw">shapiro.test</span>(happy)<span class="op">$</span>p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   parentstatus statistic p.value
+##   &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;
+## 1 nonparent        0.888  0.0513
+## 2 parent           0.907  0.0311</code></pre>
+<p>A significant test of normality (Shapiro-Wilk) indicates that the data is <em>not</em> normally distributed. With non-normal data, a Wilcoxon-Mann-Whitney U test should be used, which is a nonparametric alternative to the independent-sample t-test.</p>
+<p>In this example, the happiness variable was normally distributed for the nonparent group (the p value is .167 - which is greater than .05), but the happiness scores of the parent group was not normally distributed (the p-value is .017).</p>
+<p>Then we will test equality of variances with a Levene’s test. To do this you will need to install the car package first:</p>
+<p><code>install.packages("car")</code></p>
+<p>Then run the levene test with the following code:</p>
+<ul>
+<li>In the leveneTest parenthesis - list the continuous variable first and put the categorical varaible in the as.factor parenthesis. The dataset name should be added after the <code>data =</code></li>
+</ul>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="bivariate-correlational-research.html#cb56-1"></a><span class="kw">library</span>(car) </span>
+<span id="cb56-2"><a href="bivariate-correlational-research.html#cb56-2"></a><span class="kw">leveneTest</span>(happy <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(parentstatus), <span class="dt">data =</span> nelsonrep)</span></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  1  0.7355 0.3965
+##       38</code></pre>
+<p>A significant test of equality of variance (Levene’s) means that group variances are different from each other and in the next step you should run the t-test with the Welch option to account for the unequal variances.</p>
+<p>In this example, the test of equality of variance was nonsignificant.</p>
+<p>Despite the non-normality of the parents’ happiness data, we are going to use a Student’s t-test in the next step for the sake of pedagogy. The Student’s t-test assumes that groups are normally distributed and that their variances are equal. IRL - I would still probably use the student’s t-test here because there is evidence that the t-test is more robust to non-normalilty than was once thought. But some would prefer to use the Wilcoxon-Mann-Whitney U test here.</p>
+</div>
+<div id="compute-ci-effect-size-and-nhst-1" class="section level4">
+<h4><span class="header-section-number">9.2.0.3</span> Compute CI, effect size, and NHST</h4>
+<p>Use the t.test() function to find the CI and NHST with this base R code:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="bivariate-correlational-research.html#cb58-1"></a><span class="kw">t.test</span>(happy <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(parentstatus), <span class="dt">data =</span> nelsonrep, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<ul>
+<li><code>happy ~ as.factor(parentstatus)</code> takes the form of continuous variable ~ categorical variable (for association claims)</li>
+<li><code>data = nelsonrep</code> directs R to the object that contains the data.</li>
+<li>If the variances are not equal between groups, omit the <code>var.equal = TRUE</code> to run a Welch’s t-test
+<ul>
+<li>For example: <code>t.test(exam2pts ~ cheese, data = exam2)</code></li>
+</ul></li>
+<li>The default is to calculate 95% confidence intervals (i.e., <code>conf.level = 0.95</code>). Because it is the default this code can be omitted, and it will still run. To change the confidence level add <code>conf.level= 0.XX</code> (after a comma).
+<ul>
+<li>For example, to obtain 90% confidence intervals here use: <code>t.test(happy ~ as.factor(parentstatus), data = nelsonrep, var.equal = TRUE, conf.level = 0.90)</code></li>
+</ul></li>
+<li>Use <code>?t.test</code> for more options.</li>
+</ul>
+<p><img src="img/ttest.png" /><br />
+The confidence intervals are in green. The confidence interval provides an interval estimate of a parameter. Here the parameter is the true difference between groups. In the present example, 1.67 points (the average difference between groups) is a point estimate of the true difference in happiness by parent status. The confidence interval gives us an interval estimate of this difference: between .44 and 2.89 points.</p>
+<p>The t-statistic is circled in red. The p-value (circled blue) estimates the probability of getting results as extreme or more extreme if there was really no difference between the groups. Here this number is less than .05, which rejects the null. This is consistent with the confidence interval, which says that 0 is not a likely difference between the groups.</p>
+<p>The t.test function does not calculate cohen’s d, so we will need to calculate that next. To do this you will need to install the effsize package first:</p>
+<p><code>install.packages("effsize")</code></p>
+<p>Then calculate cohen’s D with the following code:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="bivariate-correlational-research.html#cb59-1"></a><span class="kw">library</span>(effsize)</span>
+<span id="cb59-2"><a href="bivariate-correlational-research.html#cb59-2"></a><span class="kw">cohen.d</span>(happy <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(parentstatus), <span class="dt">data =</span> nelsonrep)</span></code></pre></div>
+<pre><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: -0.8897565 (large)
+## 95 percent confidence interval:
+##     lower     upper 
+## -1.573458 -0.206055</code></pre>
+<ul>
+<li>The default is Cohen’s d, which uses the pooled population standard deviation in the denominator.<br />
+</li>
+<li>Add <code>pooled = FALSE</code> for Glass’ delta, which uses the control condition’s standard deviation (group 2),
+<ul>
+<li>For example: <code>cohen.d(happy ~ as.factor(parentstatus), data = nelsonrep, pooled = FALSE)</code></li>
+</ul></li>
+<li>Add <code>hedges.correction = TRUE</code> for Hedges’ g, which is preferred with very small sample sizes ( n &lt; 20).
+<ul>
+<li>For example: <code>cohen.d(happy ~ as.factor(parentstatus), data = nelsonrep,  hedges.correction = TRUE)</code></li>
+</ul></li>
+<li>Add <code>na.rm=TRUE</code> if you have missing data.
+<ul>
+<li>For example, <code>cohen.d(happy ~ as.factor(parentstatus), data = nelsonrep, na.rm=TRUE)</code></li>
+</ul></li>
+<li>Use <code>?cohen.d</code> for more options.</li>
+</ul>
+<p>The results show that the effect size is -.89. The effect size is an indicator of the magnitude of a study’s results. Cohen’s d tells us the standard deviation units between the group means and the amount of overlap between the sets of scores. The larger the Cohen’s d the larger the difference between group means and less overlap between the sets of scores. Cohen’s rule of thumb for interpreting d are: small or weak effect = 0.20; medium or moderate effect = 0.50; and large or strong = 0.80.</p>
+<p>Remember that the direction of Cohen’s d (whether it is positive or negative) is due to the way in which the categorical variable was coded (parent happiness minus nonparent happiness or nonparent happiness minus parent happiness).</p>
+</div>
+<div id="write-up-results-1" class="section level4">
+<h4><span class="header-section-number">9.2.0.4</span> Write up results</h4>
+<p>Parents’ happiness (M = 5.67, SD = 1.71) was higher than nonparents’ happiness (M =4.00, SD = 2.1, t(38) = -2.76, p = .0.008, CI95%: -2.89 and -0.44, d = -.89).</p>
+<p><em>I used this code to find the standard deviation of happiness by parent group:</em></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="bivariate-correlational-research.html#cb61-1"></a>nelsonrep <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb61-2"><a href="bivariate-correlational-research.html#cb61-2"></a><span class="st">  </span><span class="kw">pull</span>(happy) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb61-3"><a href="bivariate-correlational-research.html#cb61-3"></a><span class="st">  </span><span class="kw">describeBy</span>(nelsonrep<span class="op">$</span>parentstatus)</span></code></pre></div>
+<pre><code>## 
+##  Descriptive statistics by group 
+## group: nonparent
+##    vars  n mean  sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 16    4 2.1      4       4 2.97   1   7     6  0.2    -1.59 0.52
+## ------------------------------------------------------------ 
+## group: parent
+##    vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 24 5.67 1.71    5.5    5.75 2.22   2   8     6 -0.3    -1.13 0.35</code></pre>
 
 </div>
 </div>
