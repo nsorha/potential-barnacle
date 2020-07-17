@@ -17,18 +17,14 @@ The last two questions of the survey ask students to report their motivation to 
 First load the readr and tidyverse packages (if they are not loaded already):   
 
 ```{r message=FALSE, warning=FALSE}
-
 library(readr)
 library(tidyverse)
-
 ```
 
 Then assign the data to an object using the following code (or you can use the GUI method):  
 
 ```{r message=FALSE, warning=FALSE}
-
 wilson <- read_csv("wilson.csv") 
-
 ```
 
 
@@ -42,10 +38,8 @@ We need all of the items to go in the same direction. So, we need to **reverse c
 The command to reverse code item 2 is:
 
 ```{r}
-
 wilson <- wilson %>%
    mutate(item2r =recode(item2, `1` = 5, `2` = 4, `3` = 3, `4` = 2, `5` = 1))
-
 ```
 
 
@@ -60,30 +54,21 @@ wilson <- wilson %>%
     + Here we are saving over the original dataset. 
     + Some people prefer to create a new dataset. For example  `wilsonr <-`   would create a new object called wilsonr and the wilson data would not change.
     + Without this part of the code, your new variable will not be saved.   
-
-After you run the code, there should be 13 variables in the wilson dataset (there was 12 orginally).
+After you run the code, there should be 13 variables in the wilson dataset (there was 12 originally).
 
 ![](img/mutatewilson.png)  
-Click on the word ‘wilson’ in the environment panel to view the data.  
 
+Click on the word ‘wilson’ in the environment panel to view the data.  
 ![](img/wilsonview.png)  
 
 The reverse coded item 2 variable (item2r) that we just created will be in the last column.  
-
 ![](img/wilsonview2.png)  
-
 (You can expand the data view by dragging the center median between the dataview and the environment to the right.)   
-
 You can see that the first student rated the second item as a 1 and it is now a 5 in the reversed coded variable.  
-
 Next create a new item for item 4. Here is the code:  
-
-
 ```{r}
-
 wilson <- wilson %>% 
 mutate(item4r =recode(item4, `1` = 5, `2` = 4, `3` = 3, `4` = 2, `5` = 1))
-
 ```
 
 
@@ -93,7 +78,7 @@ Next let’s create a summary score for the PORMS measure. We will use the mutat
 
 ```{r}
 wilson <- wilson %>% 
-mutate(porms = item1 + item2r + item3 + item4r + item5)
+    mutate(porms = item1 + item2r + item3 + item4r + item5)
 ```
 
 *	porms is the name of the new column  
@@ -102,7 +87,3 @@ mutate(porms = item1 + item2r + item3 + item4r + item5)
 Your wilson dataset should now have 15 variables.   
 
 (I created a sum score here because that is what Wilson-Doenges did. I think an average score would work here as well.)   
-
-
-
-

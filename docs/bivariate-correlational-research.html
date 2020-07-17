@@ -24,7 +24,7 @@
 <meta name="author" content="Nicole Sorhagen, Ph.D." />
 
 
-<meta name="date" content="2020-07-11" />
+<meta name="date" content="2020-07-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,9 +172,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-using-base-r"><i class="fa fa-check"></i><b>6.2</b> Descriptive statistics using base R</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>7</b> Measurement</a><ul>
-<li class="chapter" data-level="7.0.1" data-path="measurement.html"><a href="measurement.html#a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material"><i class="fa fa-check"></i><b>7.0.1</b> A brief introduction to spreadsheets (and some brief review of previous material)</a></li>
-<li class="chapter" data-level="7.0.2" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i><b>7.0.2</b> Reliability</a></li>
-<li class="chapter" data-level="7.0.3" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i><b>7.0.3</b> Validity</a></li>
+<li class="chapter" data-level="7.1" data-path="measurement.html"><a href="measurement.html#a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material"><i class="fa fa-check"></i><b>7.1</b> A brief introduction to spreadsheets (and some brief review of previous material)</a></li>
+<li class="chapter" data-level="7.2" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i><b>7.2</b> Reliability</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="measurement.html"><a href="measurement.html#internal-reliability"><i class="fa fa-check"></i><b>7.2.1</b> Internal reliability</a></li>
+<li class="chapter" data-level="7.2.2" data-path="measurement.html"><a href="measurement.html#test-retest-reliability"><i class="fa fa-check"></i><b>7.2.2</b> Test-retest reliability</a></li>
+<li class="chapter" data-level="7.2.3" data-path="measurement.html"><a href="measurement.html#interrater-reliability"><i class="fa fa-check"></i><b>7.2.3</b> Interrater reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i><b>7.3</b> Validity</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="measurement.html"><a href="measurement.html#criterion-validity"><i class="fa fa-check"></i><b>7.3.1</b> Criterion validity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="measurement.html"><a href="measurement.html#convergent-and-discriminant-validity"><i class="fa fa-check"></i><b>7.3.2</b> Convergent and Discriminant Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="measurement.html"><a href="measurement.html#homework"><i class="fa fa-check"></i><b>7.4</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="basic-data-transformations.html"><a href="basic-data-transformations.html"><i class="fa fa-check"></i><b>8</b> Basic Data Transformations</a></li>
 <li class="chapter" data-level="9" data-path="bivariate-correlational-research.html"><a href="bivariate-correlational-research.html"><i class="fa fa-check"></i><b>9</b> Bivariate correlational research</a><ul>
@@ -318,20 +326,15 @@ The correlation coefficient is circled in red. The results show that the correla
 <ul>
 <li>In the leveneTest parenthesis - list the continuous variable first and put the categorical varaible in the as.factor parenthesis. The dataset name should be added after the <code>data =</code></li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="bivariate-correlational-research.html#cb56-1"></a><span class="kw">library</span>(car) </span>
-<span id="cb56-2"><a href="bivariate-correlational-research.html#cb56-2"></a><span class="kw">leveneTest</span>(happy <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(parentstatus), <span class="dt">data =</span> nelsonrep)</span></code></pre></div>
-<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
-##       Df F value Pr(&gt;F)
-## group  1  0.7355 0.3965
-##       38</code></pre>
 <p>A significant test of equality of variance (Levene’s) means that group variances are different from each other and in the next step you should run the t-test with the Welch option to account for the unequal variances.</p>
 <p>In this example, the test of equality of variance was nonsignificant.</p>
 <p>Despite the non-normality of the parents’ happiness data, we are going to use a Student’s t-test in the next step for the sake of pedagogy. The Student’s t-test assumes that groups are normally distributed and that their variances are equal. IRL - I would still probably use the student’s t-test here because there is evidence that the t-test is more robust to non-normalilty than was once thought. But some would prefer to use the Wilcoxon-Mann-Whitney U test here.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="bivariate-correlational-research.html#cb56-1"></a><span class="kw">detach</span>(<span class="st">&quot;package:car&quot;</span>, unload<span class="op">-</span><span class="ot">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="compute-ci-effect-size-and-nhst-1" class="section level4">
 <h4><span class="header-section-number">9.2.0.3</span> Compute CI, effect size, and NHST</h4>
 <p>Use the t.test() function to find the CI and NHST with this base R code:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="bivariate-correlational-research.html#cb58-1"></a><span class="kw">t.test</span>(happy <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(parentstatus), <span class="dt">data =</span> nelsonrep, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="bivariate-correlational-research.html#cb57-1"></a><span class="kw">t.test</span>(happy <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(parentstatus), <span class="dt">data =</span> nelsonrep, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <ul>
 <li><code>happy ~ as.factor(parentstatus)</code> takes the form of continuous variable ~ categorical variable (for association claims)</li>
 <li><code>data = nelsonrep</code> directs R to the object that contains the data.</li>
@@ -351,8 +354,8 @@ The confidence intervals are in green. The confidence interval provides an inter
 <p>The t.test function does not calculate cohen’s d, so we will need to calculate that next. To do this you will need to install the effsize package first:</p>
 <p><code>install.packages("effsize")</code></p>
 <p>Then calculate cohen’s D with the following code:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="bivariate-correlational-research.html#cb59-1"></a><span class="kw">library</span>(effsize)</span>
-<span id="cb59-2"><a href="bivariate-correlational-research.html#cb59-2"></a><span class="kw">cohen.d</span>(happy <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(parentstatus), <span class="dt">data =</span> nelsonrep)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="bivariate-correlational-research.html#cb58-1"></a><span class="kw">library</span>(effsize)</span>
+<span id="cb58-2"><a href="bivariate-correlational-research.html#cb58-2"></a><span class="kw">cohen.d</span>(happy <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(parentstatus), <span class="dt">data =</span> nelsonrep)</span></code></pre></div>
 <pre><code>## 
 ## Cohen&#39;s d
 ## 
@@ -384,9 +387,9 @@ The confidence intervals are in green. The confidence interval provides an inter
 <h4><span class="header-section-number">9.2.0.4</span> Write up results</h4>
 <p>Parents’ happiness (M = 5.67, SD = 1.71) was higher than nonparents’ happiness (M =4.00, SD = 2.1, t(38) = -2.76, p = .0.008, CI95%: -2.89 and -0.44, d = -.89).</p>
 <p><em>I used this code to find the standard deviation of happiness by parent group:</em></p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="bivariate-correlational-research.html#cb61-1"></a>nelsonrep <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb61-2"><a href="bivariate-correlational-research.html#cb61-2"></a><span class="st">  </span><span class="kw">pull</span>(happy) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb61-3"><a href="bivariate-correlational-research.html#cb61-3"></a><span class="st">  </span><span class="kw">describeBy</span>(nelsonrep<span class="op">$</span>parentstatus)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="bivariate-correlational-research.html#cb60-1"></a>nelsonrep <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb60-2"><a href="bivariate-correlational-research.html#cb60-2"></a><span class="st">  </span><span class="kw">pull</span>(happy) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb60-3"><a href="bivariate-correlational-research.html#cb60-3"></a><span class="st">  </span><span class="kw">describeBy</span>(nelsonrep<span class="op">$</span>parentstatus)</span></code></pre></div>
 <pre><code>## 
 ##  Descriptive statistics by group 
 ## group: nonparent

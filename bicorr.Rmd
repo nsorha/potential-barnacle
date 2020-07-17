@@ -167,7 +167,7 @@ Then we will test equality of variances with a Levene’s test. To do this you w
 Then run the levene test with the following code:  
   
 * In the leveneTest parenthesis - list the continuous variable first and put the categorical varaible in the as.factor parenthesis. The dataset name should be added after the `data =`  
-```{r message=FALSE, warning=FALSE}
+```{r include=FALSE}
 library(car) 
 leveneTest(happy ~ as.factor(parentstatus), data = nelsonrep)
 
@@ -179,6 +179,12 @@ In this example, the test of equality of variance was nonsignificant.
 
 Despite the non-normality of the parents' happiness data, we are going to use a Student’s t-test in the next step for the sake of pedagogy. The Student's t-test  assumes that groups are normally distributed and that their variances are equal.  IRL - I would still probably use the student's t-test here because there is evidence that the t-test is more robust to non-normalilty than was once thought. But some would prefer to use the Wilcoxon-Mann-Whitney U test here.  
 
+
+```{r message=FALSE, warning=FALSE}
+
+detach("package:car", unload-TRUE)
+
+```
 
 #### Compute CI, effect size, and NHST
 

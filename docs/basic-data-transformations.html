@@ -24,7 +24,7 @@
 <meta name="author" content="Nicole Sorhagen, Ph.D." />
 
 
-<meta name="date" content="2020-07-11" />
+<meta name="date" content="2020-07-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,9 +172,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-using-base-r"><i class="fa fa-check"></i><b>6.2</b> Descriptive statistics using base R</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>7</b> Measurement</a><ul>
-<li class="chapter" data-level="7.0.1" data-path="measurement.html"><a href="measurement.html#a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material"><i class="fa fa-check"></i><b>7.0.1</b> A brief introduction to spreadsheets (and some brief review of previous material)</a></li>
-<li class="chapter" data-level="7.0.2" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i><b>7.0.2</b> Reliability</a></li>
-<li class="chapter" data-level="7.0.3" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i><b>7.0.3</b> Validity</a></li>
+<li class="chapter" data-level="7.1" data-path="measurement.html"><a href="measurement.html#a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material"><i class="fa fa-check"></i><b>7.1</b> A brief introduction to spreadsheets (and some brief review of previous material)</a></li>
+<li class="chapter" data-level="7.2" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i><b>7.2</b> Reliability</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="measurement.html"><a href="measurement.html#internal-reliability"><i class="fa fa-check"></i><b>7.2.1</b> Internal reliability</a></li>
+<li class="chapter" data-level="7.2.2" data-path="measurement.html"><a href="measurement.html#test-retest-reliability"><i class="fa fa-check"></i><b>7.2.2</b> Test-retest reliability</a></li>
+<li class="chapter" data-level="7.2.3" data-path="measurement.html"><a href="measurement.html#interrater-reliability"><i class="fa fa-check"></i><b>7.2.3</b> Interrater reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i><b>7.3</b> Validity</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="measurement.html"><a href="measurement.html#criterion-validity"><i class="fa fa-check"></i><b>7.3.1</b> Criterion validity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="measurement.html"><a href="measurement.html#convergent-and-discriminant-validity"><i class="fa fa-check"></i><b>7.3.2</b> Convergent and Discriminant Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="measurement.html"><a href="measurement.html#homework"><i class="fa fa-check"></i><b>7.4</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="basic-data-transformations.html"><a href="basic-data-transformations.html"><i class="fa fa-check"></i><b>8</b> Basic Data Transformations</a></li>
 <li class="chapter" data-level="9" data-path="bivariate-correlational-research.html"><a href="bivariate-correlational-research.html"><i class="fa fa-check"></i><b>9</b> Bivariate correlational research</a><ul>
@@ -254,24 +262,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Here we are saving over the original dataset.</li>
 <li>Some people prefer to create a new dataset. For example <code>wilsonr &lt;-</code> would create a new object called wilsonr and the wilson data would not change.</li>
-<li>Without this part of the code, your new variable will not be saved.</li>
+<li>Without this part of the code, your new variable will not be saved.<br />
+After you run the code, there should be 13 variables in the wilson dataset (there was 12 originally).</li>
 </ul></li>
 </ul>
-<p>After you run the code, there should be 13 variables in the wilson dataset (there was 12 orginally).</p>
-<p><img src="img/mutatewilson.png" /><br />
-Click on the word ‘wilson’ in the environment panel to view the data.</p>
-<p><img src="img/wilsonview.png" /></p>
-<p>The reverse coded item 2 variable (item2r) that we just created will be in the last column.</p>
-<p><img src="img/wilsonview2.png" /></p>
-<p>(You can expand the data view by dragging the center median between the dataview and the environment to the right.)</p>
-<p>You can see that the first student rated the second item as a 1 and it is now a 5 in the reversed coded variable.</p>
-<p>Next create a new item for item 4. Here is the code:</p>
+<p><img src="img/mutatewilson.png" /></p>
+<p>Click on the word ‘wilson’ in the environment panel to view the data.<br />
+<img src="img/wilsonview.png" /></p>
+<p>The reverse coded item 2 variable (item2r) that we just created will be in the last column.<br />
+<img src="img/wilsonview2.png" /><br />
+(You can expand the data view by dragging the center median between the dataview and the environment to the right.)<br />
+You can see that the first student rated the second item as a 1 and it is now a 5 in the reversed coded variable.<br />
+Next create a new item for item 4. Here is the code:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="basic-data-transformations.html#cb45-1"></a>wilson &lt;-<span class="st"> </span>wilson <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb45-2"><a href="basic-data-transformations.html#cb45-2"></a><span class="kw">mutate</span>(<span class="dt">item4r =</span><span class="kw">recode</span>(item4, <span class="st">`</span><span class="dt">1</span><span class="st">`</span> =<span class="st"> </span><span class="dv">5</span>, <span class="st">`</span><span class="dt">2</span><span class="st">`</span> =<span class="st"> </span><span class="dv">4</span>, <span class="st">`</span><span class="dt">3</span><span class="st">`</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">`</span><span class="dt">4</span><span class="st">`</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">`</span><span class="dt">5</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span>))</span></code></pre></div>
 <p>You should now have 14 variables in the wilson dataset.</p>
 <p>Next let’s create a summary score for the PORMS measure. We will use the mutate() function to do this using this code:</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="basic-data-transformations.html#cb46-1"></a>wilson &lt;-<span class="st"> </span>wilson <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb46-2"><a href="basic-data-transformations.html#cb46-2"></a><span class="kw">mutate</span>(<span class="dt">porms =</span> item1 <span class="op">+</span><span class="st"> </span>item2r <span class="op">+</span><span class="st"> </span>item3 <span class="op">+</span><span class="st"> </span>item4r <span class="op">+</span><span class="st"> </span>item5)</span></code></pre></div>
+<span id="cb46-2"><a href="basic-data-transformations.html#cb46-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">porms =</span> item1 <span class="op">+</span><span class="st"> </span>item2r <span class="op">+</span><span class="st"> </span>item3 <span class="op">+</span><span class="st"> </span>item4r <span class="op">+</span><span class="st"> </span>item5)</span></code></pre></div>
 <ul>
 <li>porms is the name of the new column<br />
 </li>

@@ -22,7 +22,7 @@ The wjap column is the participants w-scores on the applied problem subscale of 
 t2cmaq is the participants' CMAQ scores administered 2 weeks later.   
 
 
-### A brief introduction to spreadsheets (and some brief review of previous material)
+## A brief introduction to spreadsheets (and some brief review of previous material)
 
 Researchers often initially enter data into spreadsheets (excel, google sheet, numbers, etc.). So, I would like to briefly review how to use basic functions in a spread sheet. *We will learn how to create a new variable using R in the data transformation chapter.*   
 
@@ -92,12 +92,12 @@ ggplot(cmaqpilot, aes(x=cmaq)) +
 The figure shows that all scores are within the range of possible scores, suggesting no errors occurred during data entry or when you calculated the average scores. The shape is slightly bi-modal, suggesting students are more likely to feel high or low levels of math anxiety, than to feel moderate amounts of math anxiety.   
 
 
-### Reliability
+## Reliability
 
 The first step in establishing construct validity is to test the reliability of the measure. **Reliability** refers to consistency.   
 
 
-#### Internal reliability 
+### Internal reliability 
 For self-report measures, like the CMAQ, you need to measure internal reliability, which measures the extent to which people give consistent responses on every item of a survey. Researchers typically use Cronbach's alpha to test whether a measurement scale has internal reliability. Cronbach's alpha is essentially the average correlation of the correlations between each item of the scale (for a 3 item scale: the average of the correlations between item 1 and 2, item 1 and item 3, and item 2 and 3). This average is weighted by the average variance and the number of items, so it is not quite that simple - but it is the gist.  
 
 Like all correlations, Cronbach's alphas can technically range from -1 to 1. Higher Cronbach's alphas indicate better internal reliability (the correlations between the scale items are higher). Cronbach's alphas of over .70 are considered acceptable in psychology.   
@@ -127,7 +127,7 @@ In the output - focus on the raw alpha. In this example the Cronbach's alpha is 
 When Cronbach's alphas are less than .70, researchers have to revise and reconsider items. The purpose of the rest of the output is to get a sense of what Cronbach's alpha would be without an item. (Here is a good reference for more information about the rest of the alpha() function output if you are interested: https://rpubs.com/hauselin/reliabilityanalysis)
 
 
-#### Test-retest reliability 
+### Test-retest reliability 
 
 Test-retest reliability refers to consistency of a measure over time. To test this we will use scatterplots and correlation coefficients.  
 
@@ -173,7 +173,7 @@ The last part of the output gives the confidence intervals around the correlatio
 
 The scatterplot and correlation coefficient suggest that the CMAQ has test-retest reliability - they both show that the children responded to the CMAQ items consistently over time.  
 
-#### Interrater reliability 
+### Interrater reliability 
 
 Interrater reliability refers to the consistency of coding ratings between different raters. We will have to use a different example to learn how to test interrater reliability because there is no observational measures in the math anxiety example.   
 
@@ -229,11 +229,11 @@ The results show that the correlation between the two raters is .94 with a 95% c
 
 
 
-### Validity
+## Validity
 The next step in establishing the construct validity of the CMAQ is to establish that is has validity. **Validity** refers to accuracy. We will focus on the 3 empirical ways to assess validity here.    
 
 
-#### Criterion validity
+### Criterion validity
 
 Criterion validity refers to whether a measure is related to relevant behavioral outcomes. 
 
@@ -271,7 +271,7 @@ CMAQ scores were positively related to students' applied problems WJ-III scores 
 
 The scatterplot and correlation show that the CMAQ is highly related to a behavioral measure of math ability, the applied problems WJ-III scores. [I guess math ability is not the same as math anxiety - despite evidence that they are strongly related. Perhaps a neuro-based variable would have been better here?]
 
-#### Convergent and Discriminant Validity
+### Convergent and Discriminant Validity
 
 Convergent and discriminant validity are often considered together. Convergent validity is whether a measure is related to similar measures. Discriminant validity is whether a measure is not related to dissimilar measures.   
 
@@ -328,5 +328,7 @@ CMAQ scores were not related to students' general anxiety scores (r = -.12, p = 
 Taken together, the CMAQ seems to have convergent and discriminant validity because it is highly related to another measure of math anxiety and it is not related to general anxiety.   
 
 
+## Homework
 
+[Here is the anaswer key for R HW 4 (due week 5).](./measurementhw.R)
 

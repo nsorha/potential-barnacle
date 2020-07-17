@@ -120,7 +120,7 @@
 
 \title{Tools for Working with Data}
 \author{Nicole Sorhagen, Ph.D.}
-\date{2020-07-01}
+\date{2020-07-17}
 
 \begin{document}
 \maketitle
@@ -807,6 +807,11 @@ I like to make a few alterations to the previous code for aesthetics\ldots{}
 
 \includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-4-1.pdf}
 
+\hypertarget{additional-resources}{%
+\section{Additional resources}\label{additional-resources}}
+
+\url{https://rstudio.cloud/learn/primers/1.1}
+
 \hypertarget{descriptive-statistics}{%
 \chapter{Descriptive Statistics}\label{descriptive-statistics}}
 
@@ -1058,7 +1063,7 @@ The wjap column is the participants w-scores on the applied problem subscale of 
 t2cmaq is the participants' CMAQ scores administered 2 weeks later.
 
 \hypertarget{a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material}{%
-\subsection{A brief introduction to spreadsheets (and some brief review of previous material)}\label{a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material}}
+\section{A brief introduction to spreadsheets (and some brief review of previous material)}\label{a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material}}
 
 Researchers often initially enter data into spreadsheets (excel, google sheet, numbers, etc.). So, I would like to briefly review how to use basic functions in a spread sheet. \emph{We will learn how to create a new variable using R in the data transformation chapter.}
 
@@ -1129,12 +1134,12 @@ And then let's first create of histogram of the CMAQ scores:
 The figure shows that all scores are within the range of possible scores, suggesting no errors occurred during data entry or when you calculated the average scores. The shape is slightly bi-modal, suggesting students are more likely to feel high or low levels of math anxiety, than to feel moderate amounts of math anxiety.
 
 \hypertarget{reliability}{%
-\subsection{Reliability}\label{reliability}}
+\section{Reliability}\label{reliability}}
 
 The first step in establishing construct validity is to test the reliability of the measure. \textbf{Reliability} refers to consistency.
 
 \hypertarget{internal-reliability}{%
-\subsubsection{Internal reliability}\label{internal-reliability}}
+\subsection{Internal reliability}\label{internal-reliability}}
 
 For self-report measures, like the CMAQ, you need to measure internal reliability, which measures the extent to which people give consistent responses on every item of a survey. Researchers typically use Cronbach's alpha to test whether a measurement scale has internal reliability. Cronbach's alpha is essentially the average correlation of the correlations between each item of the scale (for a 3 item scale: the average of the correlations between item 1 and 2, item 1 and item 3, and item 2 and 3). This average is weighted by the average variance and the number of items, so it is not quite that simple - but it is the gist.
 
@@ -1204,7 +1209,7 @@ In the output - focus on the raw alpha. In this example the Cronbach's alpha is 
 When Cronbach's alphas are less than .70, researchers have to revise and reconsider items. The purpose of the rest of the output is to get a sense of what Cronbach's alpha would be without an item. (Here is a good reference for more information about the rest of the alpha() function output if you are interested: \url{https://rpubs.com/hauselin/reliabilityanalysis})
 
 \hypertarget{test-retest-reliability}{%
-\subsubsection{Test-retest reliability}\label{test-retest-reliability}}
+\subsection{Test-retest reliability}\label{test-retest-reliability}}
 
 Test-retest reliability refers to consistency of a measure over time. To test this we will use scatterplots and correlation coefficients.
 
@@ -1267,7 +1272,7 @@ The last part of the output gives the confidence intervals around the correlatio
 The scatterplot and correlation coefficient suggest that the CMAQ has test-retest reliability - they both show that the children responded to the CMAQ items consistently over time.
 
 \hypertarget{interrater-reliability}{%
-\subsubsection{Interrater reliability}\label{interrater-reliability}}
+\subsection{Interrater reliability}\label{interrater-reliability}}
 
 Interrater reliability refers to the consistency of coding ratings between different raters. We will have to use a different example to learn how to test interrater reliability because there is no observational measures in the math anxiety example.
 
@@ -1342,12 +1347,12 @@ Next quantify the relation by computing a correlation coefficient.
 The results show that the correlation between the two raters is .94 with a 95\% confidence interval of .90 to .96. This suggest strong agreement between raters.
 
 \hypertarget{validity}{%
-\subsection{Validity}\label{validity}}
+\section{Validity}\label{validity}}
 
 The next step in establishing the construct validity of the CMAQ is to establish that is has validity. \textbf{Validity} refers to accuracy. We will focus on the 3 empirical ways to assess validity here.
 
 \hypertarget{criterion-validity}{%
-\subsubsection{Criterion validity}\label{criterion-validity}}
+\subsection{Criterion validity}\label{criterion-validity}}
 
 Criterion validity refers to whether a measure is related to relevant behavioral outcomes.
 
@@ -1412,7 +1417,7 @@ CMAQ scores were positively related to students' applied problems WJ-III scores 
 The scatterplot and correlation show that the CMAQ is highly related to a behavioral measure of math ability, the applied problems WJ-III scores. {[}I guess math ability is not the same as math anxiety - despite evidence that they are strongly related. Perhaps a neuro-based variable would have been better here?{]}
 
 \hypertarget{convergent-and-discriminant-validity}{%
-\subsubsection{Convergent and Discriminant Validity}\label{convergent-and-discriminant-validity}}
+\subsection{Convergent and Discriminant Validity}\label{convergent-and-discriminant-validity}}
 
 Convergent and discriminant validity are often considered together. Convergent validity is whether a measure is related to similar measures. Discriminant validity is whether a measure is not related to dissimilar measures.
 
@@ -1508,6 +1513,11 @@ CMAQ scores were not related to students' general anxiety scores (r = -.12, p = 
 
 Taken together, the CMAQ seems to have convergent and discriminant validity because it is highly related to another measure of math anxiety and it is not related to general anxiety.
 
+\hypertarget{homework}{%
+\section{Homework}\label{homework}}
+
+\href{./measurementhw.R}{Here is the anaswer key for R HW 4 (due week 5).}
+
 \hypertarget{basic-data-transformations}{%
 \chapter{Basic Data Transformations}\label{basic-data-transformations}}
 
@@ -1587,25 +1597,20 @@ The command to reverse code item 2 is:
   \item
     Some people prefer to create a new dataset. For example \texttt{wilsonr\ \textless{}-} would create a new object called wilsonr and the wilson data would not change.
   \item
-    Without this part of the code, your new variable will not be saved.
+    Without this part of the code, your new variable will not be saved.\\
+    After you run the code, there should be 13 variables in the wilson dataset (there was 12 originally).
   \end{itemize}
 \end{itemize}
 
-After you run the code, there should be 13 variables in the wilson dataset (there was 12 orginally).
+\includegraphics{img/mutatewilson.png}
 
-\includegraphics{img/mutatewilson.png}\\
-Click on the word `wilson' in the environment panel to view the data.
-
+Click on the word `wilson' in the environment panel to view the data.\\
 \includegraphics{img/wilsonview.png}
 
-The reverse coded item 2 variable (item2r) that we just created will be in the last column.
-
-\includegraphics{img/wilsonview2.png}
-
-(You can expand the data view by dragging the center median between the dataview and the environment to the right.)
-
-You can see that the first student rated the second item as a 1 and it is now a 5 in the reversed coded variable.
-
+The reverse coded item 2 variable (item2r) that we just created will be in the last column.\\
+\includegraphics{img/wilsonview2.png}\\
+(You can expand the data view by dragging the center median between the dataview and the environment to the right.)\\
+You can see that the first student rated the second item as a 1 and it is now a 5 in the reversed coded variable.\\
 Next create a new item for item 4. Here is the code:
 
 \begin{Shaded}
@@ -1622,7 +1627,7 @@ Next let's create a summary score for the PORMS measure. We will use the mutate(
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{wilson <-}\StringTok{ }\NormalTok{wilson }\OperatorTok{%>%}\StringTok{ }
-\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{porms =}\NormalTok{ item1 }\OperatorTok{+}\StringTok{ }\NormalTok{item2r }\OperatorTok{+}\StringTok{ }\NormalTok{item3 }\OperatorTok{+}\StringTok{ }\NormalTok{item4r }\OperatorTok{+}\StringTok{ }\NormalTok{item5)}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{porms =}\NormalTok{ item1 }\OperatorTok{+}\StringTok{ }\NormalTok{item2r }\OperatorTok{+}\StringTok{ }\NormalTok{item3 }\OperatorTok{+}\StringTok{ }\NormalTok{item4r }\OperatorTok{+}\StringTok{ }\NormalTok{item5)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1637,6 +1642,330 @@ Next let's create a summary score for the PORMS measure. We will use the mutate(
 Your wilson dataset should now have 15 variables.
 
 (I created a sum score here because that is what Wilson-Doenges did. I think an average score would work here as well.)
+
+\hypertarget{bivariate-correlational-research}{%
+\chapter{Bivariate correlational research}\label{bivariate-correlational-research}}
+
+\hypertarget{association-claim-with-two-quantitative-variables}{%
+\section{Association claim with two quantitative variables}\label{association-claim-with-two-quantitative-variables}}
+
+Are lifestyle choices related to the development of Alzheimer's disease? (Siddarth et al., 2018){[}\url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0195549}{]} asked a sample of 35 adults over the age of 45 how many hours they typically spend sitting on the week days. They found that the amount of time their participants reported sitting was negatively related to the the total thickness of their participants' medial temporal lobe (MTL). This is important because the MTL is smaller in people who have Alzheimer's disease.
+
+Siddarth and colleagues (2018) included data in their article, so let's reproduce their findings!
+
+\hypertarget{open-data}{%
+\subsubsection{Open data}\label{open-data}}
+
+Download the data from D2L and open it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\NormalTok{sitMTL <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"siddarth.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This dataset has many variables. We will be using the Sitting variable which is the hours a day the participants spent sitting. We will also use the TOTAL variable which is the total size of the participants MTL.
+
+\hypertarget{get-to-know-data-and-test-assumptions}{%
+\subsubsection{Get to know data and test assumptions}\label{get-to-know-data-and-test-assumptions}}
+
+First load the tidyverse and psych packages (if they are not loaded already):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(psych)}
+\end{Highlighting}
+\end{Shaded}
+
+We will be testing the relation between time spent sitting and MTL size using a correlation. More specifically, we will use a Pearson's correlation (which is the same type of correlation that we used in the measurement section. Some treat it as the default correlation).
+
+All statistical tests have assumptions about the data.
+
+The assumptions of a Pearson's correlation are:\\
+1 - The variables are interval or ratio (hours and size are both interval data)\\
+2 - Linearity\\
+3 - Absence of outliers\\
+4 - Approximately normally distributed
+
+Let's first consider outliers and the shape of the distributed by creating histograms of the variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(sitMTL, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Sitting)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-40-1.pdf}
+The distibution looks roughly mound shaped and there does not seem to be any outliers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(sitMTL, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{TOTAL)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth=}\NormalTok{.}\DecValTok{07}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-41-1.pdf}
+Again, the distibution looks roughly mound shaped and there does not seem to be any outliers.
+
+Next let's consider linearity by creating a scatterplot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(sitMTL, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Sitting, }\DataTypeTok{y=}\NormalTok{TOTAL)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+The scatterplot shows a linear (and negative) relation. No evidence for curilinearity (or multivariate outliers).
+
+\hypertarget{compute-ci-effect-size-and-nhst}{%
+\subsubsection{Compute CI, effect size, and NHST}\label{compute-ci-effect-size-and-nhst}}
+
+Next calculate the Pearson correlation. Again, we did this in the measurement section.
+
+The code first tells R which data file to use (sitMTL), then which variables to use (Sitting and TOTAL) and then to compute a correlation. The print(short=FALSE) tells R to include the confidence intervals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sitMTL }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(Sitting, TOTAL) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{corr.test}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{print}\NormalTok{(}\DataTypeTok{short=}\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{img/corr.png}
+The correlation coefficient is circled in red. The results show that the correlation coefficient is -.40.
+
+The probability associated with that correlation coefficient is circled in blue. NHST estimates the likelihood of getting results as extreme or more extreme given the null is true (i.e., given there is really no association between the variables). If this likelihood is sufficiently small (less than 5\%), than we reject the null hypothesis and conclude that the association is more extreme than zero. The show show that the p value associated with that correlation coefficient is .02, which is under the .05 threshold - so the relation is statistical significant in terms of NHST.
+
+The confidence intervals are circled in green. The confidence interval provides an interval estimate of a parameter. Here the parameter is the true correlation between the two variables. In the present example, the correlation coefficient (r = -.40) is a point estimate of the true association between sitting and MTL size. The confidence interval gives us an interval estimate of this association (-.07 to -.64). This confidence interval is quite large, indicating uncertainty about the true size of the association between sitting and MTL size.
+
+Note that the confidence interval here does not include zero, which is consistent with NHST because both are saying that zero is not a likely correlation between the variables.
+
+\hypertarget{write-up-results}{%
+\subsubsection{Write up results}\label{write-up-results}}
+
+Hours spent sitting were negatively related to the size of the participants' MTL (r = -.40, p \textless{} .05, CI.95 = -.07 to -.64).
+
+You may have noticed that this association is -.37. This is because Siddarth and colleagues used a partial correlation. We will discuss this in the next chapter.
+
+\hypertarget{association-claim-with-one-quantitative-variable-and-one-categorical-variable}{%
+\section{Association claim with one quantitative variable and one categorical variable}\label{association-claim-with-one-quantitative-variable-and-one-categorical-variable}}
+
+Are parents happier than people with no children? Nelson and colleagues (2013) found that people with children reported higher levels of happiness than people who do not have kids.
+
+Let's say you replicated Nelson et al.~(2013). You recruited a convenience sample of 40 adults. You asked them if they were parents and to report their happiness on a 7 point scale.
+
+\hypertarget{open-data-1}{%
+\subsubsection{Open data}\label{open-data-1}}
+
+Download the data from D2L and open it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\NormalTok{nelsonrep <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"nelsonrep.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{get-to-know-data-and-test-assumptions-1}{%
+\subsubsection{Get to know data and test assumptions}\label{get-to-know-data-and-test-assumptions-1}}
+
+We will use a t-test to calculate the confidence interval, effect size, and NHST of the association between one continuous and one categorical variable.
+
+There are several types of t-statistics that differ in their assumptions about the normality of the data and the similarity of the group variances. For a two independent group design all t-statistics assume that the groups are independent from each other. In this example, the assumption of independence is met because the participants in each group (parents and non-parents) are not related to each other.
+
+Then test normality with a Shapiro-Wilk test:
+
+\begin{itemize}
+\tightlist
+\item
+  first tell R to use the nelsonrep dataset\\
+\item
+  put the categorical variable in the group\_by parentheses\\
+\item
+  put the continious varaible in the shapiro.test parentheses
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nelsonrep }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(parentstatus) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{statistic =} \KeywordTok{shapiro.test}\NormalTok{(happy)}\OperatorTok{$}\NormalTok{statistic,}
+            \DataTypeTok{p.value =} \KeywordTok{shapiro.test}\NormalTok{(happy)}\OperatorTok{$}\NormalTok{p.value)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   parentstatus statistic p.value
+##   <chr>            <dbl>   <dbl>
+## 1 nonparent        0.888  0.0513
+## 2 parent           0.907  0.0311
+\end{verbatim}
+
+A significant test of normality (Shapiro-Wilk) indicates that the data is \emph{not} normally distributed. With non-normal data, a Wilcoxon-Mann-Whitney U test should be used, which is a nonparametric alternative to the independent-sample t-test.
+
+In this example, the happiness variable was normally distributed for the nonparent group (the p value is .167 - which is greater than .05), but the happiness scores of the parent group was not normally distributed (the p-value is .017).
+
+Then we will test equality of variances with a Levene's test. To do this you will need to install the car package first:
+
+\texttt{install.packages("car")}
+
+Then run the levene test with the following code:
+
+\begin{itemize}
+\tightlist
+\item
+  In the leveneTest parenthesis - list the continuous variable first and put the categorical varaible in the as.factor parenthesis. The dataset name should be added after the \texttt{data\ =}
+\end{itemize}
+
+A significant test of equality of variance (Levene's) means that group variances are different from each other and in the next step you should run the t-test with the Welch option to account for the unequal variances.
+
+In this example, the test of equality of variance was nonsignificant.
+
+Despite the non-normality of the parents' happiness data, we are going to use a Student's t-test in the next step for the sake of pedagogy. The Student's t-test assumes that groups are normally distributed and that their variances are equal. IRL - I would still probably use the student's t-test here because there is evidence that the t-test is more robust to non-normalilty than was once thought. But some would prefer to use the Wilcoxon-Mann-Whitney U test here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{detach}\NormalTok{(}\StringTok{"package:car"}\NormalTok{, unload}\OperatorTok{-}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{compute-ci-effect-size-and-nhst-1}{%
+\subsubsection{Compute CI, effect size, and NHST}\label{compute-ci-effect-size-and-nhst-1}}
+
+Use the t.test() function to find the CI and NHST with this base R code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(happy }\OperatorTok{~}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(parentstatus), }\DataTypeTok{data =}\NormalTok{ nelsonrep, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{happy\ \textasciitilde{}\ as.factor(parentstatus)} takes the form of continuous variable \textasciitilde{} categorical variable (for association claims)
+\item
+  \texttt{data\ =\ nelsonrep} directs R to the object that contains the data.
+\item
+  If the variances are not equal between groups, omit the \texttt{var.equal\ =\ TRUE} to run a Welch's t-test
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For example: \texttt{t.test(exam2pts\ \textasciitilde{}\ cheese,\ data\ =\ exam2)}
+  \end{itemize}
+\item
+  The default is to calculate 95\% confidence intervals (i.e., \texttt{conf.level\ =\ 0.95}). Because it is the default this code can be omitted, and it will still run. To change the confidence level add \texttt{conf.level=\ 0.XX} (after a comma).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For example, to obtain 90\% confidence intervals here use: \texttt{t.test(happy\ \textasciitilde{}\ as.factor(parentstatus),\ data\ =\ nelsonrep,\ var.equal\ =\ TRUE,\ conf.level\ =\ 0.90)}
+  \end{itemize}
+\item
+  Use \texttt{?t.test} for more options.
+\end{itemize}
+
+\includegraphics{img/ttest.png}\\
+The confidence intervals are in green. The confidence interval provides an interval estimate of a parameter. Here the parameter is the true difference between groups. In the present example, 1.67 points (the average difference between groups) is a point estimate of the true difference in happiness by parent status. The confidence interval gives us an interval estimate of this difference: between .44 and 2.89 points.
+
+The t-statistic is circled in red. The p-value (circled blue) estimates the probability of getting results as extreme or more extreme if there was really no difference between the groups. Here this number is less than .05, which rejects the null. This is consistent with the confidence interval, which says that 0 is not a likely difference between the groups.
+
+The t.test function does not calculate cohen's d, so we will need to calculate that next. To do this you will need to install the effsize package first:
+
+\texttt{install.packages("effsize")}
+
+Then calculate cohen's D with the following code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(effsize)}
+\KeywordTok{cohen.d}\NormalTok{(happy }\OperatorTok{~}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(parentstatus), }\DataTypeTok{data =}\NormalTok{ nelsonrep)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Cohen's d
+## 
+## d estimate: -0.8897565 (large)
+## 95 percent confidence interval:
+##     lower     upper 
+## -1.573458 -0.206055
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  The default is Cohen's d, which uses the pooled population standard deviation in the denominator.\\
+\item
+  Add \texttt{pooled\ =\ FALSE} for Glass' delta, which uses the control condition's standard deviation (group 2),
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For example: \texttt{cohen.d(happy\ \textasciitilde{}\ as.factor(parentstatus),\ data\ =\ nelsonrep,\ pooled\ =\ FALSE)}
+  \end{itemize}
+\item
+  Add \texttt{hedges.correction\ =\ TRUE} for Hedges' g, which is preferred with very small sample sizes ( n \textless{} 20).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For example: \texttt{cohen.d(happy\ \textasciitilde{}\ as.factor(parentstatus),\ data\ =\ nelsonrep,\ \ hedges.correction\ =\ TRUE)}
+  \end{itemize}
+\item
+  Add \texttt{na.rm=TRUE} if you have missing data.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For example, \texttt{cohen.d(happy\ \textasciitilde{}\ as.factor(parentstatus),\ data\ =\ nelsonrep,\ na.rm=TRUE)}
+  \end{itemize}
+\item
+  Use \texttt{?cohen.d} for more options.
+\end{itemize}
+
+The results show that the effect size is -.89. The effect size is an indicator of the magnitude of a study's results. Cohen's d tells us the standard deviation units between the group means and the amount of overlap between the sets of scores. The larger the Cohen's d the larger the difference between group means and less overlap between the sets of scores. Cohen's rule of thumb for interpreting d are: small or weak effect = 0.20; medium or moderate effect = 0.50; and large or strong = 0.80.
+
+Remember that the direction of Cohen's d (whether it is positive or negative) is due to the way in which the categorical variable was coded (parent happiness minus nonparent happiness or nonparent happiness minus parent happiness).
+
+\hypertarget{write-up-results-1}{%
+\subsubsection{Write up results}\label{write-up-results-1}}
+
+Parents' happiness (M = 5.67, SD = 1.71) was higher than nonparents' happiness (M =4.00, SD = 2.1, t(38) = -2.76, p = .0.008, CI95\%: -2.89 and -0.44, d = -.89).
+
+\emph{I used this code to find the standard deviation of happiness by parent group:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nelsonrep }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pull}\NormalTok{(happy) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{describeBy}\NormalTok{(nelsonrep}\OperatorTok{$}\NormalTok{parentstatus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Descriptive statistics by group 
+## group: nonparent
+##    vars  n mean  sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 16    4 2.1      4       4 2.97   1   7     6  0.2    -1.59 0.52
+## ------------------------------------------------------------ 
+## group: parent
+##    vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 24 5.67 1.71    5.5    5.75 2.22   2   8     6 -0.3    -1.13 0.35
+\end{verbatim}
 
 \hypertarget{multivariate-correlational-research}{%
 \chapter{Multivariate correlational research}\label{multivariate-correlational-research}}
