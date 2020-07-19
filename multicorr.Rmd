@@ -157,7 +157,7 @@ There are some situations that call for unstandardized coefficients. R will comp
 
 `testsc0 <- setCor(WJAPWCG5 ~ INCNTM54 + WJAPWC54 + THTPEC1F, data = plan, std =FALSE)`  
 
-## Mediation and modertation
+## Mediation and moderation
 
 Shoot me an email if you ever need to do a mediation or moderation analysis.
 
