@@ -1,3 +1,164 @@
 # Multivariate correlational research
 
+Are early planning abilities related to later academic achievement? Let’s say you used data available from the NICHD Study of Early Child Care and Youth Development (SECCYD) to test this research question. The NICHD SECCYD followed more than 1,000 children from birth to age 15. There were 10 data collection sites across the country. Temple University in Philadelphia (where I went to grad school) was one of them. The initial researchers involved in the study used a sampling method that ensured that the sample was diverse. This dataset includes repeated assessment of a variety of measures related to social, cognitive, and heath development - with data on the study children, as well as their family, friends, and teachers.  
+
+One of the things that the NICHD SECCYD research team measured was the study children's planning skills. They operationalized this as the study children's performance on the Tower of Hanoi (TOH). The TOH is a puzzle that involves moving three rings of different diameters and colors among three pegs. The object is to move the rings from an initial position to a goal position, and movements are constrained by rules. This task requires children to think ahead  - it evaluates the ability to plan and organized sequences of moves. You will use the first grade assessment for our analysis.   
+
+Study children's academic achievement was measured with the Woodcock-Johnson - Revised Test of Achievement multiple times throughout the study (Woodcock & Jonhnson, 1989). Based on normative data, the WJ-R has good reliability (Woodcock, 1997; Woodcock & Johnson, 1989). Internal consistency ranges from the high .80s to the .90s. Test-retest reliability ranges from the .60s to the .80s. The WJ-R also has excellent predictive validity across the lifespan (Woodcock, 1997; Woodcock & Johnson, 1989) and is highly correlated with other tests of cognitive abilities and achievement (McGrew, Werder, & Woodcock, 1991).  
+
+Let's say you tested whether the first grade planning abilities (AKA TOH performance) is related to subsequent math achievement in fifth grade. The applied problems subscale of the WJ-R measures math achievement. It requires children to analyze and solve practical word and story problems with math calculations. Early items include problems related to counting ability and number quantity. The word problems progressed in difficulty to items that require money recognition and time concepts, followed by items involving advanced operations and extraneous information.   
+
+You controlled for prior math achievement and SES when the study children were at 54 month old.  
+
+The data is in the planning.csv file on D2L. Let's open it up:  
+
+```{r message=FALSE, warning=FALSE}
+
+library(readr)
+plan <- read_csv("planning.csv")
+
+
+```
+
+The THTPEC1F variable is the study childrens' total planning scores in first grade (i.e. thier TOH performance).
+
+The variables WJAPWC54 and WJAPWCG5 are the W-scores of the WJ-R at 54 months and fifth grade. W-scores are special transformations of the Rasch ability scale converted from the raw scores, leading to an equal interval scale. They are centered at a value of 500 and linked to age to allow for comparisons across standardized tests and ages, making it possible to assess individual development over time.  
+
+INCNTM54 is the measure of SES. It is study children's family income-to-needs ratios, which were created by dividing the poverty threshold for the household size by the reported family income. 
+
+
+## Get to know data
+
+Load the tidyverse and psych packages if they are not already:
+
+```{r message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(psych)
+
+```
+
+Let's first create histograms for each variable: 
+
+```{r}
+
+ggplot(plan, aes(x=WJAPWC54)) +
+  geom_histogram(binwidth=10)
+
+ggplot(plan, aes(x=INCNTM54)) +
+  geom_histogram(binwidth=1)
+
+ggplot(plan, aes(x=THTPEC1F)) +
+  geom_histogram(binwidth=1)
+
+ggplot(plan, aes(x=WJAPWCG5)) +
+  geom_histogram(binwidth=10)
+
+
+```
+
+**Interpretation**   
+
+The SES measure looks positively skewed (measures of income typically are). Moreover it looks like there may be some outliers in in the applied problems WJ-R scores. However multiple regression is robust to slight deviations in normality and to modest univariate outliers.   
+
+Next compute descriptive statistics:   
+
+```{r}
+plan %>%
+  describe()
+```
+
+
+
+## Multiple regression
+
+We will use the `setCor()` function from the psych package to compute the regression equation (AKA regresssion model).  
+
+The `setCor()` function takes the form of: Criterion variable ~ predictor variable 1 + predictor variable 2... etc.   
+
+By default, `setCor()` reports standardized slopes (AKA betas).    
+
+   
+Here is the `setCor()` function that predicts study children's fifth grade math achievement scores (WJAPWCG5) from their total planning scores (THTPEC1F), their family SES (INCNTM54), and their math achievement at 54 months (WJAPWC54). We will call the object that stores this model planmodel. You also have to tell R where to find the data (in the data = part).     
+
+You must save the model to an object in R and then call that object to see the results of the model.   
+
+```{r}
+
+# Specify model:
+planmodel <- setCor(WJAPWCG5 ~ THTPEC1F + INCNTM54 + WJAPWC54, data = plan)
+
+# call model:
+planmodel
+
+```
+
+The regression table can be found under the words "Multiple Regression from raw data". You can confirm that the criterion variable is fifth grade math achievement scores (WJAPWCG5).   
+
+Next is the regression table which tells us if **each predictor** variable **separately** predicts fifth grade math achievement scores.  The first column is the variable name. The next column is the slope (AKA beta or the standardized coefficient). The se column is the standard error associated with the slope. Next is the t-statistic associated with the slope, followed by the p-value associated with the t-statisics. After that are the lower and upper bounds of the confidence interval around the slope. Don't worry about the VIF.  
+
+**Interpretation**   
+
+The beta for THTPEC1F is 0.12 (95%CI: .06 to .18). This beta means that first grade planning abilities are associated with fifth grade math achievement such that higher scores on the planning abilities task go with higher scores on the fifth grade math achievement test, controlling for the other predictors, family SES and prior math achievement   
+
+The beta for INCNTM54 is 0.14 (95%CI: .08 to .20). This beta means that family SES is associated with fifth grade math achievement such that higher levels of family SES go with higher scores on the fifth grade math achievement test, controlling for the other predictors, planning abilities and prior math achievement   
+
+The beta for WJAPWC54 is 0.46 (95%CI: .40 to .52). This beta means that prior math abilities are associated with fifth grade math achievement such that higher scores on the applied problems subscale of the WJ-R at 54 months go with higher scores on the applied problems subscale of the WJ-R at fifth grade, controlling for the other predictors, planning abilities and family SES.   
+
+The table under "Multiple Regression" reports the total model summary statistics. Of interest here is R-squared (R2), which is .32. This R-squared means that the total planning scores, family SES (INCNTM54), and prior math achievement (WJAPWC54) accounts for 32% of the variation in fifth grade math achievement scores (WJAPWCG5).  
+
+We can also see that *together* these three predictor variables have a statistically significant association with fifth grade math achievement scores. The F-value (133.23) and the p-value (<.001) tell us the collectively, planning abilities, family SES, and prior math achievement are significantly associated with fifth grade math achievement scores. Another way to think about this is that planning abilities, family SES, and prior math achievement explain a statistically significant proportion of the variation in fifth grade math achievement scores. 
+
+
+Here is a sample APA-style write up of the results:  
+
+We hypothesized that planning abilities would be positively associated with subsequent math achievement controlling for family SES and prior math achievement. Collectively, these variables explained 32% of the variation in fifth grade math achievement, F(3, 836) = 133.23, p < .001, R2 = .32. As predicted, there was a positive association between first grade planning abilities and math achievement scores 4 years later when children were in fifth grade (Beta = .12, 95%CI: .06 to .18, p < .001).
+
+
+### Optional additional information
+
+#### ApaTables
+
+There is a package call apaTables that will make APA-style tables. Here is how to use it to create an APA-style regression table. 
+
+First install it:
+
+`install.packages("apaTables")`
+
+Then in order to use it, you have to calculate the regression equation with base R's multiple regression function - which is `lm()`. I chose to teach with the psych package's multiple regression function (i.e. `setCor()`) because it calculates the 95% confidence intervals around the slope. Base R's multiple regression function does not do this.  
+
+The only difference between `lm()` and `setCor()` is going to be the function that you use - everything else is the same.     
+
+Replace the `setCor()` with `lm()`:   
+
+```{r}
+
+planmodelapa <- lm(WJAPWCG5 ~ THTPEC1F + INCNTM54 + WJAPWC54, data = plan)
+
+```
+
+Then load the apaTables package (if you have not done so already) and use the `apa.reg.table()` function. Within this function first tell R the name of the object you saved your regression equation in. Then tell R where you want your table saved to. Then tell R what kind of table to make (the regression table is type 2).
+
+```{r}
+
+library(apaTables)
+
+apa.reg.table(planmodelapa, filename = "planmodel.doc", table.number = 2)
+
+```
+
+And there is your APA-style table!
+
+[Here is more information on this package](https://cran.r-project.org/web/packages/apaTables/vignettes/apaTables.html) 
+
+#### Unstandarized slopes
+
+There are some situations that call for unstandardized coefficients. R will compute unstandardized coefficients if you add `std =FALSE` to the `setCor()` function. For example:  
+
+`testsc0 <- setCor(WJAPWCG5 ~ INCNTM54 + WJAPWC54 + THTPEC1F, data = plan, std =FALSE)`  
+
+## Mediation and modertation
+
+Shoot me an email if you ever need to do a mediation or moderation analysis.
+
 
