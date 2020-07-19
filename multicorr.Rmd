@@ -151,7 +151,7 @@ And there is your APA-style table! Note that it saved to a word document as well
 
 [Here is more information on this package](https://cran.r-project.org/web/packages/apaTables/vignettes/apaTables.html) 
 
-#### Unstandarized slopes
+#### Unstandardized slopes
 
 There are some situations that call for unstandardized coefficients. R will compute unstandardized coefficients if you add `std =FALSE` to the `setCor()` function. For example:  
 
