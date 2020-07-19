@@ -24,7 +24,7 @@ The THTPEC1F variable is the study childrens' total planning scores in first gra
 
 The variables WJAPWC54 and WJAPWCG5 are the W-scores of the WJ-R at 54 months and fifth grade. W-scores are special transformations of the Rasch ability scale converted from the raw scores, leading to an equal interval scale. They are centered at a value of 500 and linked to age to allow for comparisons across standardized tests and ages, making it possible to assess individual development over time.  
 
-INCNTM54 is the measure of SES. It is study children's family income-to-needs ratios, which were created by dividing the poverty threshold for the household size by the reported family income. 
+INCNTM54 is the measure of SES. It is study children's family income-to-needs ratios, which were created by dividing the poverty threshold for the household size by the reported family income.  
 
 
 ## Get to know data
@@ -95,7 +95,7 @@ planmodel
 
 The regression table can be found under the words "Multiple Regression from raw data". You can confirm that the criterion variable is fifth grade math achievement scores (WJAPWCG5).   
 
-Next is the regression table which tells us if **each predictor** variable **separately** predicts fifth grade math achievement scores.  The first column is the variable name. The next column is the slope (AKA beta or the standardized coefficient). The se column is the standard error associated with the slope. Next is the t-statistic associated with the slope, followed by the p-value associated with the t-statisics. After that are the lower and upper bounds of the confidence interval around the slope. Don't worry about the VIF.  
+Next is the regression table which tells us if **each predictor** variable **separately** predicts fifth grade math achievement scores.  The first column is the variable name. The next column is the slope (AKA beta or the standardized coefficient). The se column is the standard error associated with the slope. Next is the t-statistic associated with the slope, followed by the p-value associated with the t-statistic. After that are the lower and upper bounds of the confidence interval around the slope. Don't worry about the VIF.  
 
 **Interpretation**   
 
@@ -147,7 +147,7 @@ apa.reg.table(planmodelapa, filename = "planmodel.doc", table.number = 2)
 
 ```
 
-And there is your APA-style table!
+And there is your APA-style table! Note that it saved to a word document as well. The file will be listed in the files window and will be called planmodel.doc. Click on the file name and it should download on to your computer.   
 
 [Here is more information on this package](https://cran.r-project.org/web/packages/apaTables/vignettes/apaTables.html) 
 
