@@ -24,7 +24,7 @@
 <meta name="author" content="Nicole Sorhagen, Ph.D." />
 
 
-<meta name="date" content="2020-07-19" />
+<meta name="date" content="2020-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html#multiple-regression"><i class="fa fa-check"></i><b>10.2</b> Multiple regression</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html#optional-additional-information"><i class="fa fa-check"></i><b>10.2.1</b> Optional additional information</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html#mediation-and-modertation"><i class="fa fa-check"></i><b>10.3</b> Mediation and modertation</a></li>
+<li class="chapter" data-level="10.3" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html#mediation-and-moderation"><i class="fa fa-check"></i><b>10.3</b> Mediation and moderation</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="simple-experiment.html"><a href="simple-experiment.html"><i class="fa fa-check"></i><b>11</b> Simple experiment</a><ul>
 <li class="chapter" data-level="11.1" data-path="simple-experiment.html"><a href="simple-experiment.html#independent-group-design"><i class="fa fa-check"></i><b>11.1</b> Independent group design</a><ul>
@@ -241,34 +241,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s say you tested whether the first grade planning abilities (AKA TOH performance) is related to subsequent math achievement in fifth grade. The applied problems subscale of the WJ-R measures math achievement. It requires children to analyze and solve practical word and story problems with math calculations. Early items include problems related to counting ability and number quantity. The word problems progressed in difficulty to items that require money recognition and time concepts, followed by items involving advanced operations and extraneous information.</p>
 <p>You controlled for prior math achievement and SES when the study children were at 54 month old.</p>
 <p>The data is in the planning.csv file on D2L. Let’s open it up:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="multivariate-correlational-research.html#cb1-1"></a><span class="kw">library</span>(readr)</span>
-<span id="cb1-2"><a href="multivariate-correlational-research.html#cb1-2"></a>plan &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;planning.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="multivariate-correlational-research.html#cb62-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb62-2"><a href="multivariate-correlational-research.html#cb62-2"></a>plan &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;planning.csv&quot;</span>)</span></code></pre></div>
 <p>The THTPEC1F variable is the study childrens’ total planning scores in first grade (i.e. thier TOH performance).</p>
 <p>The variables WJAPWC54 and WJAPWCG5 are the W-scores of the WJ-R at 54 months and fifth grade. W-scores are special transformations of the Rasch ability scale converted from the raw scores, leading to an equal interval scale. They are centered at a value of 500 and linked to age to allow for comparisons across standardized tests and ages, making it possible to assess individual development over time.</p>
 <p>INCNTM54 is the measure of SES. It is study children’s family income-to-needs ratios, which were created by dividing the poverty threshold for the household size by the reported family income.</p>
 <div id="get-to-know-data" class="section level2">
 <h2><span class="header-section-number">10.1</span> Get to know data</h2>
 <p>Load the tidyverse and psych packages if they are not already:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="multivariate-correlational-research.html#cb2-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="multivariate-correlational-research.html#cb2-2"></a><span class="kw">library</span>(psych)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="multivariate-correlational-research.html#cb63-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb63-2"><a href="multivariate-correlational-research.html#cb63-2"></a><span class="kw">library</span>(psych)</span></code></pre></div>
 <p>Let’s first create histograms for each variable:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="multivariate-correlational-research.html#cb3-1"></a><span class="kw">ggplot</span>(plan, <span class="kw">aes</span>(<span class="dt">x=</span>WJAPWC54)) <span class="op">+</span></span>
-<span id="cb3-2"><a href="multivariate-correlational-research.html#cb3-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="multivariate-correlational-research.html#cb4-1"></a><span class="kw">ggplot</span>(plan, <span class="kw">aes</span>(<span class="dt">x=</span>INCNTM54)) <span class="op">+</span></span>
-<span id="cb4-2"><a href="multivariate-correlational-research.html#cb4-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="multivariate-correlational-research.html#cb5-1"></a><span class="kw">ggplot</span>(plan, <span class="kw">aes</span>(<span class="dt">x=</span>THTPEC1F)) <span class="op">+</span></span>
-<span id="cb5-2"><a href="multivariate-correlational-research.html#cb5-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="multivariate-correlational-research.html#cb6-1"></a><span class="kw">ggplot</span>(plan, <span class="kw">aes</span>(<span class="dt">x=</span>WJAPWCG5)) <span class="op">+</span></span>
-<span id="cb6-2"><a href="multivariate-correlational-research.html#cb6-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-3-4.png" width="672" /></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="multivariate-correlational-research.html#cb64-1"></a><span class="kw">ggplot</span>(plan, <span class="kw">aes</span>(<span class="dt">x=</span>WJAPWC54)) <span class="op">+</span></span>
+<span id="cb64-2"><a href="multivariate-correlational-research.html#cb64-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="multivariate-correlational-research.html#cb65-1"></a><span class="kw">ggplot</span>(plan, <span class="kw">aes</span>(<span class="dt">x=</span>INCNTM54)) <span class="op">+</span></span>
+<span id="cb65-2"><a href="multivariate-correlational-research.html#cb65-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-54-2.png" width="672" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="multivariate-correlational-research.html#cb66-1"></a><span class="kw">ggplot</span>(plan, <span class="kw">aes</span>(<span class="dt">x=</span>THTPEC1F)) <span class="op">+</span></span>
+<span id="cb66-2"><a href="multivariate-correlational-research.html#cb66-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-54-3.png" width="672" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="multivariate-correlational-research.html#cb67-1"></a><span class="kw">ggplot</span>(plan, <span class="kw">aes</span>(<span class="dt">x=</span>WJAPWCG5)) <span class="op">+</span></span>
+<span id="cb67-2"><a href="multivariate-correlational-research.html#cb67-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-54-4.png" width="672" /></p>
 <p><strong>Interpretation</strong></p>
 <p>The SES measure looks positively skewed (measures of income typically are). Moreover it looks like there may be some outliers in in the applied problems WJ-R scores. However multiple regression is robust to slight deviations in normality and to modest univariate outliers.</p>
 <p>Next compute descriptive statistics:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="multivariate-correlational-research.html#cb7-1"></a>plan <span class="op">%&gt;%</span></span>
-<span id="cb7-2"><a href="multivariate-correlational-research.html#cb7-2"></a><span class="st">  </span><span class="kw">describe</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="multivariate-correlational-research.html#cb68-1"></a>plan <span class="op">%&gt;%</span></span>
+<span id="cb68-2"><a href="multivariate-correlational-research.html#cb68-2"></a><span class="st">  </span><span class="kw">describe</span>()</span></code></pre></div>
 <pre><code>##          vars   n   mean     sd median trimmed    mad   min   max range  skew
 ## ID          1 840 420.50 242.63 420.50  420.50 311.35   1.0 840.0 839.0  0.00
 ## WJAPWC54    2 840 425.31  18.72 428.00  427.34  16.31 332.0 473.0 141.0 -1.24
@@ -289,11 +289,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>By default, <code>setCor()</code> reports standardized slopes (AKA betas).</p>
 <p>Here is the <code>setCor()</code> function that predicts study children’s fifth grade math achievement scores (WJAPWCG5) from their total planning scores (THTPEC1F), their family SES (INCNTM54), and their math achievement at 54 months (WJAPWC54). We will call the object that stores this model planmodel. You also have to tell R where to find the data (in the data = part).</p>
 <p>You must save the model to an object in R and then call that object to see the results of the model.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="multivariate-correlational-research.html#cb9-1"></a><span class="co"># Specify model:</span></span>
-<span id="cb9-2"><a href="multivariate-correlational-research.html#cb9-2"></a>planmodel &lt;-<span class="st"> </span><span class="kw">setCor</span>(WJAPWCG5 <span class="op">~</span><span class="st"> </span>THTPEC1F <span class="op">+</span><span class="st"> </span>INCNTM54 <span class="op">+</span><span class="st"> </span>WJAPWC54, <span class="dt">data =</span> plan)</span></code></pre></div>
-<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="multivariate-correlational-research.html#cb10-1"></a><span class="co"># call model:</span></span>
-<span id="cb10-2"><a href="multivariate-correlational-research.html#cb10-2"></a>planmodel</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="multivariate-correlational-research.html#cb70-1"></a><span class="co"># Specify model:</span></span>
+<span id="cb70-2"><a href="multivariate-correlational-research.html#cb70-2"></a>planmodel &lt;-<span class="st"> </span><span class="kw">setCor</span>(WJAPWCG5 <span class="op">~</span><span class="st"> </span>THTPEC1F <span class="op">+</span><span class="st"> </span>INCNTM54 <span class="op">+</span><span class="st"> </span>WJAPWC54, <span class="dt">data =</span> plan)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="multivariate-correlational-research.html#cb71-1"></a><span class="co"># call model:</span></span>
+<span id="cb71-2"><a href="multivariate-correlational-research.html#cb71-2"></a>planmodel</span></code></pre></div>
 <pre><code>## Call: setCor(y = WJAPWCG5 ~ THTPEC1F + INCNTM54 + WJAPWC54, data = plan)
 ## 
 ## Multiple Regression from raw data 
@@ -311,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             R   R2  Ruw R2uw Shrunken R2 SE of R2 overall F df1 df2        p
 ## WJAPWCG5 0.57 0.32 0.52 0.27        0.32     0.03    133.23   3 836 1.52e-70</code></pre>
 <p>The regression table can be found under the words “Multiple Regression from raw data”. You can confirm that the criterion variable is fifth grade math achievement scores (WJAPWCG5).</p>
-<p>Next is the regression table which tells us if <strong>each predictor</strong> variable <strong>separately</strong> predicts fifth grade math achievement scores. The first column is the variable name. The next column is the slope (AKA beta or the standardized coefficient). The se column is the standard error associated with the slope. Next is the t-statistic associated with the slope, followed by the p-value associated with the t-statisics. After that are the lower and upper bounds of the confidence interval around the slope. Don’t worry about the VIF.</p>
+<p>Next is the regression table which tells us if <strong>each predictor</strong> variable <strong>separately</strong> predicts fifth grade math achievement scores. The first column is the variable name. The next column is the slope (AKA beta or the standardized coefficient). The se column is the standard error associated with the slope. Next is the t-statistic associated with the slope, followed by the p-value associated with the t-statistic. After that are the lower and upper bounds of the confidence interval around the slope. Don’t worry about the VIF.</p>
 <p><strong>Interpretation</strong></p>
 <p>The beta for THTPEC1F is 0.12 (95%CI: .06 to .18). This beta means that first grade planning abilities are associated with fifth grade math achievement such that higher scores on the planning abilities task go with higher scores on the fifth grade math achievement test, controlling for the other predictors, family SES and prior math achievement</p>
 <p>The beta for INCNTM54 is 0.14 (95%CI: .08 to .20). This beta means that family SES is associated with fifth grade math achievement such that higher levels of family SES go with higher scores on the fifth grade math achievement test, controlling for the other predictors, planning abilities and prior math achievement</p>
@@ -330,11 +330,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Then in order to use it, you have to calculate the regression equation with base R’s multiple regression function - which is <code>lm()</code>. I chose to teach with the psych package’s multiple regression function (i.e. <code>setCor()</code>) because it calculates the 95% confidence intervals around the slope. Base R’s multiple regression function does not do this.</p>
 <p>The only difference between <code>lm()</code> and <code>setCor()</code> is going to be the function that you use - everything else is the same.</p>
 <p>Replace the <code>setCor()</code> with <code>lm()</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="multivariate-correlational-research.html#cb12-1"></a>planmodelapa &lt;-<span class="st"> </span><span class="kw">lm</span>(WJAPWCG5 <span class="op">~</span><span class="st"> </span>THTPEC1F <span class="op">+</span><span class="st"> </span>INCNTM54 <span class="op">+</span><span class="st"> </span>WJAPWC54, <span class="dt">data =</span> plan)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="multivariate-correlational-research.html#cb73-1"></a>planmodelapa &lt;-<span class="st"> </span><span class="kw">lm</span>(WJAPWCG5 <span class="op">~</span><span class="st"> </span>THTPEC1F <span class="op">+</span><span class="st"> </span>INCNTM54 <span class="op">+</span><span class="st"> </span>WJAPWC54, <span class="dt">data =</span> plan)</span></code></pre></div>
 <p>Then load the apaTables package (if you have not done so already) and use the <code>apa.reg.table()</code> function. Within this function first tell R the name of the object you saved your regression equation in. Then tell R where you want your table saved to. Then tell R what kind of table to make (the regression table is type 2).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="multivariate-correlational-research.html#cb13-1"></a><span class="kw">library</span>(apaTables)</span>
-<span id="cb13-2"><a href="multivariate-correlational-research.html#cb13-2"></a></span>
-<span id="cb13-3"><a href="multivariate-correlational-research.html#cb13-3"></a><span class="kw">apa.reg.table</span>(planmodelapa, <span class="dt">filename =</span> <span class="st">&quot;planmodel.doc&quot;</span>, <span class="dt">table.number =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="multivariate-correlational-research.html#cb74-1"></a><span class="kw">library</span>(apaTables)</span>
+<span id="cb74-2"><a href="multivariate-correlational-research.html#cb74-2"></a></span>
+<span id="cb74-3"><a href="multivariate-correlational-research.html#cb74-3"></a><span class="kw">apa.reg.table</span>(planmodelapa, <span class="dt">filename =</span> <span class="st">&quot;planmodel.doc&quot;</span>, <span class="dt">table.number =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 
 ## 
 ## Table 2 
@@ -365,18 +365,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Square brackets are used to enclose the lower and upper limits of a confidence interval.
 ## * indicates p &lt; .05. ** indicates p &lt; .01.
 ## </code></pre>
-<p>And there is your APA-style table!</p>
+<p>And there is your APA-style table! Note that it saved to a word document as well. The file will be listed in the files window and will be called planmodel.doc. Click on the file name and it should download on to your computer.</p>
 <p><a href="https://cran.r-project.org/web/packages/apaTables/vignettes/apaTables.html">Here is more information on this package</a></p>
 </div>
-<div id="unstandarized-slopes" class="section level4">
-<h4><span class="header-section-number">10.2.1.2</span> Unstandarized slopes</h4>
+<div id="unstandardized-slopes" class="section level4">
+<h4><span class="header-section-number">10.2.1.2</span> Unstandardized slopes</h4>
 <p>There are some situations that call for unstandardized coefficients. R will compute unstandardized coefficients if you add <code>std =FALSE</code> to the <code>setCor()</code> function. For example:</p>
 <p><code>testsc0 &lt;- setCor(WJAPWCG5 ~ INCNTM54 + WJAPWC54 + THTPEC1F, data = plan, std =FALSE)</code></p>
 </div>
 </div>
 </div>
-<div id="mediation-and-modertation" class="section level2">
-<h2><span class="header-section-number">10.3</span> Mediation and modertation</h2>
+<div id="mediation-and-moderation" class="section level2">
+<h2><span class="header-section-number">10.3</span> Mediation and moderation</h2>
 <p>Shoot me an email if you ever need to do a mediation or moderation analysis.</p>
 
 </div>
