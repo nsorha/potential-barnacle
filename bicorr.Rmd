@@ -3,7 +3,7 @@
 
 ## Association claim with two quantitative variables 
 
-Are lifestyle choices related to the development of Alzheimer's disease? (Siddarth et al., 2018)[https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0195549] asked a sample of 35 adults over the age of 45 how many hours they typically spend sitting on the week days. They found that the amount of time their participants reported sitting was negatively related to the the total thickness of their participants' medial temporal lobe (MTL). This is important because the MTL is smaller in people who have Alzheimer's disease.   
+Are lifestyle choices related to the development of Alzheimer's disease? [Siddarth et al., 2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0195549) asked a sample of 35 adults over the age of 45 how many hours they typically spend sitting on the week days. They found that the amount of time their participants reported sitting was negatively related to the the total thickness of their participants' medial temporal lobe (MTL). This is important because the MTL is smaller in people who have Alzheimer's disease.   
 
 Siddarth and colleagues (2018) included data in their article, so let's reproduce their findings!  
 
