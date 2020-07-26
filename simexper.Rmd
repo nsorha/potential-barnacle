@@ -1,16 +1,513 @@
-# Simple experiment
+# Simple experiments
 
-## Independent group design
+## Two groups - Independent group design 
 
-### Two groups   
+### Research question
+How do you get children to help around the house? Theory and past research indicate that using noun words, like helper, sends a signal that the noun is part of a person’s identity. Bryan, Master, and Walton (2014) tested this in young children and found that kids helped more when an experimenter talked to them about “being a helper” (noun condition) compared to when the experimenter talked to them about “helping” (verb condition).   
 
-### More than two groups 
+### Method
 
-## Dependent group design 
+Imagine you replicated this study. You recruited 80 three-to four-year-olds from local daycare centers. Participants were randomly assigned to be in the helper condition (i.e. the noun condition) or the helping condition (i.e. the verb condition). An experimenter first talked to the children about helping.   
 
-### Two groups   
+The children in the helper condition heard: “Some children choose to be helpers. You could be a helper when someone needs to pick things up, you could be a helper when someone has a job to do, and you could be a helper when someone needs help.”   
 
-### More than two groups 
+The children in the helping condition heard: “Some children choose to help. You could help when someone needs to pick things up, you could help when someone has a job to do, and you could help when someone needs help.”   
+
+Next all of the children were given toys and told they can play. While they were playing, the experimenter provided 9 helping opportunities - for example, pick up a mess, open a container, put away toys, pick up crayons that had spilled on the floor. The experimenters counted the number of times the children stop playing to help.
+
+### Data analysis 
+
+#### Open data and load the necessary packages.
+
+Open the helpwords.csv data (which can be found on D2L).  
+
+After you load it into your RStudio cloud project, open the data with the IMPORT DATASET point and click method, or with this code:   
+```{r, message = FALSE}
+
+library(readr)
+helpex <- read_csv("helpex.csv")
+
+```
+
+Note that for the condition variable: 1 = noun - "being a helper” and 2 = verb - “helping”.   
+
+Then load the tidyverse and psych packages with this code:   
+
+```{r message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(psych)
+
+```
+
+
+#### Run descriptive statistics and look at data
+
+Let's first compute measures of central tendency and variability by condition. To do this we will use the `describeBy()` function of the psych package, which reports basic summary statistics by a grouping variable.   
+
+Let's do this here without the Tidyverse pipe (as we have in the past). Using base R, the `describeBy()` function takes the form of (DV, IV):   
+
+
+```{r}
+
+describeBy(helpex$numhelp, helpex$condition)
+
+```
+
+**Interpretation**    
+
+We can see that the children in the helper (noun) condition helped an average of 5.12 times (SD = 1.71, range = 2 - 9), while the children in the helping (verb) condition helped an average of 2.85 (SD = 1.65, range = 0 - 6). The results show that the minimum and maximum values are all within the range of possible values.   
+
+
+Next let’s look at the data. Let’s first run histograms (again - by level of the IV).
+
+
+```{r}
+ggplot (helpex, aes (x=numhelp)) +
+  geom_histogram(binwidth = 1) +
+  facet_wrap(~as.factor(condition))
+
+```
+
+**Interpretation**   
+The histograms show that the data in each group is roughly mound shaped, so they should meet the assumption of normality (this will be tested next), and that there are no outliers.
+
+#### Stats
+First test normality with a Shapiro-Wilk test:  
+
+```{r}
+
+helpex %>%
+  group_by(condition) %>%
+  summarise(statistic = shapiro.test(numhelp)$statistic,
+            p.value = shapiro.test(numhelp)$p.value)
+
+
+```
+
+A significant test of normality (Shapiro-Wilk test) indicates that the data is not normally distributed. With non-normal data, a Wilcoxon-Mann-Whitney U test should be used, which is a nonparametric alternative to the independent-sample t-test.   
+
+Then test the equality of the group variances with a Levene’s test. Remember that the Levene test uses the car package, so let’s first load that package.    
+
+```{r message=FALSE, warning=FALSE}
+library(car) 
+leveneTest(numhelp ~ as.factor(condition), data = helpex)
+
+```
+
+A significant test of equality of variance (Levene’s test) means that group variances are different from each other, and in the next step you should account for the unequal variances by using the Welch t-test option.   
+
+Then unload the car package because it can interfere with the tidyverse and psych packages.  
+
+```{r message=FALSE, warning=FALSE}
+
+detach("package:car", unload-TRUE)
+
+```
+
+**Interpretation**      
+In this example, the test of normality and equality of variance were both nonsignificant. This means that in the next step you should use a Student’s t-test, which assumes that group data are normally distributed and that variances are equal.   
+
+Next use the t-test function to find the CI and NHST with the `t.test()` function.   
+
+`t.test(numhelp ~ as.factor(condition), data = helpex, var.equal = TRUE)`  
+
+*	`numhelp ~ as.factor(condition)` takes the form of DV ~ IV
+*	`data = helpex` directs R to the object that contains the data.
+*	If the variances are not equal between groups, omit the `var.equal = TRUE` to run a Welch’s t-test 
+    +	For example: `t.test(numhelp ~ as.factor(condition), data = helpex)`
+*	The default is to calculate 95% confidence intervals (i.e., `conf.level = 0.95`). Because it is the default this code can be omitted, and it will still run. To change the confidence level add `conf.level= 0.XX` (after a comma).
+    +	For example, to obtain 90% confidence intervals here use: `t.test(numhelp ~ as.factor(condition), data = helpex), var.equal = TRUE, conf.level = 0.90)`
+*	Use `?t.test` for more options.
+
+```{r, echo=FALSE}
+
+t.test(numhelp ~ condition, data = helpex, var.equal = TRUE)
+
+```
+
+
+
+**Interpretation**    
+The results show that the 95% CI is 1.802115 to 3.297885, which means that the true difference in the number of words remembered based on the level of processing is likely to be between about 1.5 and 3 helping behaviors.   
+
+The results also report that t = 6.788, df = 78, p-value = 1.989e-09 - so the difference is statistically significant.  
+
+Next find the effect size using the effsize package with this code:
+
+
+```{r message=FALSE, warning=FALSE}
+library(effsize) 
+
+cohen.d(numhelp ~ as.factor(condition), data = helpex)
+
+```
+**Interpretation**   
+The cohen's d is 1.5, which is a large effect. The 95% CI is 1.012631 to 2.023064, which is pretty big - reflecting a fair degree of uncertainty about the true effect size.   
+
+We could also run a scatterplot to see the mean and degree of overlap of data.  
+
+```{r}
+ggplot(helpex, aes(x = as.factor(condition), y = numhelp)) +
+  geom_point(color = "purple") +
+  stat_summary(fun.data = mean_cl_normal)
+```
+
+
+#### APA-stye write up
+Children in the helper condition (M = 5.12, SD = 1.71) helped more than those in the helping condition (M = 2.85, SD = 1.65).   
+
+Therefore, the average difference in the helping behaviors between the groups was 2.55 helping behaviors. The 95%CI on this difference was 1.80 to 3.30 helping behaviors. This CI means that the true difference in the helping behaviors based on the condition is likely to be between about 1.5 and 3 helping behaviors.   
+
+The standardized effect size of the difference between conditions was d = 1.52 (CI.95: 1.01 to 2.02). This effect would be classified by Cohen’s conventions as large.   
+
+These 95%CIs do not contain zero, so we can conclude that the difference between the two conditions is statistically significant (t(78) = 6.79, p < .001).   
+ 
+
+
+
+## Two groups - Dependent group design  
+
+### Research question
+
+Do fidget spinners help you concentrate? Soares and Storm (2019) asked college-aged students to watch an educational video with and without a fidget spinner. They found that participants remembered more information about the video they watched without the fidget spinner than the video they watched with it.   
+
+### Method
+
+Imagine you replicated Soares and Storm (2019) with a convenience sample of 20 classmates and friends. Participants watched two educational videos about lesser known historical figures. Each video was about 10 minutes. Participants were run individually.  
+
+The order of the conditions was counterbalanced across participants so that half of the participants were given the fidget spinner while watching the first video and not the second video. The other half of the participants watched the first video without the fidget spinner and were given the fidget spinner for the second video.   
+
+After each video participants completed an unrelated task for 5 minutes and then were given a 15 item fill in the blank test about the video content.   
+
+### Data analysis 
+#### Open data and load the neccessary packages.
+
+Then open the data, which is in fidget.csv on D2L.
+
+After you load it into your RStudio cloud project, open the data with the IMPORT DATASET point and click method, or with this code:  
+
+```{r, message = FALSE}
+library(readr)
+fidex <- read_csv("fidex.csv")
+
+```
+
+Then load the tidyverse and psych packages with this code:   
+
+```{r message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(psych)
+
+```
+
+
+
+Note the layout of the data here. Let's use the `head()` function to look at the first 3 rows of the dataset:
+
+```{r}
+
+head(fidex, 3)
+
+```
+
+Remember that in a spreadsheet, each row typically represents an individual participant in the study. So, with a within subject design, the IV data will be split into to different columns. In this example the wfid is the test scores for the video watched with the fidget spinner and the wofid is the test scores for the video watched without the fidget spinner.  
+
+A column with the difference between the two levels of the IV is needed for within subject data analysis. So, let’s create it now using the `mutate()` function (which is part of the tidyverse package)
+
+```{r}
+
+fidex <- fidex %>% 
+            mutate(diff = wofid - wfid)
+
+head(fidex, 3)
+
+```
+
+The first participant scored a 6 on the test about the video he/she watched without the fidget spinner and a 3 on the test of the video watched with the fidget spinner. The difference between the scores is 3 points.
+
+#### Descriptive statistics and assumptions
+
+Let's first compute measures of central tendency and variability. 
+
+```{r}
+
+fidex %>%
+  select (wofid, wfid) %>% 
+  describe()
+
+```
+**Interpretation**   
+We can see that the participants in the without fidget spinner condition got an average of 10.55 questions correct (SD = 3.25, range = 5 - 15), while the participants in the with fidget spinner condition got an average of 5.60 questions correct (SD = 3.36, range = 0 - 10). The results show that the minimum and maximum values are all within the range of possible values.
+
+
+Next test the normality of the difference scores with a Shapiro-Wilk test:
+```{r}
+
+shapiro.test(fidex$diff)
+
+```
+
+A significant test of normality (Shapiro-Wilk test) indicates that the data is not normally distributed. With non-normal data, a Paired Samples Wilcoxon test should be used, which is a nonparametric alternative to the related-sample t-test.  
+
+In this example, the test of equality of variance is nonsignificant. This means that in the next step you should use a Student’s related sample t-test, which assumes that the difference scores are normally distributed.
+
+
+#### Stats
+
+Use the t-test function to find the CI and NHST with this base R code:  
+
+`t.test(fidex$wofid, fidex$wfid, paired = TRUE)`
+* The within-subjects t-test uses the same `t.test()` function as you did with independent samples. However, this time you have to use the form of: level1, level2   
+* I also think you have to direct R to the variable with the $ method (I could not get this to run with the data = )   
+* The `paired=TRUE` tells T that it is a within subjects design   
+
+Here are the results:  
+
+```{r, echo=FALSE}
+
+t.test(fidex$wofid, fidex$wfid, paired = TRUE)
+
+```
+**Interpretation**   
+The results show that the 95% CI is 2.910114 to 6.989886, which means that the true difference in the number of correct test questions remembered based on fidget spinner use is likely to be between about 3 and 7 correct questions.  
+
+The results also report that t = 5.0789, df = 19, p-value = 6.667e-05 - so the difference is statistically significant.  
+
+
+Next find the effect size using the effsize package. Here is the code:  
+
+
+`library(effsize)`  
+`cohen.d(fidex$wofid, fidex$wfid, paired=TRUE)`  
+
+* Again, with within-subjects the cohens.d function takes the form of: level1, level2   
+* The `paired=TRUE` tells r that it is a within subjects design
+  
+```{r, echo=FALSE}
+library(effsize)
+cohen.d(fidex$wofid, fidex$wfid, paired=TRUE)
+
+```
+**Interpretation**   
+The effect size is 1.496451, which is large. The 95% CI is 0.6280516 to 2.3648508, suggesting there is a high level of uncertainty in the size of the effect here.  
+
+#### 5. APA-style write up
+
+Participants remembered more information about the video they watched without the fidget spinner (M = 10.50, SD = 3.25) compared to the video that they watch with the fidget spinner (M = 5.60, SD = 3.36).  
+
+Therefore, the average difference in the number of correct test questions between the groups was 4.9 questions. The 95%CI on this difference was 2.91 to 6.99 correct questions. This CI means that the true difference in the number of correct test questions remembered based fidget spinner use is likely to be between about 3 and 7 correct questions.  
+
+The standardized effect size of the difference between test score without and with fidget spinners was d = 1.50 (CI.95: 0.63 to 2.36). This effect would be classified by Cohen’s conventions as large.  
+
+These 95%CIs do not contain zero, so we can conclude that the difference between the two conditions is statistically significant (t(19) = 5.08, p < .001).  
+
+
+
+#### Bonus: This is material is NOT required.
+
+You may have noticed that we did not create a scatterplot during this example. I would like to talk about why…  
+
+Within subject data can actually take two organizational formats. The data we were just working with above was in wide format, which means that a participant’s responses will all be in a single row, and each response is in a separate column.  
+
+The another option is call long format. Instead of having every row represent an individual participant, each row is one time point per subject.  
+
+Dplyr (of tidyverse) turns wide data into long data. Here is the code we will use:
+
+
+```{r}
+
+fidexlong <- fidex %>% 
+  gather(key = "condition", value = "score", wfid:wofid)
+
+head(fidexlong)
+```
+  
+* fidexlong <- fidex saves the work so we can use it. I chose to save this in a new dataset in case I fuck it up.  
+* More detail on the the `gather()` function:  
+  + In the `key =` put the name of the repeated measures. So here it is `"condition"` because the IV is a condition (fidget spinner and no fidget spinner). Note that we could have an a within subject association claim where one variable is time (time 1 and time 2). Here you should have: key = “time”   
+  + In the `value =`  put the name of the variable that was measured multiple times. In the present example is the `score` of the test of educational video content knowledge.     + `wfid:wofid` is the columns that need to be rearranged. The columns with the data in it.  
+
+After you create the new dataset, note that there are now two rows for each ID number: one for test score with the fidget spinner and one for the test score without the fidget spinner. If you ran this code with the dataset that you mutated by creating the difference score, both the ID and difference scores will be repeating.  
+
+
+Once we format the data as long instead of wide, we can use ggplots to look at the spread of means and individuals datapoints:  
+
+```{r}
+
+ggplot(fidexlong, aes(x = as.factor(condition), y = score)) +
+  geom_point(color = "pink") +
+  stat_summary(fun.data = mean_cl_normal)
+
+```
+
+
+## More than two groups - Independent group design 
+
+### Research question
+
+Does the way people take note influence test performance? [Mueller and Oppenheimer (2014)](http://www.yaros.com/ipad/Pen_vs_Keyboard_Notes.pdf) reported that undergraduate students who took notes longhanded outperformed students who took notes on a laptop on a test of content knowledge.  
+
+
+[Morehead, Dunlosky, and Rawson (2019)](https://www.researchgate.net/publication/330856100_How_Much_Mightier_Is_the_Pen_than_the_Keyboard_for_Note-Taking_A_Replication_and_Extension_of_Mueller_and_Oppenheimer_2014) conducted a replication plus extension of Mueller and Oppenhiemer's (2014) study. Since they made their [data](https://osf.io/dyga5/?view_only=843c2187b4894aefbfc6218b2d6eaed4) publicly available, we can reproduce the analysis that tests whether there is a differences in test performance based on note-taking methods, as in Mueller and Oppenheimer (2014).  
+
+### Method
+
+Morehead, Dunlosky, and Rawson (2019) recruited 193 undergraduate students to participate in their study for course credit. Following the procedure of Mueller and Oppenhiemer (2014), participants watched TED talks on uncommon topics.  
+
+In Morehead, Dunlosky, and Rawson's (2019) Experiment 1, the undergraduates were randomly assigned to one of 3 note-taking conditions: longhand, laptop, or eWriter. (Note that the eWriter condition is part of the extension - the original study did not include this condition.) After the TED talk videos, all of the participants completed a 30 minute distractor task. This was followed by a test of the TED talks content. Morehead, Dunlosky, and Rawson (2019) also tested their participants' content knowledge 2 days later - this was another extension of the original study.  
+
+Next we will test whether the participants' total test performance on the first test differed based on levels of the note-taking variable.  
+
+### Data analysis  
+
+#### Open data and load the neccessary packages.
+
+Then open the data, which is in Data_Experiment1.cvs on D2L.  
+
+After you load it into your RStudio cloud project, open the data with the IMPORT DATASET point and click method, or with this code:  
+
+```{r, message = FALSE}
+library(readr)
+notetaking <- read_csv("Data_Experiment1.csv")
+
+```
+
+
+The codebook is also on D2L. Use this to become familiar with the dataset. Note that there is missing data for many of the variables. Missing data in R is recorded as NA (for "not available").    
+
+Note that the total test performance on the immediate test variable (i.e., our DV) is called Test1Tot. We will also use the methods variable, which tells us which level of the IV the participants were assigned to.   
+
+Finally, load the tidyverse and psych packages with this code:   
+
+```{r message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(psych)
+
+```
+
+
+
+#### Descriptive and test assumptions
+Let's first explore the  missing data in our DV. Let's do this by creating a frequency table using the `count()` function. I added `filter(is.na(Test1Tot))` to the count code we used in the descriptive statistics chapter in order to tell R that I am only interested in the missing data in the Test1Tot variable.  
+
+
+```{r}
+
+notetaking %>% 
+  filter(is.na(Test1Tot)) %>% 
+  count(Test1Tot)
+
+```
+
+Here we can see that there are 94 missing data points. Next let's break this down by condition. I did this by adding `group_by(method)` to the previous command, which tells R to group the results by the method variable.  
+
+```{r}
+
+notetaking %>% 
+  group_by(method) %>% 
+  filter(is.na(Test1Tot)) %>% 
+  count(Test1Tot)
+
+```
+
+There are between 30 and 33 missing data points in each group. Since the missing data is evenly distributed across the condition, it should not affect the interpretation of the results.  
+
+Let's next compute measures of central tendency and variability by condition. To do this we will use the `describeBy()` function of the psych package, which reports basic summary statistics by a grouping variable.   
+
+Let's do this without the Tidyverse pipe (in the past we used tidyverse piping with the `describeBy()` function). Below is the code to the `describeBy()` function with base R. Remember that the `describeBy()` function takes the form of (DV, IV).    
+
+
+```{r}
+
+describeBy(notetaking$Test1Tot, notetaking$method)
+
+```
+
+The means seem pretty similar across the levels of note-taking variable. 
+
+Then let's check that the data meets the assumption of normality by creating histograms of the DV by the IV:  
+
+```{r}
+ggplot (notetaking, aes (x=Test1Tot)) +
+  geom_histogram(binwidth = .1) +
+  facet_wrap(~as.factor(method))
+
+```
+
+The histograms show that the data in each group is roughly mound shaped and that there are no outliers.
+
+Finally, create a scatterplot to check the pattern of means and the variability of the data points.  
+
+```{r}
+
+
+ggplot(notetaking, aes(x = as.factor(method), y = Test1Tot)) +
+  geom_point(color = "purple") +
+  stat_summary(fun.data = mean_cl_normal)
+
+```
+
+**Interpretation**   
+
+The mean proportion correct on test 1 by note-taking condition look very similar. Moreover there is much overlap of 95% CIs and individual data points.   
+
+#### Stats
+
+We will use a one-way ANOVA to test for differences in test performance based on the note-taking conditions.  
+
+In R we can do this with the `aov()` function, which is part of base R. This function takes the form of `DV ~ IV`, followed by the name of the object the data is in. The `as.factor(method)` tells R that the methods variable is categorical or nominal data.  
+
+Similar to the multiple regression, we have to first save the ANOVA as an object. Then we will use the `summary.aov()` to see the results of the ANOVA. I chose to name the ANOVA object `test1taov`, which is short for the test 1 total ANOVA.  
+
+
+```{r}
+
+test1taov <- aov(Test1Tot ~ as.factor(method), data = notetaking)
+
+summary(test1taov)
+
+
+```
+
+**Interpretation**   
+
+The results show that the p-value (0.346) associated with the F-value (1.073) is greater than .05 - failing to reject the null (the null for an ANOVA is that all of the group means are the same). This means that there is no difference in mean test performance based on the method the students used to take notes.   
+
+Note that the output includes the number of missing data points in the DV (n = 94).  
+
+Had the p-value associated with the F-value been statistically significant (i.e., the p-value was under .05), then the next step would be to preform post-hoc analysis to find the difference between means. The ANOVA tells just that a difference exists -  not which means are different.  
+
+One common post-hoc is Tukey HSD (Tukey Honest Significant Differences). The R function for this is `TukeyHSD()`, where you put the object with the ANOVA results in the parenthesis. (the `TukeyHSD()`function uses base R - so no packages are needed here.)   
+
+```{r}
+
+TukeyHSD(test1taov)
+
+```
+
+**Interpretation**   
+
+The resulting table compares the mean proportion correct on test 1 of each condition to each other.   
+
+The first line compares condition 2 to condition 1 (longhand to laptop). The difference between the means is 0.05796371. The 95%CI for this difference is -0.15409406 to  0.03816664, which contains zero - so 0 is a likely difference between the groups. The adjusted p values is 0.3265209, which is greater than .05 - again indicating that there is no differences between the groups.    
+
+The next line compares condition 3 to 1 (longhand to eWriter). The last line compares condition 3 to 2 (laptop to eWriter). There is no evidence for any differences in group means - which is consistent with the non-significant ANOVA.   
+
+#### APA-style write-up
+
+Test performance did not differ based on taking notes with longhand, on a laptop, or with an eWriter, F(2, 91) = 1.073, p = 0.346.   
+
+## More than two groups - Dependent group design 
+
+I decided to skip the repeated measures ANOVA. I think it is unlikely that you will use this in practice and I do not want to overwhelm you with the stats material this week. Moreover, ANOVAs are falling out of favor to mixed linear models - which we will cover next week. So I think the independent sample ANOVA is enough ANOVA coverage. The textbooks I posted on D2L has an excellent chapter on repeated measures of ANOVA if you are interested in further reading.  
+
+
+
+
+
 
 
 

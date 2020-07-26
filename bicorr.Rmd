@@ -167,7 +167,7 @@ Then we will test equality of variances with a Levene’s test. To do this you w
 Then run the levene test with the following code:  
   
 * In the leveneTest parenthesis - list the continuous variable first and put the categorical varaible in the as.factor parenthesis. The dataset name should be added after the `data =`  
-```{r include=FALSE}
+```{r}
 library(car) 
 leveneTest(happy ~ as.factor(parentstatus), data = nelsonrep)
 

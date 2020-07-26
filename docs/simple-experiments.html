@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Simple experiments | Tools for Working with Data</title>
+  <meta name="description" content="This GitBook describes tools students can use to work with data." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Simple experiments | Tools for Working with Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This GitBook describes tools students can use to work with data." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Simple experiments | Tools for Working with Data" />
+  
+  <meta name="twitter:description" content="This GitBook describes tools students can use to work with data." />
+  
+
+<meta name="author" content="Nicole Sorhagen, Ph.D." />
+
+
+<meta name="date" content="2020-07-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="multivariate-correlational-research.html"/>
+<link rel="next" href="experiments-with-more-than-one-iv.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tools for Analyzing data</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About this book</a></li>
+<li class="chapter" data-level="2" data-path="set-up-project-on-rstudio-cloud.html"><a href="set-up-project-on-rstudio-cloud.html"><i class="fa fa-check"></i><b>2</b> Set up project on Rstudio Cloud</a></li>
+<li class="chapter" data-level="3" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>3</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction.html"><a href="introduction.html#layout-of-rstudio-cloud"><i class="fa fa-check"></i><b>3.1</b> Layout of Rstudio cloud</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="introduction.html"><a href="introduction.html#console"><i class="fa fa-check"></i><b>3.1.1</b> Console</a></li>
+<li class="chapter" data-level="3.1.2" data-path="introduction.html"><a href="introduction.html#script"><i class="fa fa-check"></i><b>3.1.2</b> Script</a></li>
+<li class="chapter" data-level="3.1.3" data-path="introduction.html"><a href="introduction.html#environment-and-history"><i class="fa fa-check"></i><b>3.1.3</b> Environment and history</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="introduction.html"><a href="introduction.html#importing-data-into-rstudio-cloud"><i class="fa fa-check"></i><b>3.2</b> Importing data into Rstudio cloud</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction.html"><a href="introduction.html#upload-the-data-into-rstudio-cloud"><i class="fa fa-check"></i><b>3.2.1</b> Upload the data into Rstudio Cloud</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction.html"><a href="introduction.html#import-data"><i class="fa fa-check"></i><b>3.2.2</b> Import data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>4</b> Packages</a><ul>
+<li class="chapter" data-level="4.1" data-path="packages.html"><a href="packages.html#installing-packages"><i class="fa fa-check"></i><b>4.1</b> Installing packages</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="packages.html"><a href="packages.html#installing-packages-using-point-and-click-gui"><i class="fa fa-check"></i><b>4.1.1</b> Installing packages using point and click (GUI)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="packages.html"><a href="packages.html#installing-packages-using-code"><i class="fa fa-check"></i><b>4.1.2</b> Installing packages using code</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="packages.html"><a href="packages.html#loading-packages"><i class="fa fa-check"></i><b>4.2</b> Loading Packages</a></li>
+<li class="chapter" data-level="4.3" data-path="packages.html"><a href="packages.html#misc"><i class="fa fa-check"></i><b>4.3</b> Misc</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="packages.html"><a href="packages.html#restarting-r"><i class="fa fa-check"></i><b>4.3.1</b> Restarting R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="picturing-data.html"><a href="picturing-data.html"><i class="fa fa-check"></i><b>5</b> Picturing Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="picturing-data.html"><a href="picturing-data.html#histograms"><i class="fa fa-check"></i><b>5.1</b> Histograms</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="picturing-data.html"><a href="picturing-data.html#histograms-with-base-r"><i class="fa fa-check"></i><b>5.1.1</b> Histograms with base R</a></li>
+<li class="chapter" data-level="5.1.2" data-path="picturing-data.html"><a href="picturing-data.html#histograms-with-tidyverse"><i class="fa fa-check"></i><b>5.1.2</b> Histograms with tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="picturing-data.html"><a href="picturing-data.html#scatterplots"><i class="fa fa-check"></i><b>5.2</b> Scatterplots</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="picturing-data.html"><a href="picturing-data.html#two-continuous-variables"><i class="fa fa-check"></i><b>5.2.1</b> Two continuous variables</a></li>
+<li class="chapter" data-level="5.2.2" data-path="picturing-data.html"><a href="picturing-data.html#one-continuous-and-one-categorical-variable"><i class="fa fa-check"></i><b>5.2.2</b> One continuous and one categorical variable</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="picturing-data.html"><a href="picturing-data.html#additional-resources"><i class="fa fa-check"></i><b>5.3</b> Additional resources</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-using-tidyverse-and-psych-packages."><i class="fa fa-check"></i><b>6.1</b> Descriptive statistics using Tidyverse and Psych packages.</a></li>
+<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-using-base-r"><i class="fa fa-check"></i><b>6.2</b> Descriptive statistics using base R</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>7</b> Measurement</a><ul>
+<li class="chapter" data-level="7.1" data-path="measurement.html"><a href="measurement.html#a-brief-introduction-to-spreadsheets-and-some-brief-review-of-previous-material"><i class="fa fa-check"></i><b>7.1</b> A brief introduction to spreadsheets (and some brief review of previous material)</a></li>
+<li class="chapter" data-level="7.2" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i><b>7.2</b> Reliability</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="measurement.html"><a href="measurement.html#internal-reliability"><i class="fa fa-check"></i><b>7.2.1</b> Internal reliability</a></li>
+<li class="chapter" data-level="7.2.2" data-path="measurement.html"><a href="measurement.html#test-retest-reliability"><i class="fa fa-check"></i><b>7.2.2</b> Test-retest reliability</a></li>
+<li class="chapter" data-level="7.2.3" data-path="measurement.html"><a href="measurement.html#interrater-reliability"><i class="fa fa-check"></i><b>7.2.3</b> Interrater reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i><b>7.3</b> Validity</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="measurement.html"><a href="measurement.html#criterion-validity"><i class="fa fa-check"></i><b>7.3.1</b> Criterion validity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="measurement.html"><a href="measurement.html#convergent-and-discriminant-validity"><i class="fa fa-check"></i><b>7.3.2</b> Convergent and Discriminant Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="measurement.html"><a href="measurement.html#homework"><i class="fa fa-check"></i><b>7.4</b> Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="basic-data-transformations.html"><a href="basic-data-transformations.html"><i class="fa fa-check"></i><b>8</b> Basic Data Transformations</a></li>
+<li class="chapter" data-level="9" data-path="bivariate-correlational-research.html"><a href="bivariate-correlational-research.html"><i class="fa fa-check"></i><b>9</b> Bivariate correlational research</a><ul>
+<li class="chapter" data-level="9.1" data-path="bivariate-correlational-research.html"><a href="bivariate-correlational-research.html#association-claim-with-two-quantitative-variables"><i class="fa fa-check"></i><b>9.1</b> Association claim with two quantitative variables</a></li>
+<li class="chapter" data-level="9.2" data-path="bivariate-correlational-research.html"><a href="bivariate-correlational-research.html#association-claim-with-one-quantitative-variable-and-one-categorical-variable"><i class="fa fa-check"></i><b>9.2</b> Association claim with one quantitative variable and one categorical variable</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html"><i class="fa fa-check"></i><b>10</b> Multivariate correlational research</a><ul>
+<li class="chapter" data-level="10.1" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html#get-to-know-data"><i class="fa fa-check"></i><b>10.1</b> Get to know data</a></li>
+<li class="chapter" data-level="10.2" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html#multiple-regression"><i class="fa fa-check"></i><b>10.2</b> Multiple regression</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html#optional-additional-information"><i class="fa fa-check"></i><b>10.2.1</b> Optional additional information</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="multivariate-correlational-research.html"><a href="multivariate-correlational-research.html#mediation-and-moderation"><i class="fa fa-check"></i><b>10.3</b> Mediation and moderation</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="simple-experiments.html"><a href="simple-experiments.html"><i class="fa fa-check"></i><b>11</b> Simple experiments</a><ul>
+<li class="chapter" data-level="11.1" data-path="simple-experiments.html"><a href="simple-experiments.html#two-groups---independent-group-design"><i class="fa fa-check"></i><b>11.1</b> Two groups - Independent group design</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="simple-experiments.html"><a href="simple-experiments.html#research-question"><i class="fa fa-check"></i><b>11.1.1</b> Research question</a></li>
+<li class="chapter" data-level="11.1.2" data-path="simple-experiments.html"><a href="simple-experiments.html#method"><i class="fa fa-check"></i><b>11.1.2</b> Method</a></li>
+<li class="chapter" data-level="11.1.3" data-path="simple-experiments.html"><a href="simple-experiments.html#data-analysis"><i class="fa fa-check"></i><b>11.1.3</b> Data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="simple-experiments.html"><a href="simple-experiments.html#two-groups---dependent-group-design"><i class="fa fa-check"></i><b>11.2</b> Two groups - Dependent group design</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="simple-experiments.html"><a href="simple-experiments.html#research-question-1"><i class="fa fa-check"></i><b>11.2.1</b> Research question</a></li>
+<li class="chapter" data-level="11.2.2" data-path="simple-experiments.html"><a href="simple-experiments.html#method-1"><i class="fa fa-check"></i><b>11.2.2</b> Method</a></li>
+<li class="chapter" data-level="11.2.3" data-path="simple-experiments.html"><a href="simple-experiments.html#data-analysis-1"><i class="fa fa-check"></i><b>11.2.3</b> Data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="simple-experiments.html"><a href="simple-experiments.html#more-than-two-groups---independent-group-design"><i class="fa fa-check"></i><b>11.3</b> More than two groups - Independent group design</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="simple-experiments.html"><a href="simple-experiments.html#research-question-2"><i class="fa fa-check"></i><b>11.3.1</b> Research question</a></li>
+<li class="chapter" data-level="11.3.2" data-path="simple-experiments.html"><a href="simple-experiments.html#method-2"><i class="fa fa-check"></i><b>11.3.2</b> Method</a></li>
+<li class="chapter" data-level="11.3.3" data-path="simple-experiments.html"><a href="simple-experiments.html#data-analysis-2"><i class="fa fa-check"></i><b>11.3.3</b> Data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="simple-experiments.html"><a href="simple-experiments.html#more-than-two-groups---dependent-group-design"><i class="fa fa-check"></i><b>11.4</b> More than two groups - Dependent group design</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="experiments-with-more-than-one-iv.html"><a href="experiments-with-more-than-one-iv.html"><i class="fa fa-check"></i><b>12</b> Experiments with more than one IV</a><ul>
+<li class="chapter" data-level="12.1" data-path="experiments-with-more-than-one-iv.html"><a href="experiments-with-more-than-one-iv.html#independent-group-factorial-design"><i class="fa fa-check"></i><b>12.1</b> Independent-group factorial design</a></li>
+<li class="chapter" data-level="12.2" data-path="experiments-with-more-than-one-iv.html"><a href="experiments-with-more-than-one-iv.html#within-group-factorial-design"><i class="fa fa-check"></i><b>12.2</b> Within-group factorial design</a></li>
+<li class="chapter" data-level="12.3" data-path="experiments-with-more-than-one-iv.html"><a href="experiments-with-more-than-one-iv.html#mixed-factorial-design"><i class="fa fa-check"></i><b>12.3</b> Mixed factorial design</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>13</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tools for Working with Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="simple-experiments" class="section level1">
+<h1><span class="header-section-number">Chapter 11</span> Simple experiments</h1>
+<div id="two-groups---independent-group-design" class="section level2">
+<h2><span class="header-section-number">11.1</span> Two groups - Independent group design</h2>
+<div id="research-question" class="section level3">
+<h3><span class="header-section-number">11.1.1</span> Research question</h3>
+<p>How do you get children to help around the house? Theory and past research indicate that using noun words, like helper, sends a signal that the noun is part of a person’s identity. Bryan, Master, and Walton (2014) tested this in young children and found that kids helped more when an experimenter talked to them about “being a helper” (noun condition) compared to when the experimenter talked to them about “helping” (verb condition).</p>
+</div>
+<div id="method" class="section level3">
+<h3><span class="header-section-number">11.1.2</span> Method</h3>
+<p>Imagine you replicated this study. You recruited 80 three-to four-year-olds from local daycare centers. Participants were randomly assigned to be in the helper condition (i.e. the noun condition) or the helping condition (i.e. the verb condition). An experimenter first talked to the children about helping.</p>
+<p>The children in the helper condition heard: “Some children choose to be helpers. You could be a helper when someone needs to pick things up, you could be a helper when someone has a job to do, and you could be a helper when someone needs help.”</p>
+<p>The children in the helping condition heard: “Some children choose to help. You could help when someone needs to pick things up, you could help when someone has a job to do, and you could help when someone needs help.”</p>
+<p>Next all of the children were given toys and told they can play. While they were playing, the experimenter provided 9 helping opportunities - for example, pick up a mess, open a container, put away toys, pick up crayons that had spilled on the floor. The experimenters counted the number of times the children stop playing to help.</p>
+</div>
+<div id="data-analysis" class="section level3">
+<h3><span class="header-section-number">11.1.3</span> Data analysis</h3>
+<div id="open-data-and-load-the-necessary-packages." class="section level4">
+<h4><span class="header-section-number">11.1.3.1</span> Open data and load the necessary packages.</h4>
+<p>Open the helpwords.csv data (which can be found on D2L).</p>
+<p>After you load it into your RStudio cloud project, open the data with the IMPORT DATASET point and click method, or with this code:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="simple-experiments.html#cb84-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb84-2"><a href="simple-experiments.html#cb84-2"></a>helpex &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;helpex.csv&quot;</span>)</span></code></pre></div>
+<p>Note that for the condition variable: 1 = noun - “being a helper” and 2 = verb - “helping”.</p>
+<p>Then load the tidyverse and psych packages with this code:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="simple-experiments.html#cb85-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb85-2"><a href="simple-experiments.html#cb85-2"></a><span class="kw">library</span>(psych)</span></code></pre></div>
+</div>
+<div id="run-descriptive-statistics-and-look-at-data" class="section level4">
+<h4><span class="header-section-number">11.1.3.2</span> Run descriptive statistics and look at data</h4>
+<p>Let’s first compute measures of central tendency and variability by condition. To do this we will use the <code>describeBy()</code> function of the psych package, which reports basic summary statistics by a grouping variable.</p>
+<p>Let’s do this here without the Tidyverse pipe (as we have in the past). Using base R, the <code>describeBy()</code> function takes the form of (DV, IV):</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="simple-experiments.html#cb86-1"></a><span class="kw">describeBy</span>(helpex<span class="op">$</span>numhelp, helpex<span class="op">$</span>condition)</span></code></pre></div>
+<pre><code>## 
+##  Descriptive statistics by group 
+## group: 1
+##    vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 40 5.12 1.71      5    5.06 1.48   2   9     7 0.23    -0.67 0.27
+## ------------------------------------------------------------ 
+## group: 2
+##    vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 40 2.58 1.65    2.5    2.56 2.22   0   6     6 0.11    -0.98 0.26</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>We can see that the children in the helper (noun) condition helped an average of 5.12 times (SD = 1.71, range = 2 - 9), while the children in the helping (verb) condition helped an average of 2.85 (SD = 1.65, range = 0 - 6). The results show that the minimum and maximum values are all within the range of possible values.</p>
+<p>Next let’s look at the data. Let’s first run histograms (again - by level of the IV).</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="simple-experiments.html#cb88-1"></a><span class="kw">ggplot</span> (helpex, <span class="kw">aes</span> (<span class="dt">x=</span>numhelp)) <span class="op">+</span></span>
+<span id="cb88-2"><a href="simple-experiments.html#cb88-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb88-3"><a href="simple-experiments.html#cb88-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">as.factor</span>(condition))</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><strong>Interpretation</strong><br />
+The histograms show that the data in each group is roughly mound shaped, so they should meet the assumption of normality (this will be tested next), and that there are no outliers.</p>
+</div>
+<div id="stats" class="section level4">
+<h4><span class="header-section-number">11.1.3.3</span> Stats</h4>
+<p>First test normality with a Shapiro-Wilk test:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="simple-experiments.html#cb89-1"></a>helpex <span class="op">%&gt;%</span></span>
+<span id="cb89-2"><a href="simple-experiments.html#cb89-2"></a><span class="st">  </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span></span>
+<span id="cb89-3"><a href="simple-experiments.html#cb89-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">statistic =</span> <span class="kw">shapiro.test</span>(numhelp)<span class="op">$</span>statistic,</span>
+<span id="cb89-4"><a href="simple-experiments.html#cb89-4"></a>            <span class="dt">p.value =</span> <span class="kw">shapiro.test</span>(numhelp)<span class="op">$</span>p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   condition statistic p.value
+##       &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1         1     0.961  0.179 
+## 2         2     0.945  0.0510</code></pre>
+<p>A significant test of normality (Shapiro-Wilk test) indicates that the data is not normally distributed. With non-normal data, a Wilcoxon-Mann-Whitney U test should be used, which is a nonparametric alternative to the independent-sample t-test.</p>
+<p>Then test the equality of the group variances with a Levene’s test. Remember that the Levene test uses the car package, so let’s first load that package.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="simple-experiments.html#cb91-1"></a><span class="kw">library</span>(car) </span>
+<span id="cb91-2"><a href="simple-experiments.html#cb91-2"></a><span class="kw">leveneTest</span>(numhelp <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(condition), <span class="dt">data =</span> helpex)</span></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  1  0.0519 0.8204
+##       78</code></pre>
+<p>A significant test of equality of variance (Levene’s test) means that group variances are different from each other, and in the next step you should account for the unequal variances by using the Welch t-test option.</p>
+<p>Then unload the car package because it can interfere with the tidyverse and psych packages.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="simple-experiments.html#cb93-1"></a><span class="kw">detach</span>(<span class="st">&quot;package:car&quot;</span>, unload<span class="op">-</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<p><strong>Interpretation</strong><br />
+In this example, the test of normality and equality of variance were both nonsignificant. This means that in the next step you should use a Student’s t-test, which assumes that group data are normally distributed and that variances are equal.</p>
+<p>Next use the t-test function to find the CI and NHST with the <code>t.test()</code> function.</p>
+<p><code>t.test(numhelp ~ as.factor(condition), data = helpex, var.equal = TRUE)</code></p>
+<ul>
+<li><code>numhelp ~ as.factor(condition)</code> takes the form of DV ~ IV</li>
+<li><code>data = helpex</code> directs R to the object that contains the data.</li>
+<li>If the variances are not equal between groups, omit the <code>var.equal = TRUE</code> to run a Welch’s t-test
+<ul>
+<li>For example: <code>t.test(numhelp ~ as.factor(condition), data = helpex)</code></li>
+</ul></li>
+<li>The default is to calculate 95% confidence intervals (i.e., <code>conf.level = 0.95</code>). Because it is the default this code can be omitted, and it will still run. To change the confidence level add <code>conf.level= 0.XX</code> (after a comma).
+<ul>
+<li>For example, to obtain 90% confidence intervals here use: <code>t.test(numhelp ~ as.factor(condition), data = helpex), var.equal = TRUE, conf.level = 0.90)</code></li>
+</ul></li>
+<li>Use <code>?t.test</code> for more options.</li>
+</ul>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  numhelp by condition
+## t = 6.788, df = 78, p-value = 1.989e-09
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.802115 3.297885
+## sample estimates:
+## mean in group 1 mean in group 2 
+##           5.125           2.575</code></pre>
+<p><strong>Interpretation</strong><br />
+The results show that the 95% CI is 1.802115 to 3.297885, which means that the true difference in the number of words remembered based on the level of processing is likely to be between about 1.5 and 3 helping behaviors.</p>
+<p>The results also report that t = 6.788, df = 78, p-value = 1.989e-09 - so the difference is statistically significant.</p>
+<p>Next find the effect size using the effsize package with this code:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="simple-experiments.html#cb95-1"></a><span class="kw">library</span>(effsize) </span>
+<span id="cb95-2"><a href="simple-experiments.html#cb95-2"></a></span>
+<span id="cb95-3"><a href="simple-experiments.html#cb95-3"></a><span class="kw">cohen.d</span>(numhelp <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(condition), <span class="dt">data =</span> helpex)</span></code></pre></div>
+<pre><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: 1.517847 (large)
+## 95 percent confidence interval:
+##    lower    upper 
+## 1.012631 2.023064</code></pre>
+<p><strong>Interpretation</strong><br />
+The cohen’s d is 1.5, which is a large effect. The 95% CI is 1.012631 to 2.023064, which is pretty big - reflecting a fair degree of uncertainty about the true effect size.</p>
+<p>We could also run a scatterplot to see the mean and degree of overlap of data.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="simple-experiments.html#cb97-1"></a><span class="kw">ggplot</span>(helpex, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(condition), <span class="dt">y =</span> numhelp)) <span class="op">+</span></span>
+<span id="cb97-2"><a href="simple-experiments.html#cb97-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span></span>
+<span id="cb97-3"><a href="simple-experiments.html#cb97-3"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_normal)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+</div>
+<div id="apa-stye-write-up" class="section level4">
+<h4><span class="header-section-number">11.1.3.4</span> APA-stye write up</h4>
+<p>Children in the helper condition (M = 5.12, SD = 1.71) helped more than those in the helping condition (M = 2.85, SD = 1.65).</p>
+<p>Therefore, the average difference in the helping behaviors between the groups was 2.55 helping behaviors. The 95%CI on this difference was 1.80 to 3.30 helping behaviors. This CI means that the true difference in the helping behaviors based on the condition is likely to be between about 1.5 and 3 helping behaviors.</p>
+<p>The standardized effect size of the difference between conditions was d = 1.52 (CI.95: 1.01 to 2.02). This effect would be classified by Cohen’s conventions as large.</p>
+<p>These 95%CIs do not contain zero, so we can conclude that the difference between the two conditions is statistically significant (t(78) = 6.79, p &lt; .001).</p>
+</div>
+</div>
+</div>
+<div id="two-groups---dependent-group-design" class="section level2">
+<h2><span class="header-section-number">11.2</span> Two groups - Dependent group design</h2>
+<div id="research-question-1" class="section level3">
+<h3><span class="header-section-number">11.2.1</span> Research question</h3>
+<p>Do fidget spinners help you concentrate? Soares and Storm (2019) asked college-aged students to watch an educational video with and without a fidget spinner. They found that participants remembered more information about the video they watched without the fidget spinner than the video they watched with it.</p>
+</div>
+<div id="method-1" class="section level3">
+<h3><span class="header-section-number">11.2.2</span> Method</h3>
+<p>Imagine you replicated Soares and Storm (2019) with a convenience sample of 20 classmates and friends. Participants watched two educational videos about lesser known historical figures. Each video was about 10 minutes. Participants were run individually.</p>
+<p>The order of the conditions was counterbalanced across participants so that half of the participants were given the fidget spinner while watching the first video and not the second video. The other half of the participants watched the first video without the fidget spinner and were given the fidget spinner for the second video.</p>
+<p>After each video participants completed an unrelated task for 5 minutes and then were given a 15 item fill in the blank test about the video content.</p>
+</div>
+<div id="data-analysis-1" class="section level3">
+<h3><span class="header-section-number">11.2.3</span> Data analysis</h3>
+<div id="open-data-and-load-the-neccessary-packages." class="section level4">
+<h4><span class="header-section-number">11.2.3.1</span> Open data and load the neccessary packages.</h4>
+<p>Then open the data, which is in fidget.csv on D2L.</p>
+<p>After you load it into your RStudio cloud project, open the data with the IMPORT DATASET point and click method, or with this code:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="simple-experiments.html#cb98-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb98-2"><a href="simple-experiments.html#cb98-2"></a>fidex &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fidex.csv&quot;</span>)</span></code></pre></div>
+<p>Then load the tidyverse and psych packages with this code:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="simple-experiments.html#cb99-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb99-2"><a href="simple-experiments.html#cb99-2"></a><span class="kw">library</span>(psych)</span></code></pre></div>
+<p>Note the layout of the data here. Let’s use the <code>head()</code> function to look at the first 3 rows of the dataset:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="simple-experiments.html#cb100-1"></a><span class="kw">head</span>(fidex, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##      id wofid  wfid
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     6     3
+## 2     2    15     4
+## 3     3     9     3</code></pre>
+<p>Remember that in a spreadsheet, each row typically represents an individual participant in the study. So, with a within subject design, the IV data will be split into to different columns. In this example the wfid is the test scores for the video watched with the fidget spinner and the wofid is the test scores for the video watched without the fidget spinner.</p>
+<p>A column with the difference between the two levels of the IV is needed for within subject data analysis. So, let’s create it now using the <code>mutate()</code> function (which is part of the tidyverse package)</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="simple-experiments.html#cb102-1"></a>fidex &lt;-<span class="st"> </span>fidex <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb102-2"><a href="simple-experiments.html#cb102-2"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">diff =</span> wofid <span class="op">-</span><span class="st"> </span>wfid)</span>
+<span id="cb102-3"><a href="simple-experiments.html#cb102-3"></a></span>
+<span id="cb102-4"><a href="simple-experiments.html#cb102-4"></a><span class="kw">head</span>(fidex, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 4
+##      id wofid  wfid  diff
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     6     3     3
+## 2     2    15     4    11
+## 3     3     9     3     6</code></pre>
+<p>The first participant scored a 6 on the test about the video he/she watched without the fidget spinner and a 3 on the test of the video watched with the fidget spinner. The difference between the scores is 3 points.</p>
+</div>
+<div id="descriptive-statistics-and-assumptions" class="section level4">
+<h4><span class="header-section-number">11.2.3.2</span> Descriptive statistics and assumptions</h4>
+<p>Let’s first compute measures of central tendency and variability.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="simple-experiments.html#cb104-1"></a>fidex <span class="op">%&gt;%</span></span>
+<span id="cb104-2"><a href="simple-experiments.html#cb104-2"></a><span class="st">  </span><span class="kw">select</span> (wofid, wfid) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb104-3"><a href="simple-experiments.html#cb104-3"></a><span class="st">  </span><span class="kw">describe</span>()</span></code></pre></div>
+<pre><code>##       vars  n  mean   sd median trimmed  mad min max range  skew kurtosis   se
+## wofid    1 20 10.55 3.25   10.5   10.62 3.71   5  15    10 -0.17    -1.39 0.73
+## wfid     2 20  5.60 3.36    6.5    5.69 4.45   0  10    10 -0.22    -1.49 0.75</code></pre>
+<p><strong>Interpretation</strong><br />
+We can see that the participants in the without fidget spinner condition got an average of 10.55 questions correct (SD = 3.25, range = 5 - 15), while the participants in the with fidget spinner condition got an average of 5.60 questions correct (SD = 3.36, range = 0 - 10). The results show that the minimum and maximum values are all within the range of possible values.</p>
+<p>Next test the normality of the difference scores with a Shapiro-Wilk test:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="simple-experiments.html#cb106-1"></a><span class="kw">shapiro.test</span>(fidex<span class="op">$</span>diff)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  fidex$diff
+## W = 0.97287, p-value = 0.8139</code></pre>
+<p>A significant test of normality (Shapiro-Wilk test) indicates that the data is not normally distributed. With non-normal data, a Paired Samples Wilcoxon test should be used, which is a nonparametric alternative to the related-sample t-test.</p>
+<p>In this example, the test of equality of variance is nonsignificant. This means that in the next step you should use a Student’s related sample t-test, which assumes that the difference scores are normally distributed.</p>
+</div>
+<div id="stats-1" class="section level4">
+<h4><span class="header-section-number">11.2.3.3</span> Stats</h4>
+<p>Use the t-test function to find the CI and NHST with this base R code:</p>
+<p><code>t.test(fidex$wofid, fidex$wfid, paired = TRUE)</code>
+* The within-subjects t-test uses the same <code>t.test()</code> function as you did with independent samples. However, this time you have to use the form of: level1, level2<br />
+* I also think you have to direct R to the variable with the $ method (I could not get this to run with the data = )<br />
+* The <code>paired=TRUE</code> tells T that it is a within subjects design</p>
+<p>Here are the results:</p>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  fidex$wofid and fidex$wfid
+## t = 5.0789, df = 19, p-value = 6.667e-05
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  2.910114 6.989886
+## sample estimates:
+## mean of the differences 
+##                    4.95</code></pre>
+<p><strong>Interpretation</strong><br />
+The results show that the 95% CI is 2.910114 to 6.989886, which means that the true difference in the number of correct test questions remembered based on fidget spinner use is likely to be between about 3 and 7 correct questions.</p>
+<p>The results also report that t = 5.0789, df = 19, p-value = 6.667e-05 - so the difference is statistically significant.</p>
+<p>Next find the effect size using the effsize package. Here is the code:</p>
+<p><code>library(effsize)</code><br />
+<code>cohen.d(fidex$wofid, fidex$wfid, paired=TRUE)</code></p>
+<ul>
+<li>Again, with within-subjects the cohens.d function takes the form of: level1, level2<br />
+</li>
+<li>The <code>paired=TRUE</code> tells r that it is a within subjects design</li>
+</ul>
+<pre><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: 1.496451 (large)
+## 95 percent confidence interval:
+##     lower     upper 
+## 0.6280516 2.3648508</code></pre>
+<p><strong>Interpretation</strong><br />
+The effect size is 1.496451, which is large. The 95% CI is 0.6280516 to 2.3648508, suggesting there is a high level of uncertainty in the size of the effect here.</p>
+</div>
+<div id="apa-style-write-up" class="section level4">
+<h4><span class="header-section-number">11.2.3.4</span> 5. APA-style write up</h4>
+<p>Participants remembered more information about the video they watched without the fidget spinner (M = 10.50, SD = 3.25) compared to the video that they watch with the fidget spinner (M = 5.60, SD = 3.36).</p>
+<p>Therefore, the average difference in the number of correct test questions between the groups was 4.9 questions. The 95%CI on this difference was 2.91 to 6.99 correct questions. This CI means that the true difference in the number of correct test questions remembered based fidget spinner use is likely to be between about 3 and 7 correct questions.</p>
+<p>The standardized effect size of the difference between test score without and with fidget spinners was d = 1.50 (CI.95: 0.63 to 2.36). This effect would be classified by Cohen’s conventions as large.</p>
+<p>These 95%CIs do not contain zero, so we can conclude that the difference between the two conditions is statistically significant (t(19) = 5.08, p &lt; .001).</p>
+</div>
+<div id="bonus-this-is-material-is-not-required." class="section level4">
+<h4><span class="header-section-number">11.2.3.5</span> Bonus: This is material is NOT required.</h4>
+<p>You may have noticed that we did not create a scatterplot during this example. I would like to talk about why…</p>
+<p>Within subject data can actually take two organizational formats. The data we were just working with above was in wide format, which means that a participant’s responses will all be in a single row, and each response is in a separate column.</p>
+<p>The another option is call long format. Instead of having every row represent an individual participant, each row is one time point per subject.</p>
+<p>Dplyr (of tidyverse) turns wide data into long data. Here is the code we will use:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="simple-experiments.html#cb110-1"></a>fidexlong &lt;-<span class="st"> </span>fidex <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-2"><a href="simple-experiments.html#cb110-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;condition&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;score&quot;</span>, wfid<span class="op">:</span>wofid)</span>
+<span id="cb110-3"><a href="simple-experiments.html#cb110-3"></a></span>
+<span id="cb110-4"><a href="simple-experiments.html#cb110-4"></a><span class="kw">head</span>(fidexlong)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##      id  diff condition score
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1     1     3 wfid          3
+## 2     2    11 wfid          4
+## 3     3     6 wfid          3
+## 4     4     3 wfid          3
+## 5     5    10 wfid          0
+## 6     6     7 wfid          8</code></pre>
+<ul>
+<li>fidexlong &lt;- fidex saves the work so we can use it. I chose to save this in a new dataset in case I fuck it up.<br />
+</li>
+<li>More detail on the the <code>gather()</code> function:
+<ul>
+<li>In the <code>key =</code> put the name of the repeated measures. So here it is <code>"condition"</code> because the IV is a condition (fidget spinner and no fidget spinner). Note that we could have an a within subject association claim where one variable is time (time 1 and time 2). Here you should have: key = “time”<br />
+</li>
+<li>In the <code>value =</code> put the name of the variable that was measured multiple times. In the present example is the <code>score</code> of the test of educational video content knowledge. + <code>wfid:wofid</code> is the columns that need to be rearranged. The columns with the data in it.</li>
+</ul></li>
+</ul>
+<p>After you create the new dataset, note that there are now two rows for each ID number: one for test score with the fidget spinner and one for the test score without the fidget spinner. If you ran this code with the dataset that you mutated by creating the difference score, both the ID and difference scores will be repeating.</p>
+<p>Once we format the data as long instead of wide, we can use ggplots to look at the spread of means and individuals datapoints:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="simple-experiments.html#cb112-1"></a><span class="kw">ggplot</span>(fidexlong, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(condition), <span class="dt">y =</span> score)) <span class="op">+</span></span>
+<span id="cb112-2"><a href="simple-experiments.html#cb112-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;pink&quot;</span>) <span class="op">+</span></span>
+<span id="cb112-3"><a href="simple-experiments.html#cb112-3"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_normal)</span></code></pre></div>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="more-than-two-groups---independent-group-design" class="section level2">
+<h2><span class="header-section-number">11.3</span> More than two groups - Independent group design</h2>
+<div id="research-question-2" class="section level3">
+<h3><span class="header-section-number">11.3.1</span> Research question</h3>
+<p>Does the way people take note influence test performance? <a href="http://www.yaros.com/ipad/Pen_vs_Keyboard_Notes.pdf">Mueller and Oppenheimer (2014)</a> reported that undergraduate students who took notes longhanded outperformed students who took notes on a laptop on a test of content knowledge.</p>
+<p><a href="https://www.researchgate.net/publication/330856100_How_Much_Mightier_Is_the_Pen_than_the_Keyboard_for_Note-Taking_A_Replication_and_Extension_of_Mueller_and_Oppenheimer_2014">Morehead, Dunlosky, and Rawson (2019)</a> conducted a replication plus extension of Mueller and Oppenhiemer’s (2014) study. Since they made their <a href="https://osf.io/dyga5/?view_only=843c2187b4894aefbfc6218b2d6eaed4">data</a> publicly available, we can reproduce the analysis that tests whether there is a differences in test performance based on note-taking methods, as in Mueller and Oppenheimer (2014).</p>
+</div>
+<div id="method-2" class="section level3">
+<h3><span class="header-section-number">11.3.2</span> Method</h3>
+<p>Morehead, Dunlosky, and Rawson (2019) recruited 193 undergraduate students to participate in their study for course credit. Following the procedure of Mueller and Oppenhiemer (2014), participants watched TED talks on uncommon topics.</p>
+<p>In Morehead, Dunlosky, and Rawson’s (2019) Experiment 1, the undergraduates were randomly assigned to one of 3 note-taking conditions: longhand, laptop, or eWriter. (Note that the eWriter condition is part of the extension - the original study did not include this condition.) After the TED talk videos, all of the participants completed a 30 minute distractor task. This was followed by a test of the TED talks content. Morehead, Dunlosky, and Rawson (2019) also tested their participants’ content knowledge 2 days later - this was another extension of the original study.</p>
+<p>Next we will test whether the participants’ total test performance on the first test differed based on levels of the note-taking variable.</p>
+</div>
+<div id="data-analysis-2" class="section level3">
+<h3><span class="header-section-number">11.3.3</span> Data analysis</h3>
+<div id="open-data-and-load-the-neccessary-packages.-1" class="section level4">
+<h4><span class="header-section-number">11.3.3.1</span> Open data and load the neccessary packages.</h4>
+<p>Then open the data, which is in Data_Experiment1.cvs on D2L.</p>
+<p>After you load it into your RStudio cloud project, open the data with the IMPORT DATASET point and click method, or with this code:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="simple-experiments.html#cb113-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb113-2"><a href="simple-experiments.html#cb113-2"></a>notetaking &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_Experiment1.csv&quot;</span>)</span></code></pre></div>
+<p>The codebook is also on D2L. Use this to become familiar with the dataset. Note that there is missing data for many of the variables. Missing data in R is recorded as NA (for “not available”).</p>
+<p>Note that the total test performance on the immediate test variable (i.e., our DV) is called Test1Tot. We will also use the methods variable, which tells us which level of the IV the participants were assigned to.</p>
+<p>Finally, load the tidyverse and psych packages with this code:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="simple-experiments.html#cb114-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb114-2"><a href="simple-experiments.html#cb114-2"></a><span class="kw">library</span>(psych)</span></code></pre></div>
+</div>
+<div id="descriptive-and-test-assumptions" class="section level4">
+<h4><span class="header-section-number">11.3.3.2</span> Descriptive and test assumptions</h4>
+<p>Let’s first explore the missing data in our DV. Let’s do this by creating a frequency table using the <code>count()</code> function. I added <code>filter(is.na(Test1Tot))</code> to the count code we used in the descriptive statistics chapter in order to tell R that I am only interested in the missing data in the Test1Tot variable.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="simple-experiments.html#cb115-1"></a>notetaking <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb115-2"><a href="simple-experiments.html#cb115-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(Test1Tot)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb115-3"><a href="simple-experiments.html#cb115-3"></a><span class="st">  </span><span class="kw">count</span>(Test1Tot)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   Test1Tot     n
+##      &lt;dbl&gt; &lt;int&gt;
+## 1       NA    94</code></pre>
+<p>Here we can see that there are 94 missing data points. Next let’s break this down by condition. I did this by adding <code>group_by(method)</code> to the previous command, which tells R to group the results by the method variable.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="simple-experiments.html#cb117-1"></a>notetaking <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb117-2"><a href="simple-experiments.html#cb117-2"></a><span class="st">  </span><span class="kw">group_by</span>(method) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb117-3"><a href="simple-experiments.html#cb117-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(Test1Tot)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb117-4"><a href="simple-experiments.html#cb117-4"></a><span class="st">  </span><span class="kw">count</span>(Test1Tot)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+## # Groups:   method [3]
+##   method Test1Tot     n
+##    &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+## 1      1       NA    31
+## 2      2       NA    33
+## 3      3       NA    30</code></pre>
+<p>There are between 30 and 33 missing data points in each group. Since the missing data is evenly distributed across the condition, it should not affect the interpretation of the results.</p>
+<p>Let’s next compute measures of central tendency and variability by condition. To do this we will use the <code>describeBy()</code> function of the psych package, which reports basic summary statistics by a grouping variable.</p>
+<p>Let’s do this without the Tidyverse pipe (in the past we used tidyverse piping with the <code>describeBy()</code> function). Below is the code to the <code>describeBy()</code> function with base R. Remember that the <code>describeBy()</code> function takes the form of (DV, IV).</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="simple-experiments.html#cb119-1"></a><span class="kw">describeBy</span>(notetaking<span class="op">$</span>Test1Tot, notetaking<span class="op">$</span>method)</span></code></pre></div>
+<pre><code>## 
+##  Descriptive statistics by group 
+## group: 1
+##    vars  n mean   sd median trimmed  mad min  max range skew kurtosis   se
+## X1    1 32  0.3 0.18    0.3     0.3 0.15   0 0.75  0.75 0.33    -0.22 0.03
+## ------------------------------------------------------------ 
+## group: 2
+##    vars  n mean   sd median trimmed  mad min  max range skew kurtosis   se
+## X1    1 31 0.25 0.14   0.25    0.24 0.15   0 0.55  0.55 0.32    -0.69 0.03
+## ------------------------------------------------------------ 
+## group: 3
+##    vars  n mean   sd median trimmed  mad min  max range skew kurtosis   se
+## X1    1 31 0.26 0.16   0.25    0.26 0.15   0 0.55  0.55 0.28     -1.1 0.03</code></pre>
+<p>The means seem pretty similar across the levels of note-taking variable.</p>
+<p>Then let’s check that the data meets the assumption of normality by creating histograms of the DV by the IV:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="simple-experiments.html#cb121-1"></a><span class="kw">ggplot</span> (notetaking, <span class="kw">aes</span> (<span class="dt">x=</span>Test1Tot)) <span class="op">+</span></span>
+<span id="cb121-2"><a href="simple-experiments.html#cb121-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">.1</span>) <span class="op">+</span></span>
+<span id="cb121-3"><a href="simple-experiments.html#cb121-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">as.factor</span>(method))</span></code></pre></div>
+<pre><code>## Warning: Removed 94 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+<p>The histograms show that the data in each group is roughly mound shaped and that there are no outliers.</p>
+<p>Finally, create a scatterplot to check the pattern of means and the variability of the data points.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="simple-experiments.html#cb123-1"></a><span class="kw">ggplot</span>(notetaking, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(method), <span class="dt">y =</span> Test1Tot)) <span class="op">+</span></span>
+<span id="cb123-2"><a href="simple-experiments.html#cb123-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span></span>
+<span id="cb123-3"><a href="simple-experiments.html#cb123-3"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_normal)</span></code></pre></div>
+<pre><code>## Warning: Removed 94 rows containing non-finite values (stat_summary).</code></pre>
+<pre><code>## Warning: Removed 94 rows containing missing values (geom_point).</code></pre>
+<p><img src="Tools-for-Working-with-Data_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<p><strong>Interpretation</strong></p>
+<p>The mean proportion correct on test 1 by note-taking condition look very similar. Moreover there is much overlap of 95% CIs and individual data points.</p>
+</div>
+<div id="stats-2" class="section level4">
+<h4><span class="header-section-number">11.3.3.3</span> Stats</h4>
+<p>We will use a one-way ANOVA to test for differences in test performance based on the note-taking conditions.</p>
+<p>In R we can do this with the <code>aov()</code> function, which is part of base R. This function takes the form of <code>DV ~ IV</code>, followed by the name of the object the data is in. The <code>as.factor(method)</code> tells R that the methods variable is categorical or nominal data.</p>
+<p>Similar to the multiple regression, we have to first save the ANOVA as an object. Then we will use the <code>summary.aov()</code> to see the results of the ANOVA. I chose to name the ANOVA object <code>test1taov</code>, which is short for the test 1 total ANOVA.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="simple-experiments.html#cb126-1"></a>test1taov &lt;-<span class="st"> </span><span class="kw">aov</span>(Test1Tot <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(method), <span class="dt">data =</span> notetaking)</span>
+<span id="cb126-2"><a href="simple-experiments.html#cb126-2"></a></span>
+<span id="cb126-3"><a href="simple-experiments.html#cb126-3"></a><span class="kw">summary</span>(test1taov)</span></code></pre></div>
+<pre><code>##                   Df Sum Sq Mean Sq F value Pr(&gt;F)
+## as.factor(method)  2  0.055 0.02751   1.073  0.346
+## Residuals         91  2.332 0.02563               
+## 94 observations deleted due to missingness</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The results show that the p-value (0.346) associated with the F-value (1.073) is greater than .05 - failing to reject the null (the null for an ANOVA is that all of the group means are the same). This means that there is no difference in mean test performance based on the method the students used to take notes.</p>
+<p>Note that the output includes the number of missing data points in the DV (n = 94).</p>
+<p>Had the p-value associated with the F-value been statistically significant (i.e., the p-value was under .05), then the next step would be to preform post-hoc analysis to find the difference between means. The ANOVA tells just that a difference exists - not which means are different.</p>
+<p>One common post-hoc is Tukey HSD (Tukey Honest Significant Differences). The R function for this is <code>TukeyHSD()</code>, where you put the object with the ANOVA results in the parenthesis. (the <code>TukeyHSD()</code>function uses base R - so no packages are needed here.)</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="simple-experiments.html#cb128-1"></a><span class="kw">TukeyHSD</span>(test1taov)</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = Test1Tot ~ as.factor(method), data = notetaking)
+## 
+## $`as.factor(method)`
+##            diff         lwr        upr     p adj
+## 2-1 -0.05796371 -0.15409406 0.03816664 0.3265209
+## 3-1 -0.03860887 -0.13473922 0.05752147 0.6058426
+## 3-2  0.01935484 -0.07753544 0.11624512 0.8827917</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The resulting table compares the mean proportion correct on test 1 of each condition to each other.</p>
+<p>The first line compares condition 2 to condition 1 (longhand to laptop). The difference between the means is 0.05796371. The 95%CI for this difference is -0.15409406 to 0.03816664, which contains zero - so 0 is a likely difference between the groups. The adjusted p values is 0.3265209, which is greater than .05 - again indicating that there is no differences between the groups.</p>
+<p>The next line compares condition 3 to 1 (longhand to eWriter). The last line compares condition 3 to 2 (laptop to eWriter). There is no evidence for any differences in group means - which is consistent with the non-significant ANOVA.</p>
+</div>
+<div id="apa-style-write-up-1" class="section level4">
+<h4><span class="header-section-number">11.3.3.4</span> APA-style write-up</h4>
+<p>Test performance did not differ based on taking notes with longhand, on a laptop, or with an eWriter, F(2, 91) = 1.073, p = 0.346.</p>
+</div>
+</div>
+</div>
+<div id="more-than-two-groups---dependent-group-design" class="section level2">
+<h2><span class="header-section-number">11.4</span> More than two groups - Dependent group design</h2>
+<p>I decided to skip the repeated measures ANOVA. I think it is unlikely that you will use this in practice and I do not want to overwhelm you with the stats material this week. Moreover, ANOVAs are falling out of favor to mixed linear models - which we will cover next week. So I think the independent sample ANOVA is enough ANOVA coverage. The textbooks I posted on D2L has an excellent chapter on repeated measures of ANOVA if you are interested in further reading.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multivariate-correlational-research.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="experiments-with-more-than-one-iv.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nsorha/potential-barnacle/edit/master/simexper.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Tools for Working with Data.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
