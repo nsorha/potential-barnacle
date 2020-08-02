@@ -120,7 +120,7 @@
 
 \title{Tools for Working with Data}
 \author{Nicole Sorhagen, Ph.D.}
-\date{2020-07-26}
+\date{2020-08-02}
 
 \begin{document}
 \maketitle
@@ -3000,14 +3000,496 @@ I decided to skip the repeated measures ANOVA. I think it is unlikely that you w
 \hypertarget{experiments-with-more-than-one-iv}{%
 \chapter{Experiments with more than one IV}\label{experiments-with-more-than-one-iv}}
 
-\hypertarget{independent-group-factorial-design}{%
-\section{Independent-group factorial design}\label{independent-group-factorial-design}}
+\hypertarget{research-question-3}{%
+\section{Research question}\label{research-question-3}}
 
-\hypertarget{within-group-factorial-design}{%
-\section{Within-group factorial design}\label{within-group-factorial-design}}
+Previous research suggests that people tend to seek help from a computer program more often when the computer has human-like features. Kim, Zhang, and Park (2018) tested whether this preference for anthropomorphic helpers depends on individual differences in the way that people think about the malleability of intelligence, or their theory of intelligence (TOI). With an entity TOI, intelligence is thought of as fixed and unchangeable. With an incremental TOI, intelligence is thought of a malleable and changeable.
 
-\hypertarget{mixed-factorial-design}{%
-\section{Mixed factorial design}\label{mixed-factorial-design}}
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+Kim, Zhang, and Park (2018) recruited 171 undergraduate students. All of the participants were asked to complete an intelligence test and were told they could ask the computer for help on the questions if needed.
+
+They experimentally manipulated TOI by having participants randomly assigned to the entity condition -which consisted of participants reading an article that supports entity theory (e.g., ``neither environmental factors nor intense willpower appear to change this basic stability of intelligence''). Those assigned to the incremental condition read an article supporting an incremental theory (e.g., ``intelligence seems to be rather malleable and to develop significantly over time''). A manipulation check found that participants in the entity theory condition expressed a stronger belief in fixed intelligence (M = 4.59, SD = 1.54, 95\% CI = {[}4.25, 4.93{]}) than did those in the incremental-theory condition (M = 2.67, SD = 1.37, 95\% CI = {[}2.38, 2.96{]}), t(169) = 8.63, p \textless{} .001, d = 1.32, 95\% CI for d = {[}0.99, 1.65{]}. (\textbf{Note that the statistics and research methods terms (like manipulation check) in this last sentence should make sense to you now.})
+
+Kim, Zhang, and Park (2018) also randomly assigned their participants to an anthropomorphism condition, where participants received help from a computer-shaped icon with a humanlike face and with the hint placed inside a speech bubble, or to a nonanthropomorphism condition, where participants received help from a computer-shaped icon without a humanlike face, and the hint text did not appear in a speech bubble.
+
+\includegraphics{img/anthropomor.png}
+
+Kim, Zhang, and Park (2018) made their data publicly available. Let's reproduce their analysis testing for difference in the number of times the participants asked for help from the computer program by the two independent variables (TOI and anthropomorphism).
+
+\hypertarget{data-analysis-3}{%
+\section{Data analysis}\label{data-analysis-3}}
+
+Psychologists use a factorial ANOVAs to test for differences between groups in experiments with more than one IV.
+
+\hypertarget{open-data-and-load-the-necessary-packages.-1}{%
+\subsection{Open data and load the necessary packages.}\label{open-data-and-load-the-necessary-packages.-1}}
+
+Load the data onto your RStudio Cloud project which is in the Study2\_Final.csv file on D2L.
+
+Here is the \href{https://osf.io/ys9a5/}{codebook}
+
+After you load it into your RStudio cloud project, open the data with the IMPORT DATASET point and click method, or with this code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+
+\NormalTok{park <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"Study2_Final.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Then load the tidyverse and psych packages with this code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(psych)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{get-to-know-data-1}{%
+\subsection{Get to know data}\label{get-to-know-data-1}}
+
+Let's first create new categorical text-based variables from the numeric IV variables in the data (Anthropomorphism and TheoryofIntelligence). This is needed to run the factorial ANOVA below. Let's just do it now because the text also makes the output easier to read compared to remembering what 0 and 1 represent, especially with more than one IV.
+
+We will use the \texttt{mutate()} function of tidyverse to do this. Remember that the old variable should be on the left and it must be in back ticks when it is a number. String (AKA text) variables should be in quotes instead of back ticks.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ park <-}\StringTok{ }\NormalTok{park }\OperatorTok{%>%}
+\StringTok{   }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Anthropomorphismf =}\KeywordTok{recode}\NormalTok{(Anthropomorphism, }\StringTok{`}\DataTypeTok{0}\StringTok{`}\NormalTok{ =}\StringTok{ "Nonanthropomorphic"}\NormalTok{, }\StringTok{`}\DataTypeTok{1}\StringTok{`}\NormalTok{ =}\StringTok{ "Anthropomorphism"}\NormalTok{))}
+ 
+\NormalTok{park <-}\StringTok{ }\NormalTok{park }\OperatorTok{%>%}
+\StringTok{   }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TheoryofIntelligencef =}\KeywordTok{recode}\NormalTok{(TheoryofIntelligence, }\StringTok{`}\DataTypeTok{0}\StringTok{`}\NormalTok{ =}\StringTok{ "Incremental"}\NormalTok{, }\StringTok{`}\DataTypeTok{1}\StringTok{`}\NormalTok{ =}\StringTok{ "Entity"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Then compute measures of central tendency and variability by groups with the \texttt{describeBy()} function of the psych package. With two grouping variables, after the DV add \texttt{list()} and include both IVs in the parenthesis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{describeBy}\NormalTok{(park}\OperatorTok{$}\NormalTok{Total_NumberofHelp,}\KeywordTok{list}\NormalTok{(park}\OperatorTok{$}\NormalTok{Anthropomorphismf,park}\OperatorTok{$}\NormalTok{TheoryofIntelligencef))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Descriptive statistics by group 
+## : Anthropomorphism
+## : Entity
+##    vars  n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 40  8.7 5.11    9.5    8.94 5.93   0  16    16 -0.34    -1.23 0.81
+## ------------------------------------------------------------ 
+## : Nonanthropomorphic
+## : Entity
+##    vars  n  mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 43 11.09 3.83     11   11.49 4.45   0  16    16 -0.91     0.51 0.58
+## ------------------------------------------------------------ 
+## : Anthropomorphism
+## : Incremental
+##    vars  n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 49 9.53 3.37     10    9.61 2.97   1  16    15 -0.35    -0.01 0.48
+## ------------------------------------------------------------ 
+## : Nonanthropomorphic
+## : Incremental
+##    vars  n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 39 8.74 4.19      8    8.82 4.45   0  16    16 -0.09    -0.96 0.67
+\end{verbatim}
+
+Finally, let's create of plot of the mean number of times the participants sought help by the two IVs. To this add \texttt{group\ =\ TheoryofIntelligence,\ color\ =\ TheoryofIntelligence} to the \texttt{aes()} function within the ggplot function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(park, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Anthropomorphismf, }\DataTypeTok{y =}\NormalTok{ Total_NumberofHelp, }\DataTypeTok{group =}\NormalTok{ TheoryofIntelligencef, }\DataTypeTok{color =}\NormalTok{ TheoryofIntelligencef)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_summary}\NormalTok{(}\DataTypeTok{fun.data =}\NormalTok{ mean_cl_normal) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-92-1.pdf}
+
+You could also add a line in order to easily see the interaction by adding \texttt{stat\_summary(fun\ =\ mean,\ geom\ =\ "line")} to the command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(park, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Anthropomorphismf, }\DataTypeTok{y =}\NormalTok{ Total_NumberofHelp, }\DataTypeTok{group =}\NormalTok{ TheoryofIntelligencef, }\DataTypeTok{color =}\NormalTok{ TheoryofIntelligencef)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_summary}\NormalTok{(}\DataTypeTok{fun.data =}\NormalTok{ mean_cl_normal) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_summary}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ mean, }\DataTypeTok{geom =} \StringTok{"line"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tools-for-Working-with-Data_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+\textbf{Interpretation}
+
+There is a clear interaction between the Anthropomorphism condition and the TOI condition. Participants in the entity condition sought more help in the non-anthropomorphic condition compared to the anthropomorphic condition. The participants in the incremental condition, on the other hand, sought more help in the anthropomorphic condition compared to the non-anthropomorphic condition.
+
+\hypertarget{stats-3}{%
+\subsection{Stats}\label{stats-3}}
+
+We will analyze the data with a 2(anthropomorphism:yes v no) X 2 (TOI: entity v incremental) factorial ANOVA.
+
+Let's start by creating the model using the \texttt{aov()} function. Remember that this function takes the form of \texttt{DV\ \textasciitilde{}\ IV}. With multiple IVs it takes the form of \texttt{DV\ \textasciitilde{}\ IV1\ +\ IV2}. Add \texttt{IV1:IV2} to test the interaction (i.e.~\texttt{DV\ \textasciitilde{}\ IV1\ +\ IV2\ +\ IV1:IV2}).
+
+I called the object parkfano for park factorial ANOVA.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parkfano <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(Total_NumberofHelp }\OperatorTok{~}\StringTok{ }\NormalTok{Anthropomorphismf }\OperatorTok{+}\StringTok{ }\NormalTok{TheoryofIntelligencef }\OperatorTok{+}\StringTok{ }\NormalTok{Anthropomorphismf}\OperatorTok{:}\NormalTok{TheoryofIntelligencef, }\DataTypeTok{data =}\NormalTok{ park)}
+\end{Highlighting}
+\end{Shaded}
+
+Then call the model with the \texttt{summary()} function to view the results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(parkfano)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                          Df Sum Sq Mean Sq F value Pr(>F)  
+## Anthropomorphismf                         1   28.6   28.58   1.678  0.197  
+## TheoryofIntelligencef                     1   20.8   20.85   1.224  0.270  
+## Anthropomorphismf:TheoryofIntelligencef   1  107.2  107.23   6.298  0.013 *
+## Residuals                               167 2843.7   17.03                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\textbf{Interpretation}
+
+The first line shows the statistics related to the main effect of Anthropomorphism. The p-value (0.197) associated with the f-value (1.678) is greater than .05, and therefore is not statistically significant.
+
+The second line shows the statistics for the main effect of TOI. The p-value (0.270) associated with the f-value (1.224) is greater than .05, so this is also not statistically significant.
+
+The third line shows the statistics for the interaction between Anthropomorphism and TOI. The interaction was statistically significant, as the p-value (0.013) associated with the f-value (6.298) is less than .05.
+
+Eta-squared is a common measure of effect size for an ANOVA. It can be interpreted in the same way as R-squared in regression (the proportion of the DV that is accounted for by an IV).
+
+Eta-squared is very easy to calculate. It is the sum of squares for an effect divided by the total sum of squares. So you could pretty quickly do this by hand. For example the eta-squared for the interaction is \texttt{107.2/3000.3} is 0.0357298 (note that SS total = \texttt{28.6+20.8+107.2+2843.7}). This tell us that the interaction accounts for 0.0357298 of the variance in the help seeking variable, which is rather small.
+
+Of course you could also have R do these calculations for you. There are a few packages that commute effect sizes for ANOVA. I like the lsr package, which is maintained by Danielle Navarra.
+
+First install it:\\
+\texttt{install.packages("lsr")}
+
+Then load it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lsr)}
+\end{Highlighting}
+\end{Shaded}
+
+This package has a \texttt{etaSquared()} function. Put the name of the object containing the factorial ANOVA in the parenthesis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{etaSquared}\NormalTok{(parkfano)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                              eta.sq eta.sq.part
+## Anthropomorphismf                       0.008295075 0.008676123
+## TheoryofIntelligencef                   0.006948311 0.007277745
+## Anthropomorphismf:TheoryofIntelligencef 0.035740724 0.036339358
+\end{verbatim}
+
+The numbers below the et.sq are the eta-squares for each main effect and the interaction. The next column is the partial eta-squares, which is the ratio of variance associated with an effect ignoring the other effects in the factorial ANOVA.
+
+\textbf{Interpretation}
+
+The eta-squared (0.035740724) and the partial eta-squared (0.036339358) tells us that the interaction between Anthropomorphism and TOI accounts for about 3.5\% of the total variance in help seeking behaviors.
+
+Next we need to run post-hoc analysis to determine which groups involved in the interaction are different from each other. Let's first look at the group means. You could scroll up to the descriptives we ran above.
+
+Or you could use the \texttt{model.tables()} function, which is part of base R. Put the model name in the parenthesis followed by \texttt{type="means"}. \texttt{model.tables()} is nice to use because it includes the DV's grand mean, the main effect means, and the interaction means.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{model.tables}\NormalTok{(parkfano, }\DataTypeTok{type=}\StringTok{"means"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Tables of means
+## Grand mean
+##          
+## 9.549708 
+## 
+##  Anthropomorphismf 
+##     Anthropomorphism Nonanthropomorphic
+##                9.157              9.976
+## rep           89.000             82.000
+## 
+##  TheoryofIntelligencef 
+##     Entity Incremental
+##      9.908       9.212
+## rep 83.000      88.000
+## 
+##  Anthropomorphismf:TheoryofIntelligencef 
+##                     TheoryofIntelligencef
+## Anthropomorphismf    Entity Incremental
+##   Anthropomorphism    8.70   9.53      
+##   rep                40.00  49.00      
+##   Nonanthropomorphic 11.09   8.74      
+##   rep                43.00  39.00
+\end{verbatim}
+
+So the grand mean (9.549708) is the mean number of times of all of the participants in the study sought help from the computer.
+
+Next are the means for the number of help seeking for the Anthropomorphism main effect. The mean of the anthropomorphism group (9.157) is not different from the nonanthropomorphism (9.976). Rep mean number of participants. 89 participants were in the anthropomorphism condition and 82 were in the nonanthropomorphic condition.
+
+Next are the means for the TOI main effect. The mean of the Entity group (9.908) is not different from the Incremental group (9.212).
+
+The last table is the cell means for the interaction. These are the means we need to test to see where the difference between groups are.
+
+One way to probe the interaction is to use the Tukey HSD host-hoc test function - as we did with the one-way ANOVA. Put the object with the ANOVA results in the parenthesis of the \texttt{TukeyHSD()}function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{TukeyHSD}\NormalTok{(parkfano)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = Total_NumberofHelp ~ Anthropomorphismf + TheoryofIntelligencef + Anthropomorphismf:TheoryofIntelligencef, data = park)
+## 
+## $Anthropomorphismf
+##                                          diff        lwr      upr     p adj
+## Nonanthropomorphic-Anthropomorphism 0.8183064 -0.4287442 2.065357 0.1969344
+## 
+## $TheoryofIntelligencef
+##                          diff       lwr       upr     p adj
+## Incremental-Entity -0.6966575 -1.943196 0.5498808 0.2714547
+## 
+## $`Anthropomorphismf:TheoryofIntelligencef`
+##                                                                    diff
+## Nonanthropomorphic:Entity-Anthropomorphism:Entity            2.39302326
+## Anthropomorphism:Incremental-Anthropomorphism:Entity         0.83061224
+## Nonanthropomorphic:Incremental-Anthropomorphism:Entity       0.04358974
+## Anthropomorphism:Incremental-Nonanthropomorphic:Entity      -1.56241101
+## Nonanthropomorphic:Incremental-Nonanthropomorphic:Entity    -2.34943351
+## Nonanthropomorphic:Incremental-Anthropomorphism:Incremental -0.78702250
+##                                                                     lwr
+## Nonanthropomorphic:Entity-Anthropomorphism:Entity            0.04064076
+## Anthropomorphism:Incremental-Anthropomorphism:Entity        -1.45130601
+## Nonanthropomorphic:Incremental-Anthropomorphism:Entity      -2.36622891
+## Anthropomorphism:Incremental-Nonanthropomorphic:Entity      -3.80007443
+## Nonanthropomorphic:Incremental-Nonanthropomorphic:Entity    -4.71738887
+## Nonanthropomorphic:Incremental-Anthropomorphism:Incremental -3.08499120
+##                                                                    upr
+## Nonanthropomorphic:Entity-Anthropomorphism:Entity           4.74540575
+## Anthropomorphism:Incremental-Anthropomorphism:Entity        3.11253050
+## Nonanthropomorphic:Incremental-Anthropomorphism:Entity      2.45340840
+## Anthropomorphism:Incremental-Nonanthropomorphic:Entity      0.67525240
+## Nonanthropomorphic:Incremental-Nonanthropomorphic:Entity    0.01852185
+## Nonanthropomorphic:Incremental-Anthropomorphism:Incremental 1.51094619
+##                                                                 p adj
+## Nonanthropomorphic:Entity-Anthropomorphism:Entity           0.0445113
+## Anthropomorphism:Incremental-Anthropomorphism:Entity        0.7808214
+## Nonanthropomorphic:Incremental-Anthropomorphism:Entity      0.9999627
+## Anthropomorphism:Incremental-Nonanthropomorphic:Entity      0.2713317
+## Nonanthropomorphic:Incremental-Nonanthropomorphic:Entity    0.0526680
+## Nonanthropomorphic:Incremental-Anthropomorphism:Incremental 0.8106932
+\end{verbatim}
+
+The results start with testing the main effects (we no there will be no difference because the main effects in the factorial ANOVA were not statistically significant).
+
+Then are the cell mean comparisons (below \texttt{\$}Anthropomorphismf:TheoryofIntelligencef``).
+
+The only statistically significant difference is between the mean of the Nonanthropomorphic and Entity and the Anthropomorphism and Entity cells (the first comparison). The point estimate of this difference is 2.39302326. An interval estimate is 0.04064076 to 4.74540575 - showing a fair amount of uncertainty.
+
+Another option to probe the interaction is is to run a t-test separately for each level of one of the IVs. We will use the \texttt{filter()} function to select the levels. This function allows you to pick observations or rows by their values. The operations you can use to select a subset of values are: \textgreater, \textgreater=, \textless, \textless=, != (not equal), and == (equal). In this example let's first select the participants that were in the entity condition first. To do this we should put \texttt{TheoryofIntelligence\ ==\ 1} in the parenthesis. Let's also save this as a new object called \texttt{parkent} for park-entity.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parkent <-}\StringTok{ }\NormalTok{park }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(TheoryofIntelligence }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Then using this new dataset, use a independent sample t-test and cohen's d to test for differences in help seeking by Anthropomorphism condition.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Total_NumberofHelp }\OperatorTok{~}\StringTok{ }\NormalTok{Anthropomorphismf, }\DataTypeTok{data =}\NormalTok{ parkent, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Two Sample t-test
+## 
+## data:  Total_NumberofHelp by Anthropomorphismf
+## t = -2.4269, df = 81, p-value = 0.01745
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -4.3549407 -0.4311059
+## sample estimates:
+##   mean in group Anthropomorphism mean in group Nonanthropomorphic 
+##                          8.70000                         11.09302
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(effsize)}
+\KeywordTok{cohen.d}\NormalTok{(Total_NumberofHelp }\OperatorTok{~}\StringTok{ }\NormalTok{Anthropomorphismf, }\DataTypeTok{data =}\NormalTok{ parkent)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Cohen's d
+## 
+## d estimate: -0.5331208 (medium)
+## 95 percent confidence interval:
+##       lower       upper 
+## -0.97788567 -0.08835596
+\end{verbatim}
+
+The results show that the 95\% CI is -4.3549407 to -0.4311059, which means that the true difference in the number of times participants sought help based on Anthropomorphism condition use is likely to be between about a half to about four times.
+
+The results also report that t = -2.4269, df = 81, p-value = 0.01745 - so the difference is statistically significant.
+
+The Cohen's d is -0.5331208, which is a medium effect. The 95\% CI is -0.08835596 to -0.97788567 - indicating that the true size of the effect is close to zero to around 1.
+
+Next do the same for the participants in the incremental condition. First create an object with just the incremental participants.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parkinc <-}\StringTok{ }\NormalTok{park }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(TheoryofIntelligence }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Then using this new dataset, use a independent sample t-test and cohen's d to test for differences in help seeking by Anthropomorphism condition.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Total_NumberofHelp }\OperatorTok{~}\StringTok{ }\NormalTok{Anthropomorphismf, }\DataTypeTok{data =}\NormalTok{ parkinc, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Two Sample t-test
+## 
+## data:  Total_NumberofHelp by Anthropomorphismf
+## t = 0.9771, df = 86, p-value = 0.3313
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.8141959  2.3882409
+## sample estimates:
+##   mean in group Anthropomorphism mean in group Nonanthropomorphic 
+##                         9.530612                         8.743590
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cohen.d}\NormalTok{(Total_NumberofHelp }\OperatorTok{~}\StringTok{ }\NormalTok{Anthropomorphismf, }\DataTypeTok{data =}\NormalTok{ parkinc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Cohen's d
+## 
+## d estimate: 0.2096764 (small)
+## 95 percent confidence interval:
+##      lower      upper 
+## -0.2180713  0.6374242
+\end{verbatim}
+
+The results show that the 95\% CI is -0.8141959 to 2.3882409, which means that zero is a potential true difference in the number of times participants sought help based on Anthropomorphism condition.
+
+The results also report that t = 0.9771, df = 86, p-value = 0.3313 - so the difference is not statistically significant.
+
+The Cohen's d is 0.2096764, which is a small effect. The 95\% CI is -0.2180713 to 0.6374242 - again indicating that the true size of the effect is potentially zero.
+
+\hypertarget{apa-style-write-up-2}{%
+\subsection{APA-style write up}\label{apa-style-write-up-2}}
+
+A 2 (TOI: entity vs.~incremental) × 2 (anthropomorphism:yes vs.~no) factorial analysis of variance (ANOVA) revealed nonsignificant main effects, ps \textgreater.20, but a significant interaction, F(1, 167) = 6.30, p = .013, Partial eta-squared = .04. Tukey HSD post-hoc analysis revealed that the participants in the entity conditions asked for help more often in the nonanthropomorphic condition (M = 11.09, SD = 3.83) than the anthropomorphic condition (M = 8.7, SD = 5.1), 95\% CI of difference = 0.04 to 4.75.
+
+\hypertarget{bonus-optional-material-apatables}{%
+\subsection{Bonus / optional material: apaTables}\label{bonus-optional-material-apatables}}
+
+The apaTables package will create an APA style ANOVA table. Like with the multiple regression table, you will need to first rerun the Factorial ANOVA with the \texttt{lm()} function.
+
+Then use the \texttt{apa.aov.table()} function. Put the name of the lm model in the parenthesis, followed by \texttt{filename\ =\ "parkfactANOVA.doc"}, and then \texttt{table.number\ =\ 7}. Note that you can change the file name to whatever you want - just include the .doc.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(apaTables)}
+
+\NormalTok{parkfanoAPA <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Total_NumberofHelp }\OperatorTok{~}\StringTok{ }\NormalTok{Anthropomorphismf }\OperatorTok{+}\StringTok{ }\NormalTok{TheoryofIntelligencef }\OperatorTok{+}\StringTok{ }\NormalTok{Anthropomorphismf}\OperatorTok{:}\NormalTok{TheoryofIntelligencef, }\DataTypeTok{data =}\NormalTok{ park)}
+
+\KeywordTok{apa.aov.table}\NormalTok{(parkfanoAPA, }\DataTypeTok{filename =} \StringTok{"parkfactANOVA.doc"}\NormalTok{, }\DataTypeTok{table.number =} \DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 
+## Table 7 
+## 
+## ANOVA results using Total_NumberofHelp as the dependent variable
+##  
+## 
+##                                  Predictor      SS  df      MS      F    p
+##                                (Intercept) 3027.60   1 3027.60 177.80 .000
+##                          Anthropomorphismf  118.67   1  118.67   6.97 .009
+##                      TheoryofIntelligencef   15.19   1   15.19   0.89 .346
+##  Anthropomorphismf x TheoryofIntelligencef  107.23   1  107.23   6.30 .013
+##                                      Error 2843.67 167   17.03            
+##  partial_eta2 CI_90_partial_eta2
+##                                 
+##           .04         [.01, .10]
+##           .01         [.00, .04]
+##           .04         [.00, .09]
+##                                 
+## 
+## Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared
+\end{verbatim}
+
+Use the table that is saved in the parkfactANOVA.doc file for presentation purposes, as it has all aspects of APA-styled formatting. Also, note that the ANOVA tables include the eta-squared and partial eta-squared (!).
+
+This package will also create a table of means and standard deviations. To do this use the \texttt{apa.2way.table()} function. In the parenthesis list the names of the IVs after \texttt{IV1\ =} and \texttt{IV\ 2\ =}. Then list the name of the DV variable after \texttt{DV\ =}. This is followed by the data object after \texttt{data\ =}. Then include: \texttt{filename\ =\ "parkmeans.doc",\ show.marginal.means\ =\ TRUE,\ table.number\ =\ 8)}. Again - you can change the file name to whatever you want (but don't forget the .doc).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apa.2way.table}\NormalTok{(}\DataTypeTok{iv1 =}\NormalTok{ Anthropomorphismf,}\DataTypeTok{iv2 =}\NormalTok{ TheoryofIntelligencef, }\DataTypeTok{dv =}\NormalTok{ Total_NumberofHelp, }
+               \DataTypeTok{data =}\NormalTok{ park, }
+               \DataTypeTok{filename =} \StringTok{"parkmeans.doc"}\NormalTok{, }
+               \DataTypeTok{show.marginal.means =} \OtherTok{TRUE}\NormalTok{,}
+               \DataTypeTok{table.number =} \DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 
+## Table 8 
+## 
+## Means and standard deviations for Total_NumberofHelp as a function of a 2(Anthropomorphismf) X 2(TheoryofIntelligencef) design 
+## 
+##                     TheoryofIntelligencef                                    
+##                                    Entity      Incremental      Marginal     
+##   Anthropomorphismf                     M   SD           M   SD        M   SD
+##    Anthropomorphism                  8.70 5.11        9.53 3.37     9.16 4.23
+##  Nonanthropomorphic                 11.09 3.83        8.74 4.19     9.98 4.15
+##            Marginal                  9.94 4.62        9.18 3.75              
+## 
+## Note. M and SD represent mean and standard deviation, respectively. 
+## Marginal indicates the means and standard deviations pertaining to main effects.
+\end{verbatim}
 
 \hypertarget{final-words}{%
 \chapter{Final Words}\label{final-words}}
