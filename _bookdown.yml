@@ -1,18 +1,6 @@
 book_filename: "Tools for Working with Data"
 rmd_files: ["index.Rmd",
-            "setuprstudiocloud.Rmd",
-            "Introduction.Rmd",
-            "packages.Rmd",
-            "plots.Rmd",
-            "Descriptives.Rmd",
-            "measurement.Rmd",
-            "datatran.Rmd",
-            "bicorr.Rmd",
-            "multicorr.Rmd",
-            "simexper.Rmd",
-            "moreexper.Rmd",
-            "summary.Rmd",
-            "references.Rmd"]
+            "measurement.Rmd"]
 output_dir: "docs"
 language:
   ui:
